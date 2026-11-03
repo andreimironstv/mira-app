@@ -111,8 +111,16 @@ const FILE_RULES = [
   },
   {
     file: /^scripts\/preview-feed\.mjs$/,
-    from: /(const publicKeyBase64 =\s*)"[^"]+"/,
-    to: (_, head) => `${head}process.env.MIRA_UPDATER_PUBLIC_KEY ?? ""`,
+    from: /const publicKeyBase64 =\s*"[^"]+"/,
+    to: () =>
+      'const publicKeyBase64 = process.env.MIRA_UPDATER_PUBLIC_KEY ?? ""',
+  },
+  {
+    // The longer repository name no longer fits on one line.
+    file: /^scripts\/prune-preview-releases\.mjs$/,
+    from: /assert\.equal\(repository, "([^"]+)", "([^"]+)"\);/,
+    to: (_, repo, message) =>
+      `assert.equal(\n  repository,\n  "${repo}",\n  "${message}",\n);`,
   },
   {
     file: /^src\/features\/agents\/share-card\.ts$/,
@@ -122,7 +130,10 @@ const FILE_RULES = [
 ];
 
 function markPath64() {
-  return readFileSync(join(ROOT, "rebrand/brand/mira-mark-64.txt"), "utf8").trim();
+  return readFileSync(
+    join(ROOT, "rebrand/brand/mira-mark-64.txt"),
+    "utf8",
+  ).trim();
 }
 
 function inScope(path) {

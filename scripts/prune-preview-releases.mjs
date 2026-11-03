@@ -9,7 +9,11 @@ assert.ok(
 );
 const apply = args[0] === "--apply";
 const repository = process.env.GH_REPO;
-assert.equal(repository, "andreimironstv/mira-app", "Unexpected cleanup repository");
+assert.equal(
+  repository,
+  "andreimironstv/mira-app",
+  "Unexpected cleanup repository",
+);
 const versionPattern =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)-preview\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
 const gh = (...arguments_) =>
