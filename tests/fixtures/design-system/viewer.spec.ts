@@ -86,7 +86,7 @@ test("built viewer loads every specimen and foundation without app connections",
   page.on("websocket", (ws) => sockets.push(ws.url()));
   await page.goto(viewer);
   await expect(
-    page.getByRole("heading", { name: "Buzz Design System", exact: true }),
+    page.getByRole("heading", { name: "Mira Design System", exact: true }),
   ).toBeVisible();
   const nav = page.getByRole("navigation", { name: "Design system" });
   for (const component of COMPONENTS) {
@@ -599,7 +599,7 @@ test("a stale or renamed link explains itself instead of rendering blank", async
     ).toBeVisible();
     await page.getByRole("link", { name: "Go to the overview" }).click();
     await expect(
-      page.getByRole("heading", { name: "Buzz Design System", exact: true }),
+      page.getByRole("heading", { name: "Mira Design System", exact: true }),
     ).toBeVisible();
   }
   expect([...pageErrors.unexplained(), ...failures]).toEqual([]);

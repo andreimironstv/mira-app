@@ -144,7 +144,7 @@ describe("linkedKey", () => {
     [
       "an account without the USER role",
       refusal(403, "unauthorized"),
-      "This Builderlab account can't manage Buzz identities right now. Try signing in again.",
+      "This Builderlab account can't manage Mira identities right now. Try signing in again.",
     ],
     ["a lapsed session", lapsed, signedOut],
     [
@@ -532,18 +532,18 @@ describe("bind", () => {
     [
       "a verify for an account bound to another key",
       [answer(200, challenge), refusal(409, "identity_already_bound")],
-      "This Builderlab account is connected to another Buzz identity.",
+      "This Builderlab account is connected to another Mira identity.",
     ],
     [
       "a verify for a key bound to another account",
       [answer(200, challenge), refusal(409, "pubkey_already_bound")],
-      "This Buzz identity is connected to another Builderlab account.",
+      "This Mira identity is connected to another Builderlab account.",
     ],
     // kgoose's codes the card lacks.
     [
       "a challenge refused for its origin",
       [refusal(403, "invalid_origin")],
-      "Builderlab didn’t accept this request from Buzz.",
+      "Builderlab didn’t accept this request from Mira.",
     ],
     [
       "a challenge refused for too many open challenges",
@@ -629,13 +629,13 @@ describe("bind", () => {
     [
       "identity_already_bound",
       409,
-      "This Builderlab account is connected to another Buzz identity.",
+      "This Builderlab account is connected to another Mira identity.",
       false,
     ],
     [
       "pubkey_already_bound",
       409,
-      "This Buzz identity is connected to another Builderlab account.",
+      "This Mira identity is connected to another Builderlab account.",
       false,
     ],
     // Defensive, not a kgoose reply: its identity routes never send `unknown`,
@@ -690,7 +690,7 @@ describe("bind", () => {
       [
         "pubkey_already_bound",
         409,
-        "This Buzz identity is connected to another Builderlab account.",
+        "This Mira identity is connected to another Builderlab account.",
       ],
     ] as const) {
       warn.mockClear();
@@ -773,7 +773,7 @@ describe("bind", () => {
     vi.spyOn(console, "warn").mockImplementation(() => {});
     const { request, sent } = kgoose(
       unbound,
-      answer(200, { ...challenge, origin: "https://app.builderlab.xyz" }),
+      answer(200, { ...challenge, origin: "https://account.mira-ai.ro" }),
     );
     const failed: unknown = await builderlabAccount(
       credential,
@@ -973,7 +973,7 @@ describe("unbind", () => {
     [
       "a refused origin",
       refusal(403, "invalid_origin"),
-      "Builderlab didn’t accept this request from Buzz.",
+      "Builderlab didn’t accept this request from Mira.",
       false,
     ],
     // Defensive, not a kgoose reply: its identity routes never send `unknown`,

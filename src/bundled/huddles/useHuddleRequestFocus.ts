@@ -20,7 +20,7 @@ export function useHuddleRequestFocus(
       // Cancel/failure removes the request. Search survives it in the main app;
       // the native companion closes and returns focus to its owning window.
       document
-        .querySelector<HTMLButtonElement>('[aria-label="Search Buzz"]')
+        .querySelector<HTMLButtonElement>('[aria-label="Search Mira"]')
         ?.focus({ preventScroll: true });
       retry.current = document.activeElement;
     }

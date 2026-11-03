@@ -362,8 +362,8 @@ export function AgentsPage({
             joinable.length
               ? "You have agents in your other communities."
               : agentImports.length
-                ? "You have agents in Buzz (Legacy)."
-                : "Check other communities and Buzz (Legacy) for agents."
+                ? "You have agents in Mira (Legacy)."
+                : "Check other communities and Mira (Legacy) for agents."
           }
           label={
             agentImports.length
@@ -1261,7 +1261,7 @@ function PeekIdentity({
 
 const host = (relay: string) => relay.replace(/^wss:\/\//, "");
 const sentence = (text: string) => text.replace(/\.?$/, ".");
-const LEGACY = "Buzz (Legacy)";
+const LEGACY = "Mira (Legacy)";
 
 /** The owner's teams with members `joinable` can add here: adding them gives
  * the team, which every community shares, its members here too. */
@@ -1581,7 +1581,7 @@ function ImportAgents({
       ))}
       {old.length > 0 && (
         <p className="m-0 text-body-sm text-secondary">
-          <strong>Buzz (Legacy):</strong> Stop the old runtime before importing,
+          <strong>Mira (Legacy):</strong> Stop the old runtime before importing,
           or both may answer. Imports keep each agent’s key, name and picture.
           Instructions and workspace come over only if the chosen type supports
           them; choose provider, model and other settings afterward. An archived

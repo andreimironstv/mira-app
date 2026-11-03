@@ -12,7 +12,7 @@ const retry = (cause: string, then = "Try again.") =>
  */
 export const BACKUP_FAILURES = {
   unavailable: {
-    message: "Key backup isn’t available in this version of Buzz.",
+    message: "Key backup isn’t available in this version of Mira.",
     retryable: false,
   },
   busy: retry(
@@ -43,7 +43,7 @@ export const BACKUP_FAILURES = {
   },
   invalid_service: {
     message:
-      "Buzz couldn’t verify Builderlab’s backup service, so your key wasn’t sent.",
+      "Mira couldn’t verify Builderlab’s backup service, so your key wasn’t sent.",
     retryable: false,
   },
   refused: { message: "Builderlab refused this backup.", retryable: false },
@@ -53,7 +53,7 @@ export const BACKUP_FAILURES = {
   ),
   // A retry re-sends the same encrypted bytes, which kgoose treats as stored.
   unconfirmed: retry("Builderlab didn’t confirm your backup."),
-  storage: retry("Buzz couldn’t save backup progress on this device."),
+  storage: retry("Mira couldn’t save backup progress on this device."),
   unknown: { message: "Your key wasn’t backed up.", retryable: false },
 } as const satisfies Record<
   string,

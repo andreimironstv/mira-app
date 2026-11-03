@@ -179,7 +179,7 @@ export function CommunityDialog({
             membership: {
               id,
               name:
-                info?.name && info.name !== "Buzz Relay"
+                info?.name && info.name !== "Mira Relay"
                   ? info.name
                   : destination.name,
               ...(info?.icon?.startsWith("https://")
@@ -235,7 +235,7 @@ export function CommunityDialog({
               ? "Enter a wss:// or https:// relay address without a path. Changing the connection URL does not rename or move this community."
               : "Use your identity across communities. Your profile and conversations stay separate in each one."
             : step === "access"
-              ? `Connect to ${destination?.name} with your Buzz identity.`
+              ? `Connect to ${destination?.name} with your Mira identity.`
               : mode === "profile"
                 ? "Your local default. Use it when joining communities; saving here does not publish changes to them."
                 : original?.exists
@@ -293,7 +293,7 @@ export function CommunityDialog({
         mode === "profile"
           ? "Your profile"
           : step === "profile"
-            ? `Your profile in ${info?.name && info.name !== "Buzz Relay" ? info.name : destination?.name}`
+            ? `Your profile in ${info?.name && info.name !== "Mira Relay" ? info.name : destination?.name}`
             : connectionFrom
               ? "Edit connection"
               : "Join a community"
@@ -317,7 +317,7 @@ export function CommunityDialog({
               ? "Opening your local identity…"
               : client.status === "ready"
                 ? "Your identity is ready, but connecting to communities is not available in this build yet. You can manage your local profile and identity in Settings."
-                : "Live identity access is unavailable. For development, set BUZZ_DEV_VIEWER to your Buzz public key in .env.local, then restart just web or just desktop. See docs/contributing.md for requirements."}
+                : "Live identity access is unavailable. For development, set BUZZ_DEV_VIEWER to your Mira public key in .env.local, then restart just web or just desktop. See docs/contributing.md for requirements."}
           </p>
         ) : (
           <>
@@ -328,7 +328,7 @@ export function CommunityDialog({
                 description={
                   connectionFrom
                     ? undefined
-                    : "Paste your community link. Continue shares your Buzz identity with the community so you can preview it before joining."
+                    : "Paste your community link. Continue shares your Mira identity with the community so you can preview it before joining."
                 }
               >
                 <Input
@@ -338,7 +338,7 @@ export function CommunityDialog({
                   autoComplete="url"
                   autoCapitalize="none"
                   spellCheck={false}
-                  placeholder="wss://communities.buzz.xyz"
+                  placeholder="wss://workspace.mira-ai.ro"
                   maxLength={2048}
                   disabled={busy}
                   value={url}

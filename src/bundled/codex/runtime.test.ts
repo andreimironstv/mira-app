@@ -627,7 +627,7 @@ it("hands over promptly and runs conversations independently on one server", asy
     approvalPolicy: "never",
   });
   expect(started.baseInstructions).toBeUndefined();
-  expect(started.developerInstructions).toContain("coding agent in Buzz");
+  expect(started.developerInstructions).toContain("coding agent in Mira");
   expect(started.developerInstructions).toContain(
     "Never publish a bare acknowledgement.",
   );
@@ -1111,7 +1111,7 @@ it.each([
   ["deep-model", "", "deep-model", "high"],
   ["deep-model", "xhigh", "deep-model", "xhigh"],
 ])(
-  "resolves Buzz model %s and thinking %s independently of local Codex preferences",
+  "resolves Mira model %s and thinking %s independently of local Codex preferences",
   async (model, effort, expected, expectedEffort) => {
     const f = fixture([], undefined, false, {
       model: "deep-model",
@@ -1500,7 +1500,7 @@ it.each([
   { channelType: "stream", scope: "channel", whole: false },
   { channelType: "stream", scope: "thread", whole: false },
 ])(
-  "defaults Buzz reads to the latest conversation in $channelType/$scope",
+  "defaults Mira reads to the latest conversation in $channelType/$scope",
   async ({ channelType, scope, whole }) => {
     const f = fixture();
     vi.spyOn(f.snapshot.session.channels, "list").mockReturnValue({
@@ -3470,7 +3470,7 @@ it("offers the tools plugins add, runs them as the agent here, and starts a new 
   );
   expect(names(1)?.map((tool) => tool.name)).not.toContain("tasks_create");
   const gone = await f.tool("tasks_create", { title: "Late" });
-  expect(JSON.stringify(gone)).toContain("No active Buzz tool");
+  expect(JSON.stringify(gone)).toContain("No active Mira tool");
   expect(call).toHaveBeenCalledTimes(1);
   await f.complete();
 });
@@ -3543,7 +3543,7 @@ it("runs a watch or timer as a one-off ephemeral turn with the attention tools, 
   expect([...f.storage.values()].join()).not.toContain("thread-1");
   // After the turn, its tools no longer answer.
   const late = await f.tool("interest_show", { id: "ops" }, 0);
-  expect(JSON.stringify(late)).toContain("No active Buzz tool");
+  expect(JSON.stringify(late)).toContain("No active Mira tool");
   // A timer runs the same way, on a thread of its own.
   const timer = {
     type: "timer",

@@ -266,7 +266,7 @@ test("context menus appear immediately and retain their source highlight through
       // Neither is menu presence, and both legitimately keep a hover treatment.
       await page.mouse.move(1400, 900);
       await page
-        .getByRole("button", { name: "Search Buzz", exact: true })
+        .getByRole("button", { name: "Search Mira", exact: true })
         .focus();
       await expect.poll(background).toBe("rgba(0, 0, 0, 0)");
       await source.focus();

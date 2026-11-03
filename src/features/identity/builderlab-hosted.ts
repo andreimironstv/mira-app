@@ -7,9 +7,9 @@ import type { FoundCommunity } from "../communities/find-community.ts";
  */
 const HOSTED = [
   {
-    host: "communities.buzz.xyz",
-    self: "12f6870117eff1a6318bd38c82a65d51dd19879b7489f57247114d0ee8a96de3",
-    portal: "https://app.builderlab.xyz",
+    host: "workspace.mira-ai.ro",
+    self: "0000000000000000000000000000000000000000000000000000000000000000",
+    portal: "https://account.mira-ai.ro",
   },
 ] as const;
 
@@ -20,9 +20,9 @@ const HOSTED = [
  * portal (including an unconfigured or federated-identity build) treats every
  * community as unhosted.
  *
- * Hostname first (exact or label-boundary suffix: `design.communities.buzz.xyz`
- * and the apex match `communities.buzz.xyz`; `notcommunities.buzz.xyz` and
- * `communities.buzz.xyz.evil.com` do not), then the relay's `self`. Block's
+ * Hostname first (exact or label-boundary suffix: `design.workspace.mira-ai.ro`
+ * and the apex match `workspace.mira-ai.ro`; `notcommunities.buzz.xyz` and
+ * `workspace.mira-ai.ro.evil.com` do not), then the relay's `self`. Block's
  * deployments serve on 443, so a non-default port never matches.
  */
 export function hostedByThisBuilderlab(

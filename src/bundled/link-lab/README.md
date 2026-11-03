@@ -18,13 +18,13 @@ recognizes Microsoft's documented
 Unknown or self-hosted service domains retain the globe icon.
 
 Sample activation stays in the preview. The separate bundled `buzz.links` plugin
-now applies the same component and CSS to HTTPS and supported Buzz links in messages.
-Buzz channel, message and thread links have distinct icons and use known channel
+now applies the same component and CSS to HTTPS and supported Mira links in messages.
+Mira channel, message and thread links have distinct icons and use known channel
 names from the current community. Generic labels remain when names are unavailable.
 Hover or keyboard focus opens a clickable message preview with author and timestamp on one
 row beside the author's avatar, the channel below, and an excerpt clamped to four
 lines, ending early before a blank paragraph. The card opens the same destination
-with pointer or keyboard activation. Recency follows Buzz desktop's thread-summary ladder: just now, minutes,
+with pointer or keyboard activation. Recency follows Mira desktop's thread-summary ladder: just now, minutes,
 hours under 24 hours, days under seven days, then a short date. Hovering the time
 shows its full date and time. Hidden channels and
 DMs use a lock; other known channels use a hash. This creates a disposable, bounded session thread reader only while open;
@@ -32,7 +32,7 @@ it does not mark messages read. Other-community previews do not connect or switc
 communities on hover. Mentions with signed recipient IDs and unambiguous loaded
 names share the hover styling; known local agent identities use a robot icon.
 Known channel names in `#channel` text open through the same host link path.
-The Buzz link forms `buzz://channel/<id>`, `buzz://channel/<id>/<event>` and
+The Mira link forms `buzz://channel/<id>`, `buzz://channel/<id>/<event>` and
 `buzz://message?channel=<id>&id=<event>[&thread=<root>]` are supported; any other
 `buzz://` host stays plain text.
 The host opens them through scoped navigation; message links reveal the selected

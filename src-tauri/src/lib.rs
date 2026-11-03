@@ -891,7 +891,7 @@ pub fn run() {
                 .watch(app.handle().clone());
             if let Some(window) = app.get_webview_window("main") {
                 if let Err(error) = window_state::restore(&window.as_ref().window()) {
-                    eprintln!("Could not restore Buzz window: {error}");
+                    eprintln!("Could not restore Mira window: {error}");
                 }
             }
             #[cfg(target_os = "macos")]
@@ -899,7 +899,7 @@ pub fn run() {
             #[cfg(target_os = "macos")]
             if let Some(home) = dirs::home_dir() {
                 if let Err(error) = legacy_cli_shortcut::remove_stale(&home.join(".local/bin")) {
-                    eprintln!("Could not remove old Buzz's CLI shortcut: {error}");
+                    eprintln!("Could not remove old Mira's CLI shortcut: {error}");
                 }
             }
             tauri::async_runtime::spawn(host_command::load_login_shell_path());
@@ -1090,7 +1090,7 @@ pub fn run() {
                     // Keep the webview and running agents alive until explicit Quit.
                     api.prevent_close();
                     if let Err(error) = window.hide() {
-                        eprintln!("Could not close Buzz window: {error}");
+                        eprintln!("Could not close Mira window: {error}");
                     }
                     return;
                 }
@@ -1098,7 +1098,7 @@ pub fn run() {
             browser::window_event(window, event);
         })
         .build(context)
-        .expect("failed to build Buzz Foundation")
+        .expect("failed to build Mira")
         .run(|app, event| {
             #[cfg(target_os = "macos")]
             if matches!(event, tauri::RunEvent::Reopen { .. }) {

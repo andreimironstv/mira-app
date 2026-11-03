@@ -2,7 +2,7 @@
 
 ## Start here when building a screen
 
-This guide applies to all Buzz UI, including feature pages and bundled plugins.
+This guide applies to all Mira UI, including feature pages and bundled plugins.
 Start with the screen's structure, then choose components, then their tokens.
 Matching colors alone does not make a screen consistent. Existing app code can
 contain adoption gaps; it is not automatically an approved design example.
@@ -390,7 +390,7 @@ while pending, and prevent repeated activation in behavior. Shared surfaces own
 their motion: keyboard/high-frequency interactions stay immediate, exits do not
 delay access to the underlying task, and reduced-motion behavior stays intact.
 Do not add a page-wide entrance, result stagger, press scale, blur, or new timing
-curve merely because a generic design recipe recommends one. Buzz's existing
+curve merely because a generic design recipe recommends one. Mira's existing
 [motion decisions](#motion) and named component exceptions take precedence.
 
 Inspect the states that actually contain the affected controls. An unavailable
@@ -411,7 +411,7 @@ Sign in, Cancel, and Sign out at narrow widths with enlarged text.
 
 Source plugins can import the shared components directly. External plugins must
 use the actual supported author contract and exposed CSS roles; source paths are
-not a published component SDK. These are composition requirements for Buzz UI,
+not a published component SDK. These are composition requirements for Mira UI,
 not a claim that arbitrary external code is automatically constrained. Do not
 introduce a private reset, theme provider, palette, body-level stylesheet, global
 control override, or parallel dialog/toast system to make one contribution fit.
@@ -426,8 +426,8 @@ force every plugin into one universal page component. Read the
 
 ## Direction
 
-Buzz adopts Block UI's visual language and semantic color grammar. Base UI
-remains the behavior layer; Buzz owns styles, composition and product semantics.
+Mira adopts Block UI's visual language and semantic color grammar. Base UI
+remains the behavior layer; Mira owns styles, composition and product semantics.
 Use Inter and JetBrains Mono, public dependencies and generic examples. Do not
 copy private packages, proprietary fonts, internal product data or private source.
 
@@ -589,7 +589,7 @@ Removal is immediate and reduced motion disables the reveal animation.
 
 ## Posture
 
-Buzz is a place for people and their agents to build together. Keep everyday
+Mira is a place for people and their agents to build together. Keep everyday
 surfaces quiet and functional so the conversation stays central. Use character
 in identity, guidance, transitions, and ceremony. Use color to convey meaning.
 
@@ -929,7 +929,7 @@ existing larger treatment. These defaults do not depend on pointer type or viewp
 width. Both controls use the same sm/md/lg scale. Existing names
 remain compatibility aliases: primary/solid → prominent, quiet → subtle,
 compact/toolbar → sm, default → md, large → lg. Do not add new alias call sites.
-Buzz's tint and chrome icon variants remain for composer and backdrop actions.
+Mira's tint and chrome icon variants remain for composer and backdrop actions.
 
 Proposed: when a trigger changes between icon-only and labelled content, keep one
 `Button` mounted and switch `shape="icon"` / `shape="capsule"`. The icon shape
@@ -1376,7 +1376,7 @@ in the host, portaled outside the app layout to the bottom right. Features and
 plugins use the shared Toast API, never their own Toaster or direct Sonner calls.
 Toast cards reuse `floating-surface`, including its `--shadow-panel` elevation; the
 scrollable viewport leaves room for the shadow and keyboard focus.
-Buzz owns the floating surface, semantic colors, type roles, Button and IconButton;
+Mira owns the floating surface, semantic colors, type roles, Button and IconButton;
 headless content inherits the host theme and text size without an OS-theme override.
 Group title and description with `space-1` (4px), then separate actions with
 `space-3` (12px). Use `space-3` padding on every card edge. The dismiss slot is
@@ -1580,7 +1580,7 @@ Values scale with the host interface-size preference.
   `--type-xsmall-size` points to the existing 12px step, keeping the semantic
   independent from caption even though their sizes currently match. `text-mono-lg` and
   `text-mono-sm` are compatibility aliases for this same setting, not extra sizes.
-- Caption uses 12/16 and 0.0133em tracking. Buzz’s `text-body` uses 14/20; `text-label` uses 16/24 and `text-body-lg` uses 20/28.
+- Caption uses 12/16 and 0.0133em tracking. Mira’s `text-body` uses 14/20; `text-label` uses 16/24 and `text-body-lg` uses 20/28.
 - Message prose uses `text-message`: 14px with 1.625 leading (22.75px at
   default), matching Berd’s relaxed reply rhythm for both sent and received
   messages. The message renderer uses `space-4` between prose blocks, with
@@ -1602,7 +1602,7 @@ need their own values in each mode.
 - Accent text is darker than its fill on light surfaces and lighter on dark surfaces.
 - Tints are pale in light mode and deep in dark mode; their names describe their purpose.
 - Check text with its actual fill and backdrop, including interactive states.
-- The original design exploration was light-only. Buzz’s dark values are authored choices and should be revised when rendered evidence shows a problem.
+- The original design exploration was light-only. Mira’s dark values are authored choices and should be revised when rendered evidence shows a problem.
 
 Received message bubbles use `bubble-received`, slightly stronger than quiet
 control fills. Reply connectors and thread spines use `border-message-thread`
@@ -1728,7 +1728,7 @@ because the lighter amber steps cannot identify a control against a light panel.
 
 The utility hues (gray, purple, red, green, amber, blue, cyan and orange) use
 Radix Colors (MIT) values. The six accent families (Honey, Magenta, Iris, Cobalt,
-Citrus and Mono) are Buzz's own values on the same twelve-step structure, and the
+Citrus and Mono) are Mira's own values on the same twelve-step structure, and the
 neutral ramps are authored. Step 10 is each accent's hover. These are values, not
 a component or behavior dependency. Base UI remains the component behavior layer, with Sonner owning Toast.
 
@@ -1750,7 +1750,7 @@ Tailwind namespaces so a border cannot accidentally inherit a text color.
 
 ## Contrast
 
-Buzz checks opaque text pairs against both **WCAG AA (4.5:1)** and its existing
+Mira checks opaque text pairs against both **WCAG AA (4.5:1)** and its existing
 **APCA** targets: Lc 60 for body/UI text and Lc 45 for metadata. Small metadata
 still needs the normal-text WCAG ratio. Control and state boundaries use the
 separate WCAG 3:1 non-text ratio; decorative separators and hover fills do not.
@@ -1916,7 +1916,7 @@ person’s size preference. Allow content to reflow before it clips.
 
 Reuse and compose existing components before adding another.
 
-- **Behavior:** inspect Base UI before building an interactive shared component. Use its matching primitive for focus, keyboard behavior, positioning, portals, and dismissal. Buzz owns appearance and product semantics. Toast uses Sonner as documented above. Use native elements where Base UI has no matching primitive or the component is static.
+- **Behavior:** inspect Base UI before building an interactive shared component. Use its matching primitive for focus, keyboard behavior, positioning, portals, and dismissal. Mira owns appearance and product semantics. Toast uses Sonner as documented above. Use native elements where Base UI has no matching primitive or the component is static.
 - **Variants:** add a missing visual variant for a real use and mark it proposed. Do not cancel several existing states to force an unsuitable variant to fit.
 - **Props:** use named variants for visual differences, never a new boolean appearance prop. Keep data and behavior props distinct from appearance choices.
 - **Ownership:** keep a component with its first feature. A second real use can justify proposing it as shared.

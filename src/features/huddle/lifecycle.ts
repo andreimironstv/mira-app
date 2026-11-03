@@ -1,7 +1,7 @@
 import type { EventData } from "../relay/events";
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-const prefix = "Buzz Huddle (buzz.huddles/v1)\nparent:";
+const prefix = "Mira Huddle (buzz.huddles/v1)\nparent:";
 export const huddleDescription = (parent: string) => `${prefix}${parent}`;
 export function huddleParent(description: string | undefined) {
   if (!description?.startsWith(prefix)) return;

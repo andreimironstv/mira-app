@@ -271,7 +271,7 @@ const PAGE = 200;
 const PREFIX = "buzz_";
 /** The prompt section of the agent's `core` memory. */
 const CORE = "core-memory";
-const TOOL_NAMES = `The Buzz tools are named \`${PREFIX}<name>\`: where your instructions name a Buzz tool such as \`send\` or \`read\`, call \`${PREFIX}send\` or \`${PREFIX}read\`. The unprefixed \`read\`, \`write\`, \`edit\` and \`bash\` work on files in the workspace.`;
+const TOOL_NAMES = `The Mira tools are named \`${PREFIX}<name>\`: where your instructions name a Mira tool such as \`send\` or \`read\`, call \`${PREFIX}send\` or \`${PREFIX}read\`. The unprefixed \`read\`, \`write\`, \`edit\` and \`bash\` work on files in the workspace.`;
 
 /** A membership key: an agent's pubkey, alone or with its community's
  * percent-encoded host. Mirrors `AGENT_KEY` in features/agents/membership.ts,
@@ -341,7 +341,7 @@ export class AuthFile {
   resolve(key) {
     if (/^(?:!|\$(?:\{\w+\}|\w+)$)/.test(key))
       throw new Error(
-        "Buzz doesn't use `!command` or `$NAME` keys from Pi's auth.json. Enter the key in Buzz's Provider and model dialog instead.",
+        "Mira doesn't use `!command` or `$NAME` keys from Pi's auth.json. Enter the key in Mira's Provider and model dialog instead.",
       );
     return key;
   }
@@ -375,12 +375,12 @@ export class AuthFile {
  * run, with each package that didn't load. */
 const unknownProvider = (id, errors) =>
   [
-    `${id} isn't one of Pi's built-in providers, and no Pi package Buzz loaded adds it.`,
+    `${id} isn't one of Pi's built-in providers, and no Pi package Mira loaded adds it.`,
     ...errors.map(
       ({ source, error }) =>
         `Pi could not load the package ${source}: ${error.replace(/\.?$/, ".")}`,
     ),
-    "Buzz loads the packages in Pi's settings when it starts. Choose another provider in the agent's Identity tab.",
+    "Mira loads the packages in Pi's settings when it starts. Choose another provider in the agent's Identity tab.",
   ].join(" ");
 
 /** The default provider, model and thinking level in Pi's settings. */
@@ -438,7 +438,7 @@ export async function loadPackages(dir, limit = PACKAGE_MS) {
     const installed = [];
     try {
       if (typeof source !== "string" || /^(?:npm|git|https?|ssh):/.test(source))
-        throw new Error("Buzz loads only Pi packages in a local folder");
+        throw new Error("Mira loads only Pi packages in a local folder");
       const root = resolvePath(dir, source.replace(/^~(?=$|[\\/])/, homedir()));
       // A timer the host waits for: a setup that never settles may hold
       // nothing else that keeps Node running.
@@ -472,7 +472,7 @@ export async function loadPackages(dir, limit = PACKAGE_MS) {
       const empty = providers.find((provider) => !provider.getModels().length);
       if (empty)
         throw new Error(
-          `Provider ${empty.id} lists no models, and Buzz doesn't fetch a provider's models`,
+          `Provider ${empty.id} lists no models, and Mira doesn't fetch a provider's models`,
         );
       loaded.extensions.push(...extensions);
       loaded.providers.push(...providers);
@@ -672,7 +672,7 @@ export function serve({
       })
       .catch((error) => {
         throw error.code === "ELOCKED"
-          ? new Error("This agent is open in another Buzz app on this computer")
+          ? new Error("This agent is open in another Mira app on this computer")
           : error;
       });
     try {

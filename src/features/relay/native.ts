@@ -341,7 +341,7 @@ export function nativeRelaySigner(community: string): Signer {
 }
 
 export const NOT_A_COMMUNITY_ERROR =
-  "That URL didn't look like a Buzz community. Enter a community URL like wss://communities.buzz.xyz.";
+  "That URL didn't look like a Mira community. Enter a community URL like wss://workspace.mira-ai.ro.";
 
 export async function nativeRelayInfo(community: string, signal?: AbortSignal) {
   const response = await nativeRelayRequest(community, "/", undefined, signal);

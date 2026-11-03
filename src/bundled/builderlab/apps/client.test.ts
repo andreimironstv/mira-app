@@ -438,7 +438,7 @@ it("deploys to the sign-in's own tenant", () => {
   expect(controlPlane("https://block.builderlab.xyz/")).toBe(
     "https://compose-ctrl.block.builderlab.xyz",
   );
-  expect(controlPlane("https://app.builderlab.xyz")).toBe(
+  expect(controlPlane("https://account.mira-ai.ro")).toBe(
     "https://compose-ctrl.builderlab.xyz",
   );
   expect(controlPlane("https://builderlab.example")).toBeUndefined();

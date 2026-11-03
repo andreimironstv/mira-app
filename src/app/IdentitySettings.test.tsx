@@ -208,7 +208,7 @@ it("keeps a failed organization sign-out visible when storage refuses", async ()
   );
 });
 
-it("places organization sign-in below signing out of Buzz", () => {
+it("places organization sign-in below signing out of Mira", () => {
   const h = federatedFixture();
   const identity = { exportKey: vi.fn() } as unknown as Identity;
   render(
@@ -219,7 +219,7 @@ it("places organization sign-in below signing out of Buzz", () => {
     />,
     { wrapper: ToastProvider },
   );
-  const signOut = screen.getByRole("button", { name: "Sign out of Buzz" });
+  const signOut = screen.getByRole("button", { name: "Sign out of Mira" });
   const organization = screen.getByText("Organization sign-in");
   expect(
     signOut.compareDocumentPosition(organization) &

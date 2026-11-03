@@ -272,11 +272,11 @@ it("returns focus to an app dialog portaled outside the app", async () => {
   render(
     <LaunchSignIn identity={h.service}>
       <Workspace />
-      {createPortal(<input aria-label="Search Buzz" />, document.body)}
+      {createPortal(<input aria-label="Search Mira" />, document.body)}
     </LaunchSignIn>,
   );
   h.set({ status: "signed-in" });
-  const search = screen.getByLabelText("Search Buzz");
+  const search = screen.getByLabelText("Search Mira");
   await user.type(search, "query");
 
   h.set({ status: "reauthentication-required" });
@@ -353,7 +353,7 @@ it("reports only its own renewal's failure", async () => {
   // A community refusing access isn't a failed sign-in.
   h.set({ failure: "authorization-denied" });
   expect(
-    await screen.findByText("Sign in again to keep Buzz open."),
+    await screen.findByText("Sign in again to keep Mira open."),
   ).toBeInTheDocument();
   vi.mocked(h.service.signIn).mockRejectedValueOnce(
     new Error("callback-refused"),
@@ -365,7 +365,7 @@ it("reports only its own renewal's failure", async () => {
   // A later session's warning doesn't carry the old attempt's failure.
   h.set({ revision: "next", failure: null });
   expect(
-    await screen.findByText("Sign in again to keep Buzz open."),
+    await screen.findByText("Sign in again to keep Mira open."),
   ).toBeInTheDocument();
 });
 

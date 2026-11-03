@@ -1216,7 +1216,7 @@ export function SearchResults({
       displayQuery={displayQuery}
       onDisplayQueryChange={updateDisplayQuery}
       input={input}
-      label={scopedChannelId ? "Search this conversation" : "Search Buzz"}
+      label={scopedChannelId ? "Search this conversation" : "Search Mira"}
       scopeAction={
         scopedChannelId && session.searchSort && parsed.text ? (
           <MenuRoot>

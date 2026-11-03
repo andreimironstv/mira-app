@@ -72,8 +72,8 @@ test("excludes a channel-archived conversation across reload without clearing lo
   await expect(rows).toHaveCount(0);
 
   // Archive is not access loss. Restore through the actual search/settings path.
-  await page.getByRole("button", { name: "Search Buzz", exact: true }).click();
-  const search = page.getByRole("dialog", { name: "Search Buzz", exact: true });
+  await page.getByRole("button", { name: "Search Mira", exact: true }).click();
+  const search = page.getByRole("dialog", { name: "Search Mira", exact: true });
   await search.getByRole("combobox").fill("Lifecycle channel");
   await search
     .getByRole("option", {

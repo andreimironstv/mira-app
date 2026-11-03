@@ -3,7 +3,7 @@
 // `apps_control_plane` in crates/plugin-manager, which grants the plugin that
 // origin.
 const CONTROL_PLANES: Readonly<Record<string, string>> = {
-  "https://app.builderlab.xyz": "https://compose-ctrl.builderlab.xyz",
+  "https://account.mira-ai.ro": "https://compose-ctrl.builderlab.xyz",
   "https://app.builderlabstaging.xyz":
     "https://compose-ctrl.builderlabstaging.xyz",
   "https://block.builderlab.xyz": "https://compose-ctrl.block.builderlab.xyz",
@@ -63,7 +63,7 @@ export function viewerAppDomain(
 ): string {
   if (configured !== undefined) return configured;
   try {
-    return new URL(origin).origin === "https://app.builderlab.xyz"
+    return new URL(origin).origin === "https://account.mira-ai.ro"
       ? "apps.builderlab.xyz"
       : "";
   } catch {

@@ -166,7 +166,7 @@ test("failed generation warns, removes partial output, and falls back", (t) => {
   );
   const result = icon(linked);
   assert.equal(result.icon, null);
-  assert.match(result.stderr, /using the ordinary Buzz icon/);
+  assert.match(result.stderr, /using the ordinary Mira icon/);
   assert.deepEqual(
     readdirSync(path.join(linked, "src-tauri/target/dev-icons")),
     [],
@@ -209,7 +209,7 @@ test("macOS launchers preserve icon, port, explicit config and runner arguments"
   const config = JSON.parse(explicit.call[3]);
   assert.equal(readFileSync(config.bundle.icon[0], "utf8"), "first-label");
   assert.deepEqual(config, {
-    identifier: "xyz.block.buzz.desktop.dev",
+    identifier: "ro.miraai.mira.desktop.dev",
     bundle: config.bundle,
     build: build(1431),
   });

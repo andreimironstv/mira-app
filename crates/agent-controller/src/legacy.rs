@@ -52,7 +52,7 @@ pub fn delete_local_agent_keys(root: PathBuf, credentials: &dyn Credentials) -> 
         return Err("Agent storage lock must be a regular file".into());
     }
     lock.try_lock()
-        .map_err(|_| "Another Buzz app owns this agent storage")?;
+        .map_err(|_| "Another Mira app owns this agent storage")?;
     let path = root.join("agents.json");
     match std::fs::symlink_metadata(&path) {
         Err(error) if error.kind() == std::io::ErrorKind::NotFound => return Ok(()),

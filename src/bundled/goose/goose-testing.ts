@@ -219,7 +219,7 @@ export function fakeSpawn(
           (item) => item.url === declared.get(sessionId),
         );
         if (!server || server.closed)
-          throw new Error(`No Buzz MCP server for ${sessionId}`);
+          throw new Error(`No Mira MCP server for ${sessionId}`);
         const body = { jsonrpc: "2.0", id: ++mcpRequests, method, params };
         return (await answerMcp(
           server.handler,

@@ -482,7 +482,7 @@ export function AgentShareDialog({
       title={previewing ? `Export ${agent.name}` : `Share ${agent.name}`}
       description={
         previewing
-          ? `Anyone can add ${agent.name} to Buzz with this card. Instructions and settings come along. Memories and chats stay with you.`
+          ? `Anyone can add ${agent.name} to Mira with this card. Instructions and settings come along. Memories and chats stay with you.`
           : "Everyone gets their own copy. Later changes won’t sync."
       }
       // Sharing keeps a steady frame for its results. The preview is centred
@@ -516,7 +516,7 @@ export function AgentShareDialog({
               <>
                 <MenuNote>
                   An agent card is an image that holds the agent’s setup, so
-                  anyone can add it to Buzz.
+                  anyone can add it to Mira.
                 </MenuNote>
                 <MenuRadioGroup
                   value={format}

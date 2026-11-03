@@ -164,7 +164,7 @@ export function settingsSections(
       : []),
     {
       id: "app",
-      label: "Buzz",
+      label: "Mira",
       sections: [
         identity,
         ...app.filter((item) => item.id !== "updates"),

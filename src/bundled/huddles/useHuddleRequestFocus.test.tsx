@@ -17,7 +17,7 @@ function Request({
   const focus = useHuddleRequestFocus(false, error, initial);
   return (
     <>
-      <button type="button" aria-label="Search Buzz">
+      <button type="button" aria-label="Search Mira">
         Search
       </button>
       <textarea aria-label="Message" />

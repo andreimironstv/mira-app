@@ -10,9 +10,9 @@ import { join } from "node:path";
 
 // Must match the key and endpoint embedded by the updater-enabled release build (#312).
 const publicKeyBase64 =
-  "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJDQjQ2RDZFMUEwOERFMTEKUldRUjNnZ2FibTIwTE10QkVaMzFyYkZlY0R4ajhmbFBjdncvNVRCYnNpSm9kaFNBaHQzemZlZHkK";
+  process.env.MIRA_UPDATER_PUBLIC_KEY ?? "";
 const endpoint =
-  "https://github.com/block/buzz-app/releases/download/preview-feed/latest.json";
+  "https://github.com/andreimironstv/mira-app/releases/download/preview-feed/latest.json";
 const [command, version, assetDir, manifestPath, binaryPath, currentPath] =
   process.argv.slice(2);
 const versionPattern =
@@ -142,7 +142,7 @@ const platforms = Object.fromEntries(
       target,
       {
         signature: readFileSync(`${path}.sig`, "utf8").trim(),
-        url: `https://github.com/block/buzz-app/releases/download/${release}/${asset}`,
+        url: `https://github.com/andreimironstv/mira-app/releases/download/${release}/${asset}`,
       },
     ];
   }),
@@ -162,7 +162,7 @@ if (command === "generate") {
     `${JSON.stringify(
       {
         version,
-        notes: `Buzz ${version} desktop preview`,
+        notes: `Mira ${version} desktop preview`,
         pub_date: new Date().toISOString(),
         platforms,
       },

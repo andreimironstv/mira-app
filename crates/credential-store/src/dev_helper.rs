@@ -79,7 +79,7 @@ pub(super) fn agent(
         || !matches!(operation, "read" | "replace" | "delete")
         || !matches!(
             service,
-            "xyz.block.buzz.desktop.agents" | "dev.local.buzz.foundation.agents"
+            "ro.miraai.mira.desktop.agents" | "dev.local.buzz.foundation.agents"
         )
         || !(account == "agent-bundle-v1" || account.starts_with("agent:"))
         || value.len() > MAX

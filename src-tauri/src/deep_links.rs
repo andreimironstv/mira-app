@@ -74,10 +74,10 @@ pub(crate) fn focus_main<R: tauri::Runtime>(app: &tauri::AppHandle<R>) {
             return;
         };
         if let Err(error) = crate::notifications::focus(&window) {
-            eprintln!("Could not focus Buzz for a deep link: {error}");
+            eprintln!("Could not focus Mira for a deep link: {error}");
         }
     }) {
-        eprintln!("Could not focus Buzz for a deep link: {error}");
+        eprintln!("Could not focus Mira for a deep link: {error}");
     }
 }
 
@@ -216,7 +216,7 @@ mod tests {
         let links = DeepLinks::default();
         for raw in [
             "BUZZ://channel/general",
-            "Buzz://channel/general",
+            "Mira://channel/general",
             "http://example.com",
             "https://example.com/?next=buzz://channel/general",
             "buzz",

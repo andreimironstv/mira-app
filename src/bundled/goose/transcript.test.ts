@@ -82,7 +82,7 @@ const conversation = () => [
 ];
 
 describe("gooseTurns", () => {
-  it("reads a Buzz turn's prompt, tools and sent reply", () => {
+  it("reads a Mira turn's prompt, tools and sent reply", () => {
     const [turn, ...rest] = gooseTurns(
       conversation(),
       { sessionId: "s1", channelId: CHANNEL, root: root.id },

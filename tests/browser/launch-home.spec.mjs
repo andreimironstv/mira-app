@@ -78,7 +78,7 @@ test("launch opens Messages without exposing Home across responsive navigation, 
     const choices = await pageChoices(page, "Messages");
     await expect(pageChoice(choices, "Messages")).toBeVisible();
     await page
-      .getByRole("combobox", { name: "Search Buzz", exact: true })
+      .getByRole("combobox", { name: "Search Mira", exact: true })
       .fill("Home");
     await expect(pageChoice(choices, "Home")).toHaveCount(0);
     await page.keyboard.press("Escape");
@@ -96,17 +96,17 @@ test("launch opens Messages without exposing Home across responsive navigation, 
   ).toBeVisible();
   await page.keyboard.press("Escape");
   await page.screenshot({ path: testInfo.outputPath("launch-messages.png") });
-  await page.getByRole("button", { name: "Search Buzz" }).click();
-  const dialog = page.getByRole("dialog", { name: "Search Buzz" });
+  await page.getByRole("button", { name: "Search Mira" }).click();
+  const dialog = page.getByRole("dialog", { name: "Search Mira" });
   await expect(
     dialog.getByRole("group", { name: "This conversation" }),
   ).toBeVisible();
   await dialog
-    .getByRole("combobox", { name: "Search Buzz", exact: true })
+    .getByRole("combobox", { name: "Search Mira", exact: true })
     .fill("Messages");
   await expect(pageChoice(dialog, "Messages")).toBeVisible();
   await dialog
-    .getByRole("combobox", { name: "Search Buzz", exact: true })
+    .getByRole("combobox", { name: "Search Mira", exact: true })
     .fill("Home");
   await expect(pageChoice(dialog, "Home")).toHaveCount(0);
 
@@ -195,7 +195,7 @@ test("default navigation retries failed metadata and accepts a completed empty l
     page.getByRole("dialog", { name: "Manage members", exact: true }),
   ).toBeVisible();
   await page.keyboard.press("Escape");
-  await page.getByRole("button", { name: "Search Buzz" }).click();
+  await page.getByRole("button", { name: "Search Mira" }).click();
   await expect(
     page.getByRole("group", { name: "This conversation" }),
   ).toBeVisible();
@@ -259,7 +259,7 @@ test("launch retains plugin-configuration recovery without Home", async ({
   );
   await page.goto(app.origin);
   await expect(
-    page.getByRole("heading", { name: "Couldn’t open Buzz", exact: true }),
+    page.getByRole("heading", { name: "Couldn’t open Mira", exact: true }),
   ).toBeVisible();
   const recoveryChoices = await pageChoices(page, "Home");
   await expect(pageChoice(recoveryChoices, "Home")).toHaveCount(0);
@@ -324,7 +324,7 @@ for (const huddle of [false, true]) {
                   ["private"],
                   [
                     "about",
-                    "Buzz Huddle (buzz.huddles/v1)\nparent:00000000-0000-4000-8000-000000000001",
+                    "Mira Huddle (buzz.huddles/v1)\nparent:00000000-0000-4000-8000-000000000001",
                   ],
                 ])
               : event,

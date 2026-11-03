@@ -139,7 +139,7 @@ export class FederatedIdentityService
   };
   private async operation(command: string) {
     if (!nativeIdentityEnabled() || this.shared.closed)
-      throw new Error("Federated identity requires Buzz desktop");
+      throw new Error("Federated identity requires Mira desktop");
     const epoch = this.shared.epoch;
     try {
       const snapshot = await invoke<SessionSnapshot>(command);
@@ -157,7 +157,7 @@ export class FederatedIdentityService
   }
   async cancelSignIn() {
     if (!nativeIdentityEnabled() || this.shared.closed)
-      throw new Error("Federated identity requires Buzz desktop");
+      throw new Error("Federated identity requires Mira desktop");
     await invoke("federated_identity_cancel_sign_in");
     await this.operation("federated_identity_snapshot");
   }

@@ -39,7 +39,7 @@ export function ConnectChoice({
           {host}
         </p>
         <p className="mt-2 text-body text-subtle">
-          Buzz relies on a key for your identity.
+          Mira relies on a key for your identity.
         </p>
       </div>
       <div className="flex flex-col gap-3">

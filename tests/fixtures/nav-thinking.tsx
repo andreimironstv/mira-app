@@ -309,7 +309,7 @@ function Preview() {
           </h2>
           <p className="text-body-md text-subtle">
             {detail
-              ? `${profiles.get(detail.agent)?.name ?? "Agent"} is working here. This opens ${detail.destination === "thread" ? "the thread" : "agent activity"} in Buzz.`
+              ? `${profiles.get(detail.agent)?.name ?? "Agent"} is working here. This opens ${detail.destination === "thread" ? "the thread" : "agent activity"} in Mira.`
               : activeNames.length
                 ? `${activeNames.join(" and ")} ${activeNames.length === 1 ? "is" : "are"} working here.`
                 : scenario === "complete"

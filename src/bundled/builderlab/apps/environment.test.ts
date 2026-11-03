@@ -27,7 +27,7 @@ it("uses the exact Apps domain paired with the trusted login build configuration
 
 it("keeps native SSO off without an Apps domain and honors an explicit disable", () => {
   expect(viewerAppDomain("https://login.example", undefined)).toBe("");
-  expect(viewerAppDomain("https://app.builderlab.xyz", "")).toBe("");
+  expect(viewerAppDomain("https://account.mira-ai.ro", "")).toBe("");
   expect(
     isViewerTarget(
       "https://counter.apps.example/",

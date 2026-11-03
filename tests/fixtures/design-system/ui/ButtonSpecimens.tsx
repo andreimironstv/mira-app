@@ -499,10 +499,10 @@ export function IconButtonSpecimen() {
       </ExamplePreview>
       <section
         className="component-specimen-group"
-        aria-label="Buzz icon treatments"
+        aria-label="Mira icon treatments"
       >
         <SectionHeading
-          title="Buzz treatments"
+          title="Mira treatments"
           description="Tint supports quiet composer actions. Chrome uses the workspace glass material. Top-bar and content-toolbar actions share 32px containers and even 10px corners; avatar controls remain round."
         />
         <ExamplePreview

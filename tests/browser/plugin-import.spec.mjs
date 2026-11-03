@@ -471,7 +471,7 @@ test("Settings controls scale together and keep enlarged labels reachable", asyn
       // The shell toolbar stays mounted, though hidden, behind the modal.
       await expect(
         page.getByRole("button", {
-          name: "Search Buzz",
+          name: "Search Mira",
           exact: true,
           includeHidden: true,
         }),
@@ -983,7 +983,7 @@ test("folder/Git preview selects the exact subfolder and preserves enabled state
   await page.getByRole("dialog").screenshot({
     path: info.outputPath("installed-open-dialog.png"),
   });
-  await button(page, "Open in Buzz").click();
+  await button(page, "Open in Mira").click();
   await expectOnlySettings(page);
   await expect(pane).toBeVisible();
   await expect(button(page, "Close plugin details")).toBeFocused();
@@ -1126,7 +1126,7 @@ test("checked-in local examples activate and work independently", async ({
   const navigation = await pageChoices(page, "Counter playground");
   await expect(pageChoice(navigation, "Counter playground")).toHaveCount(0);
   await page
-    .getByRole("combobox", { name: "Search Buzz", exact: true })
+    .getByRole("combobox", { name: "Search Mira", exact: true })
     .fill("Notes playground");
   await expect(pageChoice(navigation, "Notes playground")).toBeVisible();
 });

@@ -199,7 +199,7 @@ for (const action of ["Remove from this device", "Leave community"]) {
     });
     if (action === "Remove from this device")
       await expect(dialog).toContainText(
-        "The community connection and any saved drafts or data will be removed from Buzz on this device.",
+        "The community connection and any saved drafts or data will be removed from Mira on this device.",
       );
     await dialog.getByRole("button", { name: action, exact: true }).focus();
     await page.keyboard.press("Enter");
@@ -419,7 +419,7 @@ confirmedPresence(
         page.getByRole("button", { name: /^Community switcher:/ }),
       ).toBeFocused();
       await tab(true);
-      await expect(button(page, "Search Buzz")).toBeFocused();
+      await expect(button(page, "Search Mira")).toBeFocused();
     }
     await page.setViewportSize({ width: 1280, height: 844 });
     await avatar.focus();
@@ -630,7 +630,7 @@ test("hosted deletion reload keeps the UUID until an enabled manual replay", asy
   const owner = "a".repeat(64);
   const request = {
     community_id: "11111111-1111-4111-8111-111111111111",
-    host: "North.communities.buzz.xyz",
+    host: "North.workspace.mira-ai.ro",
     request_id: "22222222-2222-4222-8222-222222222222",
     acknowledgement_version: 1,
   };
@@ -740,7 +740,7 @@ test("hosted deletion keeps a foreign owner's full npub inside the dialog and no
   const community = {
     id: "11111111-1111-4111-8111-111111111111",
     name: "north",
-    normalized_host: "North.communities.buzz.xyz",
+    normalized_host: "North.workspace.mira-ai.ro",
     archived_at: "2026-09-24",
   };
   const deletes = [];
@@ -1165,7 +1165,7 @@ test("Local settings saves a device name without changing the community identity
       json: {
         name: route.request().url().includes("primary")
           ? "Published community"
-          : "Buzz Relay",
+          : "Mira Relay",
       },
     }),
   );

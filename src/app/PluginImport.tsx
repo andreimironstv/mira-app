@@ -688,7 +688,7 @@ export function PluginImport({
                 : preview.candidates.length
                   ? "Select a plugin to review before installing."
                   : "Try another folder or repository."
-              : "Load built plugins containing manifest.json and plugin.js. Buzz doesn’t build source code or run install scripts."
+              : "Load built plugins containing manifest.json and plugin.js. Mira doesn’t build source code or run install scripts."
         }
         size={error || (reviewing && updating) ? "compact" : "wide"}
         leadingActions={
@@ -762,7 +762,7 @@ export function PluginImport({
                     if (await close()) onOpenInstalled(id);
                   }}
                 >
-                  Open in Buzz
+                  Open in Mira
                 </Button>
               )}
               {reviewing && (duplicate ? !onOpenInstalled : upToDate) && (
@@ -965,7 +965,7 @@ export function PluginImport({
                     <p className="m-0 text-caption text-muted">
                       HTTPS or SSH; GitHub owner/repository also works. SSH uses
                       your agent and known hosts. Password prompts and
-                      credential helpers are not used. Buzz git repositories in
+                      credential helpers are not used. Mira git repositories in
                       this community sign in with your account.
                     </p>
                     <div className="justify-self-start">
@@ -1104,7 +1104,7 @@ export function PluginImport({
                   )}
                 {reviewing && existing?.source === "bundled" && !loading && (
                   <p className="m-0 text-body-sm">
-                    This plugin is included with Buzz. Update Buzz to get its
+                    This plugin is included with Mira. Update Mira to get its
                     latest version.
                   </p>
                 )}

@@ -95,7 +95,7 @@ if (launch) {
       "Warning: this bundle is ad-hoc signed. macOS notifications may reject it; set BUZZ_DEV_SIGNING_IDENTITY to a stable code-signing certificate.",
     );
   const app = fileURLToPath(
-    new URL("../target/debug/bundle/macos/Buzz.app", import.meta.url),
+    new URL("../target/debug/bundle/macos/Mira.app", import.meta.url),
   );
   const opened = spawnSync("open", [app], { stdio: "inherit" });
   if (opened.error) console.error(opened.error.message);

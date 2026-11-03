@@ -21,7 +21,7 @@ pub(crate) fn builder() -> Builder {
 // Called from app setup, after the configured main window has been created.
 pub(crate) fn restore<R: Runtime>(window: &Window<R>) -> tauri::Result<()> {
     if let Err(error) = restore_geometry(window) {
-        eprintln!("Could not restore Buzz window geometry: {error}");
+        eprintln!("Could not restore Mira window geometry: {error}");
     }
     window.restore_state(StateFlags::MAXIMIZED | StateFlags::FULLSCREEN)
 }

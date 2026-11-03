@@ -74,7 +74,7 @@ const credential: Credential = {
     canUseBuilderlabDecisions: false,
   },
 };
-const welcomeHeading = () => screen.getByRole("heading", { name: "Buzz" });
+const welcomeHeading = () => screen.getByRole("heading", { name: "Mira" });
 const connectButton = () => screen.getByRole("button", { name: SIGN_IN });
 function titleBar() {
   const header = document.querySelector("header");
@@ -417,7 +417,7 @@ it("describes a previous identity selection accurately when the current identity
     }),
   );
   expect(
-    screen.getByText("Choose the Buzz identity to restore on this device."),
+    screen.getByText("Choose the Mira identity to restore on this device."),
   ).toBeVisible();
   expect(
     screen.getByText("This won’t change the identity linked to your account."),
@@ -791,7 +791,7 @@ it("first launch offers email sign-in and a live community URL field", async () 
 function legacyLaunch(
   legacy: Promise<boolean>,
   imported: () => Promise<string> = () =>
-    Promise.reject(new Error("Welcome read old Buzz's identity unasked")),
+    Promise.reject(new Error("Welcome read old Mira's identity unasked")),
   connect: ComponentProps<typeof Welcome>["connect"] = vi.fn(),
 ) {
   vi.mocked(invoke).mockImplementation((command) => {
@@ -825,7 +825,7 @@ const legacyChecked = (legacy: Promise<boolean>) =>
   });
 const legacyOffer = () =>
   screen.findByRole("alertdialog", {
-    name: "Continue with your Buzz identity?",
+    name: "Continue with your Mira identity?",
   });
 const BRING_OVER = "Continue";
 /** Base UI moves focus into an opened dialog a frame later. */
@@ -846,7 +846,7 @@ it.each([
       legacy.reject(new Error("Permission denied")),
   ],
 ])(
-  "no old Buzz offer shows when its data folder is %s",
+  "no old Mira offer shows when its data folder is %s",
   async (_label, answer) => {
     const legacy = deferred<boolean>();
     const { identity } = legacyLaunch(legacy.promise);
@@ -863,7 +863,7 @@ it.each([
   },
 );
 
-it("old Buzz's identity is offered over the landing once its folder is found, read only on Continue, and enters the app with no sign-in", async () => {
+it("old Mira's identity is offered over the landing once its folder is found, read only on Continue, and enters the app with no sign-in", async () => {
   const legacy = deferred<boolean>();
   const imported = deferred<string>();
   const connect = vi.fn();
@@ -880,7 +880,7 @@ it("old Buzz's identity is offered over the landing once its folder is found, re
   legacy.resolve(true);
   const offer = await legacyOffer();
   expect(offer).toHaveAccessibleDescription(
-    "Old Buzz was used on this device. Continue with the identity it saved instead of setting up a new one. Your computer may ask you to allow access.",
+    "Old Mira was used on this device. Continue with the identity it saved instead of setting up a new one. Your computer may ask you to allow access.",
   );
   await focusInside(offer);
   // Nothing reads old Buzz's secure storage before the click.
@@ -909,7 +909,7 @@ it("old Buzz's identity is offered over the landing once its folder is found, re
 });
 
 it.each(["Not now", "Escape"])(
-  "%s dismisses the old Buzz offer for this launch: the landing keeps focus on its heading, nothing is imported, and a return from another page does not reopen it",
+  "%s dismisses the old Mira offer for this launch: the landing keeps focus on its heading, nothing is imported, and a return from another page does not reopen it",
   async (dismissal) => {
     const connect = vi
       .fn()
@@ -948,7 +948,7 @@ it("a failed bring-over shows its error in the dialog, and Continue tries again"
   const imported = vi
     .fn<() => Promise<string>>()
     .mockRejectedValueOnce(
-      "The earlier Buzz app's identity is malformed; nothing was changed",
+      "The earlier Mira app's identity is malformed; nothing was changed",
     )
     .mockResolvedValueOnce(viewer);
   const { identity } = legacyLaunch(Promise.resolve(true), imported);
@@ -957,7 +957,7 @@ it("a failed bring-over shows its error in the dialog, and Continue tries again"
   const bringOver = within(offer).getByRole("button", { name: BRING_OVER });
   await user.click(bringOver);
   expect(await within(offer).findByRole("alert")).toHaveTextContent(
-    "The earlier Buzz app's identity is malformed; nothing was changed",
+    "The earlier Mira app's identity is malformed; nothing was changed",
   );
   expect(bringOver).not.toHaveAttribute("aria-busy", "true");
   expect(within(offer).getByRole("button", { name: "Not now" })).toBeEnabled();
@@ -973,7 +973,7 @@ it("a failed bring-over shows its error in the dialog, and Continue tries again"
   identity.dispose();
 });
 
-it("the old Buzz offer waits through a pending sign-in and setup, then opens with focus over the landing setup returns to, without setup's error", async () => {
+it("the old Mira offer waits through a pending sign-in and setup, then opens with focus over the landing setup returns to, without setup's error", async () => {
   const legacy = deferred<boolean>();
   const attempt = deferred<Credential>();
   const { identity } = legacyLaunch(
@@ -1017,7 +1017,7 @@ it("the old Buzz offer waits through a pending sign-in and setup, then opens wit
   identity.dispose();
 });
 
-it("after Sign out, the next launch offers old Buzz's identity again while its folder remains", async () => {
+it("after Sign out, the next launch offers old Mira's identity again while its folder remains", async () => {
   const user = userEvent.setup();
   const first = legacyLaunch(Promise.resolve(true), () =>
     Promise.resolve(viewer),
@@ -1066,7 +1066,7 @@ function landingRelay(
     return answer(
       200,
       JSON.stringify({
-        name: "Buzz Relay",
+        name: "Mira Relay",
         icon: "https://cdn.example.com/icon.png",
       }),
     );
@@ -1221,7 +1221,7 @@ it("a found landing URL pauses on Connect to {host} with no sign-in and no key, 
   // Found: nothing runs until the user says who
   // provides the key. The body is one sentence: why a key is needed at all.
   expect(
-    screen.getByText("Buzz relies on a key for your identity."),
+    screen.getByText("Mira relies on a key for your identity."),
   ).toBeVisible();
   expect(connectButton()).toBeEnabled();
   expect(
@@ -1230,7 +1230,7 @@ it("a found landing URL pauses on Connect to {host} with no sign-in and no key, 
   expect(
     screen.queryByRole("heading", { name: "Finding community" }),
   ).toBeNull();
-  expect(screen.queryByRole("heading", { name: "Setting up Buzz" })).toBeNull();
+  expect(screen.queryByRole("heading", { name: "Setting up Mira" })).toBeNull();
   expect(connect).not.toHaveBeenCalled();
   expect(invoke).not.toHaveBeenCalledWith("identity_create", {});
   expect(relay.relayCalls).toEqual(relay.lookup);
@@ -1427,7 +1427,7 @@ it("I already have a key from the choice imports the key with no sign-in, no lin
   await user.click(continueWithKey());
   expect(invoke).toHaveBeenCalledWith("identity_import", { nsec: ownedNsec });
   expect(
-    screen.getByRole("heading", { name: "Setting up Buzz" }),
+    screen.getByRole("heading", { name: "Setting up Mira" }),
   ).toBeVisible();
   expect(screen.getByRole("status")).toHaveTextContent("Importing your key…");
   expect(screen.queryByLabelText("Private key (nsec)")).toBeNull();
@@ -1570,8 +1570,8 @@ it("a landing URL that cannot be reached fails before sign-in, and Cancel keeps 
 });
 
 it("a landing URL hosted by this build's Builderlab signs in at once, with no connect choice", async () => {
-  vi.stubEnv("VITE_BUZZ_BUILDERLAB_URL", "https://app.builderlab.xyz");
-  const relay = landingRelay("https://design.communities.buzz.xyz");
+  vi.stubEnv("VITE_BUZZ_BUILDERLAB_URL", "https://account.mira-ai.ro");
+  const relay = landingRelay("https://design.workspace.mira-ai.ro");
   relay.info.resolve();
   const connect = vi
     .fn<(signal: AbortSignal) => Promise<Credential>>()
@@ -1590,21 +1590,21 @@ it("a landing URL hosted by this build's Builderlab signs in at once, with no co
     </Welcome>,
   );
   await screen.findByRole("button", { name: SIGN_IN });
-  await user.type(urlField(), "design.communities.buzz.xyz{Enter}");
+  await user.type(urlField(), "design.workspace.mira-ai.ro{Enter}");
   await screen.findByRole("button", { name: "Cancel sign-in" });
   expect(connect).toHaveBeenCalledTimes(1);
   expect(
     screen.queryByRole("heading", { name: "Connect to your community" }),
   ).toBeNull();
-  expect(urlField()).toHaveValue("design.communities.buzz.xyz");
+  expect(urlField()).toHaveValue("design.workspace.mira-ai.ro");
   expect(relay.relayCalls).toEqual(relay.lookup);
   expect(identity.snapshot().status).toBe("missing");
   identity.dispose();
 });
 
 it.each([
-  ["https://app.builderlab.xyz", "buzz.block.builderlab.xyz"],
-  ["", "design.communities.buzz.xyz"],
+  ["https://account.mira-ai.ro", "buzz.block.builderlab.xyz"],
+  ["", "design.workspace.mira-ai.ro"],
 ])(
   "a build whose Builderlab (%j) does not host a landing URL pauses on the ordinary connect choice: %s",
   async (build, host) => {
@@ -1630,7 +1630,7 @@ it.each([
     expect(connectChoiceHeading()).toBeVisible();
     expect(screen.getByText(host)).toBeVisible();
     expect(
-      screen.getByText("Buzz relies on a key for your identity."),
+      screen.getByText("Mira relies on a key for your identity."),
     ).toBeVisible();
     expect(
       screen.getAllByRole("button").map((button) => button.textContent),
@@ -1846,11 +1846,11 @@ it("Sign in with email runs sign-in, creates the key mid-setup, and lands on Joi
   expect(screen.getByRole("button", { name: "Cancel sign-in" })).toBeEnabled();
   await act(async () => released.resolve(credential));
   expect(
-    await screen.findByRole("heading", { name: "Setting up Buzz" }),
+    await screen.findByRole("heading", { name: "Setting up Mira" }),
   ).toBeVisible();
   // The landing's button is gone with the landing: the new heading has focus.
   expect(
-    screen.getByRole("heading", { name: "Setting up Buzz" }),
+    screen.getByRole("heading", { name: "Setting up Mira" }),
   ).toHaveFocus();
   // The account check is real and runs first: it decides the lane.
   expect(account).toHaveBeenCalledWith(credential, identity);
@@ -2077,7 +2077,7 @@ it("a link that fails after the key is created blocks setup with only Try again,
     .fn((_pubkey: string) => Promise.resolve())
     .mockRejectedValueOnce(
       new Error(
-        "This Builderlab account is connected to another Buzz identity.",
+        "This Builderlab account is connected to another Mira identity.",
       ),
     );
   const backUp = vi.fn((_pubkey: string) => Promise.resolve());
@@ -2103,7 +2103,7 @@ it("a link that fails after the key is created blocks setup with only Try again,
     screen.getByRole("heading", { name: "Couldn’t finish setup" }),
   ).toHaveFocus();
   expect(screen.getByRole("alert")).toHaveTextContent(
-    "This Builderlab account is connected to another Buzz identity.",
+    "This Builderlab account is connected to another Mira identity.",
   );
   expect(screen.getByText(keyUnlinkedNote)).toBeVisible();
   // The link, not only the backup, is left undone.
@@ -2324,7 +2324,7 @@ it("a found community shows Join Community after exactly the two unauthenticated
       if (path === "/")
         return answer(
           200,
-          JSON.stringify({ name: "Buzz Relay", read_state_snapshot: {} }),
+          JSON.stringify({ name: "Mira Relay", read_state_snapshot: {} }),
         );
       if (path === "/api/join-policy") return answer(404);
     }
@@ -2475,7 +2475,7 @@ function nativeRelay(
     }
     if (request.path === "/")
       return answer(200, {
-        name: "Buzz Relay",
+        name: "Mira Relay",
         self: relayKey.pubkey,
         icon: "https://cdn.example.com/icon.png",
       });
@@ -3877,7 +3877,7 @@ it("I already have a key opens Enter your private key, classifies what is pasted
   const user = userEvent.setup();
   await keyImportPage(user, identity);
   expect(
-    screen.getByText(/Paste your private key to sign in to Buzz\./),
+    screen.getByText(/Paste your private key to sign in to Mira\./),
   ).toBeVisible();
   // Masked, sensitive and focused on arrival; nothing to continue with yet.
   expect(keyField()).toHaveFocus();
@@ -3960,7 +3960,7 @@ it("Continue with this key imports the pasted nsec behind Importing your key, li
   await user.keyboard("{Enter}");
   expect(invoke).toHaveBeenCalledWith("identity_import", { nsec: ownedNsec });
   expect(
-    screen.getByRole("heading", { name: "Setting up Buzz" }),
+    screen.getByRole("heading", { name: "Setting up Mira" }),
   ).toBeVisible();
   expect(screen.getByRole("status")).toHaveTextContent("Importing your key…");
   expect(screen.queryByLabelText("Private key (nsec)")).toBeNull();
@@ -4012,7 +4012,7 @@ it("a link that keeps failing after a key is imported for a new account stays on
   const bind = vi.fn((_pubkey: string) =>
     Promise.reject(
       new Error(
-        "This Builderlab account is connected to another Buzz identity.",
+        "This Builderlab account is connected to another Mira identity.",
       ),
     ),
   );
@@ -4023,7 +4023,7 @@ it("a link that keeps failing after a key is imported for a new account stays on
   await user.paste(ownedNsec);
   await user.click(continueWithKey());
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "This Builderlab account is connected to another Buzz identity.",
+    "This Builderlab account is connected to another Mira identity.",
   );
   expect(screen.getByText(keyUnlinkedNote)).toBeVisible();
   expect(bind.mock.calls).toEqual([[owned.pubkey]]);
@@ -4034,7 +4034,7 @@ it("a link that keeps failing after a key is imported for a new account stays on
   await user.click(screen.getByRole("button", { name: "Try again" }));
   await waitFor(() => expect(bind).toHaveBeenCalledTimes(2));
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "This Builderlab account is connected to another Buzz identity.",
+    "This Builderlab account is connected to another Mira identity.",
   );
   expect(
     screen.getByRole("heading", { name: "Couldn’t finish setup" }),
@@ -4272,7 +4272,7 @@ it("a linked account is welcomed back with its npub, accepts only the linked key
   const identity = createIdentity();
   const user = userEvent.setup();
   await welcomeBackPage(user, identity, linkedTo(owned.pubkey));
-  expect(screen.getByText(/already linked to a Buzz identity/)).toBeVisible();
+  expect(screen.getByText(/already linked to a Mira identity/)).toBeVisible();
   // The linked key in full, as an npub, never hex; no lane here creates a key.
   expect(screen.getByText(linkedNpub)).toHaveClass("font-mono");
   expect(screen.queryByText(owned.pubkey)).toBeNull();
@@ -4478,7 +4478,7 @@ it("a backup that fails twice after the key is imported offers Try again each ti
     ),
   ).toBeVisible();
   expect(screen.queryByText("Signed in")).toBeNull();
-  expect(screen.queryByRole("heading", { name: "Buzz" })).toBeNull();
+  expect(screen.queryByRole("heading", { name: "Mira" })).toBeNull();
   identity.dispose();
 });
 
@@ -5192,7 +5192,7 @@ it("an unlink refused after Start over offers only Try again, which runs the unl
       () =>
         Promise.reject(
           new Error(
-            "This Builderlab account can't manage Buzz identities right now. Try signing in again.",
+            "This Builderlab account can't manage Mira identities right now. Try signing in again.",
           ),
         ),
     ]),
@@ -5206,7 +5206,7 @@ it("an unlink refused after Start over offers only Try again, which runs the unl
   );
   await startOver(user);
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "can't manage Buzz identities right now",
+    "can't manage Mira identities right now",
   );
   expect(screen.getByText(keyUnlinkedNote)).toBeVisible();
   // A refusal is not one Try again is promised to clear, but with nothing to
@@ -5732,7 +5732,7 @@ it("a failed or canceled sign-in returns to the first-launch screen", async () =
   expect(
     screen.getByRole("heading", { name: "Couldn’t sign in" }),
   ).toBeVisible();
-  expect(screen.queryByRole("heading", { name: "Buzz" })).toBeNull();
+  expect(screen.queryByRole("heading", { name: "Mira" })).toBeNull();
   await user.click(screen.getByRole("button", { name: "Back" }));
   expect(welcomeHeading()).toBeVisible();
   expect(screen.queryByRole("alert")).toBeNull();
@@ -5777,7 +5777,7 @@ it("restore denial does not become first run or generate a replacement", async (
     "Keychain access was denied",
   );
   expect(
-    screen.getByRole("heading", { name: "Your Buzz identity" }),
+    screen.getByRole("heading", { name: "Your Mira identity" }),
   ).toBeVisible();
   expect(screen.queryByRole("button", { name: SIGN_IN })).toBeNull();
   fireEvent.mouseDown(titleBar(), {
@@ -5928,7 +5928,7 @@ it.each(["Linux x86_64", "Win32"])(
       </Welcome>,
     );
     expect(
-      screen.getByRole("heading", { name: "Your Buzz identity" }),
+      screen.getByRole("heading", { name: "Your Mira identity" }),
     ).toBeVisible();
     expect(screen.getByRole("status")).toHaveTextContent(
       "Opening your saved identity…",
@@ -5958,7 +5958,7 @@ it("unlocks Sign out only after a reveal or copy, the key box, and the wipe phra
   expect(confirm()).toBeEnabled();
   await user.click(
     screen.getByRole("checkbox", {
-      name: "Also erase everything else Buzz stores on this device",
+      name: "Also erase everything else Mira stores on this device",
     }),
   );
   expect(confirm()).toBeDisabled();
@@ -5982,7 +5982,7 @@ it("disables wipe with the native reason when the build can't wipe", async () =>
   const identity = createIdentity();
   await identity.ready;
   vi.mocked(invoke).mockResolvedValueOnce(
-    "Erasing is unavailable in development builds because they share agent keys with the installed Buzz",
+    "Erasing is unavailable in development builds because they share agent keys with the installed Mira",
   );
   render(<SignOutDialog identity={identity} onClose={() => {}} />);
   expect(
@@ -5991,7 +5991,7 @@ it("disables wipe with the native reason when the build can't wipe", async () =>
   expect(invoke).toHaveBeenLastCalledWith("sign_out_wipe_refusal");
   expect(
     screen.getByRole("checkbox", {
-      name: "Also erase everything else Buzz stores on this device",
+      name: "Also erase everything else Mira stores on this device",
     }),
   ).toHaveAttribute("aria-disabled", "true");
   identity.dispose();
@@ -6005,7 +6005,7 @@ it("keeps wipe disabled while the native answer is pending", async () => {
   vi.mocked(invoke).mockReturnValueOnce(answer.promise);
   render(<SignOutDialog identity={identity} onClose={() => {}} />);
   const wipe = screen.getByRole("checkbox", {
-    name: "Also erase everything else Buzz stores on this device",
+    name: "Also erase everything else Mira stores on this device",
   });
   try {
     expect(invoke).toHaveBeenLastCalledWith("sign_out_wipe_refusal");
@@ -6030,7 +6030,7 @@ it("keeps wipe disabled when the native check fails", async () => {
   ).toBeVisible();
   expect(
     screen.getByRole("checkbox", {
-      name: "Also erase everything else Buzz stores on this device",
+      name: "Also erase everything else Mira stores on this device",
     }),
   ).toHaveAttribute("aria-disabled", "true");
   identity.dispose();
@@ -6069,11 +6069,11 @@ it("shows a native refusal's message and offers a retry", async () => {
   await user.click(screen.getByRole("button", { name: "Reveal private key" }));
   await user.click(screen.getByRole("checkbox", { name: "I have my key" }));
   vi.mocked(invoke).mockRejectedValueOnce({
-    message: "Quit every other Buzz window using this sign-in.",
+    message: "Quit every other Mira window using this sign-in.",
   });
   await user.click(screen.getByRole("button", { name: "Sign out" }));
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "Quit every other Buzz window using this sign-in.",
+    "Quit every other Mira window using this sign-in.",
   );
   expect(screen.getByRole("button", { name: "Sign out" })).toBeEnabled();
   expect(screen.getByRole("button", { name: "Cancel" })).toBeEnabled();

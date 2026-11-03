@@ -5,11 +5,11 @@ import { execFileSync } from "node:child_process";
 const args = process.argv.slice(2);
 assert.ok(
   args.length === 0 || (args.length === 1 && args[0] === "--apply"),
-  "Usage: GH_REPO=block/buzz-app node scripts/prune-preview-releases.mjs [--apply]",
+  "Usage: GH_REPO=andreimironstv/mira-app node scripts/prune-preview-releases.mjs [--apply]",
 );
 const apply = args[0] === "--apply";
 const repository = process.env.GH_REPO;
-assert.equal(repository, "block/buzz-app", "Unexpected cleanup repository");
+assert.equal(repository, "andreimironstv/mira-app", "Unexpected cleanup repository");
 const versionPattern =
   /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)-preview\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
 const gh = (...arguments_) =>

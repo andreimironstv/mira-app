@@ -1,6 +1,6 @@
 # Feedback
 
-Tell the people who run your community what you think of Buzz.
+Tell the people who run your community what you think of Mira.
 
 ## Getting started
 

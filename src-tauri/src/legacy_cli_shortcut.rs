@@ -17,7 +17,7 @@ pub(crate) fn remove_stale(local_bin: &Path) -> std::io::Result<()> {
     };
     if !target.is_absolute()
         || target.file_name() != Some("buzz".as_ref())
-        || !directory.ends_with("Buzz.app/Contents/MacOS")
+        || !directory.ends_with("Mira.app/Contents/MacOS")
     {
         return Ok(());
     }
@@ -46,9 +46,9 @@ mod tests {
         let root = tempfile::tempdir().unwrap();
         let root = root.path();
         for (bundle, executable) in [
-            ("Buzz.app", "Buzz"),
-            ("Old/Buzz.app", "buzz"),
-            ("Other.app", "Buzz"),
+            ("Mira.app", "Mira"),
+            ("Old/Mira.app", "buzz"),
+            ("Other.app", "Mira"),
         ] {
             let directory = root.join(bundle).join("Contents/MacOS");
             fs::create_dir_all(&directory).unwrap();
@@ -60,11 +60,11 @@ mod tests {
         // Case-collided and dangling `Buzz.app` links go; the CLI, other bundles,
         // relative links and files stay.
         for (target, removed) in [
-            (root.join("Buzz.app/Contents/MacOS/buzz"), true),
-            (root.join("Gone/Buzz.app/Contents/MacOS/buzz"), true),
-            (root.join("Old/Buzz.app/Contents/MacOS/buzz"), false),
+            (root.join("Mira.app/Contents/MacOS/buzz"), true),
+            (root.join("Gone/Mira.app/Contents/MacOS/buzz"), true),
+            (root.join("Old/Mira.app/Contents/MacOS/buzz"), false),
             (root.join("Other.app/Contents/MacOS/buzz"), false),
-            ("../Buzz.app/Contents/MacOS/buzz".into(), false),
+            ("../Mira.app/Contents/MacOS/buzz".into(), false),
         ] {
             symlink(&target, &link).unwrap();
             remove_stale(&local_bin).unwrap();

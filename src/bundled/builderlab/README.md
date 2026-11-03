@@ -1,6 +1,6 @@
 # Builderlab
 
-One Builderlab account for communities and agents that Builderlab hosts for you, so they keep working even when Buzz is closed.
+One Builderlab account for communities and agents that Builderlab hosts for you, so they keep working even when Mira is closed.
 
 ## Getting started
 
@@ -25,7 +25,7 @@ bindings, even when its handler serves all content itself.
 
 Sharing follows the one-workspace model: `apps_visibility` switches an app
 between everyone in the owner's workspace and only the owner, and
-`apps_community` grants or revokes a Buzz community at the grant revision it just
+`apps_community` grants or revokes a Mira community at the grant revision it just
 read. `apps_visibility` keeps existing viewers and community grants.
 
 BBBlock is the employee pilot. BBPublic uses the same authenticated control-plane
@@ -69,15 +69,15 @@ With a valid `BUZZ_BUILDERLAB_URL` build input, it also registers
 agent, activation submits the owner proof and community supplied by Agents, and
 removal deletes the provider runtime. Agents owns unfinished setup recovery and
 the runtime-tagged community registration; the provider keeps the key and runs
-the agent even while Buzz is closed. On desktop, Create agent and confirmed
+the agent even while Mira is closed. On desktop, Create agent and confirmed
 deletion start browser sign-in when needed, then continue the action. Both share
 an existing Settings sign-in attempt; a failed or canceled login leaves the
 action available for retry. Settings still provides sign-in and sign-out.
 While Create agent waits for the browser, its dialog offers Cancel sign-in, which
 cancels the shared login (as Settings' does) and leaves Create available for
-retry. Deletion's wait has no such control; disabling the plugin or closing Buzz
+retry. Deletion's wait has no such control; disabling the plugin or closing Mira
 also cancels it.
-Beekeeper accepts an owner proof only from the Buzz key bound to the signed-in
+Beekeeper accepts an owner proof only from the Mira key bound to the signed-in
 Builderlab account. After sign-in, and again before each activation, the plugin
 checks `/v1/buzz/nostr-identities/current` and binds an unbound account to this
 device's key through the native kind 24243 signer, which accepts only
@@ -118,7 +118,7 @@ setup retains these values on this device so retry continues the same agent,
 including after a restart. Setup completes only once the settings save succeeds.
 Settings shows the fixed remote workspace and per-thread session behavior, with
 a link to the configured Builderlab site for remote runtime management.
-Activity shows the turns the agent published to its owner while Buzz has been
+Activity shows the turns the agent published to its owner while Mira has been
 open, across all of its conversations. It doesn't scope to the conversation it
 was opened from, because hosted frames don't always name their thread. It needs
 the Agent Activity plugin, which owns the feed.

@@ -33,7 +33,7 @@ function scripted(
   return { spawn, calls };
 }
 
-it("finds Claude missing when Buzz has no copy", async () => {
+it("finds Claude missing when Mira has no copy", async () => {
   const { spawn } = scripted({ "claude --version": { code: 127 } });
   await expect(checkClaude(spawn)).resolves.toEqual({ state: "missing" });
   const setup = new ClaudeSetup(spawn);
@@ -44,7 +44,7 @@ it("finds Claude missing when Buzz has no copy", async () => {
   });
 });
 
-it("finds a copy older than Buzz needs outdated", async () => {
+it("finds a copy older than Mira needs outdated", async () => {
   const { spawn } = scripted({
     "claude --version": { stdout: "2.1.168 (Claude Code)\n" },
   });
@@ -320,7 +320,7 @@ it("keeps the copy in use when a new release fails its test", async () => {
   expect(state.used).toEqual([]);
   expect(setup.snapshot()).toMatchObject({
     notice:
-      "Claude 2.1.300 failed its test: Killed: 9. Buzz keeps using 2.1.200.",
+      "Claude 2.1.300 failed its test: Killed: 9. Mira keeps using 2.1.200.",
     status: { state: "ready", version: "2.1.200" },
   });
   // A refused release is not downloaded again, unless the person asks.
@@ -336,13 +336,13 @@ it("does nothing when the copy is already the latest", async () => {
   expect(state.fetched).toEqual([]);
 });
 
-it("refuses a release older than Buzz needs", async () => {
+it("refuses a release older than Mira needs", async () => {
   const { spawn, request, state } = releases("2.1.100");
   const setup = new ClaudeSetup(spawn, request);
   await setup.run("install");
   expect(state.fetched).toEqual([]);
   expect(setup.snapshot().output).toContain(
-    `Claude 2.1.100 is older than Buzz needs (${MIN_VERSION}).`,
+    `Claude 2.1.100 is older than Mira needs (${MIN_VERSION}).`,
   );
 });
 

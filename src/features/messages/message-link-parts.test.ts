@@ -1,7 +1,7 @@
 import { expect, it } from "vitest";
 import { messageLinkParts } from "./message-link-parts";
 
-it("recognizes bare and wrapped Buzz channel, message and thread links", () => {
+it("recognizes bare and wrapped Mira channel, message and thread links", () => {
   const urls = [
     "buzz://channel/general",
     `buzz://message?channel=general&id=${"a".repeat(64)}`,
@@ -28,7 +28,7 @@ it("leaves the retired buzz://open locator as plain text, bare or wrapped", () =
     expect(parts.map((part) => part.text).join("")).toBe(content);
   }
 });
-it("keeps Buzz links with unknown query parameters as links rather than plain text", () => {
+it("keeps Mira links with unknown query parameters as links rather than plain text", () => {
   const url = `buzz://message?channel=general&id=${"a".repeat(64)}&foo=bar`;
   for (const text of [url, `<${url}>`, `[Reply](${url})`]) {
     const parts = messageLinkParts(`See ${text}.`);
@@ -47,7 +47,7 @@ it("keeps Buzz links with unknown query parameters as links rather than plain te
     },
   ]);
 });
-it("does not turn malformed Buzz addresses into links", () => {
+it("does not turn malformed Mira addresses into links", () => {
   const content = "<buzz://message?channel=general&id=bad>";
   expect(messageLinkParts(content).some((part) => part.url)).toBe(false);
   expect(
@@ -205,7 +205,7 @@ it.each([
   },
 );
 
-it("supports Buzz labels, escaped label punctuation, and multiple links in prose", () => {
+it("supports Mira labels, escaped label punctuation, and multiple links in prose", () => {
   const parts = messageLinkParts(
     String.raw`Ask [design](buzz://channel/design), then [Docs \[new\]](https://example.com/docs).`,
   );

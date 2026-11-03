@@ -4,7 +4,7 @@ export const inject = ["agents"];
 export function apply({ agents }) {
   agents.addAttentionSource({
     id: "command",
-    description: "Run a command using the scheduling agent's Buzz identity",
+    description: "Run a command using the scheduling agent's Mira identity",
     configExample: { command: ["bash", "-c", "buzz tools"] },
     async run({ watch, signal, emit, spawn }) {
       const command = watch.config.command;

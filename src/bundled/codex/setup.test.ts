@@ -78,7 +78,7 @@ function scripted(output: Record<string, Partial<Result>>, account?: Account) {
   return { spawn, calls };
 }
 
-it("finds Codex missing when Buzz has no copy", async () => {
+it("finds Codex missing when Mira has no copy", async () => {
   const { spawn } = scripted({ "codex --version": { code: 127 } });
   await expect(checkCodex(spawn)).resolves.toEqual({ state: "missing" });
 });
@@ -292,7 +292,7 @@ it("keeps the copy in use when a new release fails its test", async () => {
   expect(state.used).toEqual([]);
   expect(setup.snapshot()).toMatchObject({
     notice:
-      "Codex 0.163.0 failed its test: it did not list its models. Buzz keeps using 0.162.1.",
+      "Codex 0.163.0 failed its test: it did not list its models. Mira keeps using 0.162.1.",
     status: { state: "ready", version: "0.162.1" },
   });
   // A refused release is not downloaded again, unless the person asks.

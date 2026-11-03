@@ -64,7 +64,7 @@ it("requests permission only through the explicit Settings button and updates st
     resolve("enabled");
     await h.dock.refresh();
   });
-  expect(screen.getByText("Buzz can show Dock badges.")).toBeInTheDocument();
+  expect(screen.getByText("Mira can show Dock badges.")).toBeInTheDocument();
   expect(
     screen.queryByRole("button", { name: "Allow notifications and badges" }),
   ).not.toBeInTheDocument();
@@ -94,7 +94,7 @@ it("keeps an immediately unchanged Dock check visibly busy", async () => {
     button.click();
   });
   expect(h.permission.mock.calls).toEqual([[false], [false]]);
-  expect(screen.getByText("Buzz can show Dock badges.")).toBeInTheDocument();
+  expect(screen.getByText("Mira can show Dock badges.")).toBeInTheDocument();
   expect(button).toHaveAttribute("aria-busy", "true");
   expect(button).not.toHaveAttribute("disabled");
   expect(button).toHaveFocus();

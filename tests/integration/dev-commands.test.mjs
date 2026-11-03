@@ -166,7 +166,7 @@ const build = (port) => ({
   beforeDevCommand: `pnpm dev:desktop --port ${port}`,
 });
 
-const identifier = "xyz.block.buzz.desktop.dev";
+const identifier = "ro.miraai.mira.desktop.dev";
 
 const overlay = (port) => ({
   identifier,
@@ -397,7 +397,7 @@ test("desktop-bundle --launch builds and opens the macOS app bundle", {
     "app",
     ...bundled,
   ]);
-  const app = path.join(result.root, "target/debug/bundle/macos/Buzz.app");
+  const app = path.join(result.root, "target/debug/bundle/macos/Mira.app");
   assert.deepEqual(result.opened, [[app]]);
   assert.match(result.stderr, /bundle is ad-hoc signed/);
 });

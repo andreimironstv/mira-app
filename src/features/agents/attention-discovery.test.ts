@@ -24,6 +24,6 @@ it("explains the host update requirement when discovery is unavailable", async (
   const addTool = vi.fn();
   registerDiscovery({ addTool });
   await expect(addTool.mock.calls.at(0)?.[0].call()).rejects.toThrow(
-    "Update Buzz",
+    "Update Mira",
   );
 });

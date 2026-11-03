@@ -60,7 +60,7 @@ const urls = new Map([[attachment.url, initialAudio]]);
 const initial = message(
   viewer,
   "general",
-  `The voice-note card from the old Buzz app.\n[Voice note](${attachment.url})`,
+  `The voice-note card from the old Mira app.\n[Voice note](${attachment.url})`,
   1,
   attachmentMessage("", [attachment], "https://fixture.test").tags,
 );

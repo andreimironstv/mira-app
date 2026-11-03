@@ -22,8 +22,8 @@ export function OverviewPage() {
   return (
     <>
       <PageHeader
-        title="Buzz Design System"
-        intro="Build Buzz interfaces with shared foundations and components. Start with the design guide, explore the tokens, or try a component’s examples and states."
+        title="Mira Design System"
+        intro="Build Mira interfaces with shared foundations and components. Start with the design guide, explore the tokens, or try a component’s examples and states."
       />
 
       <Section

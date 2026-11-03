@@ -1,9 +1,9 @@
-# Add your own Pi extensions to Buzz
+# Add your own Pi extensions to Mira
 
-Buzz's Pi agents run on [Pi durable](https://github.com/earendil-works/pi/blob/main/packages/durable/README.md),
+Mira's Pi agents run on [Pi durable](https://github.com/earendil-works/pi/blob/main/packages/durable/README.md),
 not on the `pi` coding agent, so extensions written for `pi`, which export
-`(pi) => { ... }`, don't load in Buzz. A Pi package can also hold parts written
-for Pi durable, and Buzz loads those:
+`(pi) => { ... }`, don't load in Mira. A Pi package can also hold parts written
+for Pi durable, and Mira loads those:
 
 - **Extensions:** tools, prompt sections and hooks, such as a hook that blocks a
   command. Every Pi agent on this computer gets them.
@@ -71,7 +71,7 @@ section lists everything an extension can hold.
 
 Things to know:
 
-- **Pi comes from Buzz.** A package gets Buzz's own copy of the
+- **Pi comes from Mira.** A package gets Mira's own copy of the
   `@earendil-works` packages, the versions in
   [`deps/package.json`](deps/package.json), so list them as
   `peerDependencies`. Install any other dependencies in the package's folder
@@ -87,7 +87,7 @@ Things to know:
   they're listed, and one with the same name as a tool or section loaded
   before it replaces that one for every agent. A tool named `bash`, `read`,
   `write` or `edit` replaces Pi's, so to change one of Pi's tools, use
-  `wrapTool` instead. Buzz's own tools (named `buzz_…`) and section
+  `wrapTool` instead. Mira's own tools (named `buzz_…`) and section
   (`buzz-tools`) load last, so a package's tool or section with one of those
   names never runs.
 - **`pi` ignores `pi.durable`.** It reads only the `extensions`, `skills`,
@@ -113,7 +113,7 @@ export default () => ({
       id: "example-gateway",
       name: "Example gateway",
       baseUrl,
-      // Buzz asks for the key; EXAMPLE_GATEWAY_API_KEY works for `pi`.
+      // Mira asks for the key; EXAMPLE_GATEWAY_API_KEY works for `pi`.
       auth: { apiKey: envApiKeyAuth("Example gateway API key", ["EXAMPLE_GATEWAY_API_KEY"]) },
       api: openAICompletionsApi(),
       models: [
@@ -135,16 +135,16 @@ export default () => ({
 });
 ```
 
-Buzz uses the models a provider lists when it loads. It doesn't run a
+Mira uses the models a provider lists when it loads. It doesn't run a
 provider's `fetchModels`, so list every model in `models`.
 
 A provider takes the place of any with the same `id`, whether one of Pi's own
 or one from a package earlier in the list, so give yours an `id` of its own.
 
-Buzz's provider settings take only API keys. For a provider whose sign-in
+Mira's provider settings take only API keys. For a provider whose sign-in
 opens a browser:
 
-- Give its `auth` an `oauth` method too, which Buzz uses to refresh the
+- Give its `auth` an `oauth` method too, which Mira uses to refresh the
   sign-in.
 - Sign in with `pi`: run `pi`, then `/login`. `pi` signs in only to providers
   it has, so the package must also register the provider, with the same `id`,
@@ -152,7 +152,7 @@ opens a browser:
   [custom provider guide](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/custom-provider.md#provide-authentication)
   shows how.
 
-Buzz and `pi` share Pi's `auth.json`, so a sign-in or key saved in one works in
+Mira and `pi` share Pi's `auth.json`, so a sign-in or key saved in one works in
 both.
 
 ## 3. List the package in Pi's settings
@@ -167,13 +167,13 @@ to `~/.pi/agent`:
 }
 ```
 
-Buzz loads only packages in a local folder. It leaves out packages that
+Mira loads only packages in a local folder. It leaves out packages that
 `pi install` fetched from npm or git, and loads nothing from packages without
 a `pi.durable` entry.
 
-## 4. Restart Buzz
+## 4. Restart Mira
 
-Quit Buzz and open it again. Buzz loads the packages when it first starts Pi,
+Quit Mira and open it again. Mira loads the packages when it first starts Pi,
 such as for an agent's first turn or its provider settings, and keeps them
 until it quits.
 
@@ -192,7 +192,7 @@ until it quits.
 
 ## When something doesn't load
 
-Buzz leaves out a package that fails to load and still loads the others. A
+Mira leaves out a package that fails to load and still loads the others. A
 package fails when:
 
 - Its setup throws or takes longer than 30 seconds.
@@ -204,20 +204,20 @@ package fails when:
 
 When a provider is missing from the **Provider** list, its package didn't load.
 An agent set to use it fails its next turn, with an error that names each
-package that didn't load and why. Buzz doesn't yet say when a package with only
+package that didn't load and why. Mira doesn't yet say when a package with only
 extensions didn't load: if a tool or rule doesn't show up, check the package
 against the list above.
 
 ## Limits
 
 - Every Pi agent gets every package's extensions. An agent can't opt out.
-- A change to a package or to the list takes effect after Buzz restarts.
+- A change to a package or to the list takes effect after Mira restarts.
 - Removing a package takes its tools and hooks out of existing conversations
   without telling the agent: a removed guard stops guarding. An agent whose
   provider came from a removed package stops answering until you choose
   another provider.
 - Package code runs with your permissions, in the one process that runs every
   Pi agent. Install only packages you trust.
-- Buzz runs a package's setup once for all Pi agents, so anything it keeps in
+- Mira runs a package's setup once for all Pi agents, so anything it keeps in
   memory is shared by every agent. Keep a conversation's state in a Pi durable
   [document](https://github.com/earendil-works/pi/blob/main/packages/durable/README.md#your-own-state).

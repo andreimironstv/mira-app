@@ -58,7 +58,7 @@ mod power {
             );
             let reason = CFStringCreateWithCString(
                 std::ptr::null(),
-                c"Buzz keeps this Mac awake for its agents".as_ptr(),
+                c"Mira keeps this Mac awake for its agents".as_ptr(),
                 UTF8,
             );
             let mut id = 0;

@@ -108,7 +108,7 @@ test("profiles primary actions through production broker and built app", async (
         kind: event.kind,
         action: window.lastActionAt,
         start: performance.now(),
-        transport: "X-Buzz-Live-ID" in init.headers ? "websocket" : "http",
+        transport: "X-Mira-Live-ID" in init.headers ? "websocket" : "http",
       };
       if (entry) window.actionPublications.push(entry);
       const finite = !path.endsWith("/stream");

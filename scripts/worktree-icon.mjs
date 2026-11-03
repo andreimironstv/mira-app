@@ -61,7 +61,7 @@ export function worktreeIcon(cwd, platform = process.platform) {
     return icon;
   } catch {
     console.warn(
-      "Worktree icon could not be generated; using the ordinary Buzz icon.",
+      "Worktree icon could not be generated; using the ordinary Mira icon.",
     );
     return null;
   } finally {

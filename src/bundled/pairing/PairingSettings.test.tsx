@@ -71,7 +71,7 @@ it.each([
       expect(screen.getByRole("status").textContent).toContain(
         tauri
           ? "unavailable with the development broker"
-          : "Open the Buzz desktop app",
+          : "Open the Mira desktop app",
       );
       expect(screen.queryByLabelText("Community address")).toBeNull();
     }
@@ -122,7 +122,7 @@ it.each([true, false])(
     if (!knownViewer)
       await act(async () => {
         fireEvent.click(
-          screen.getByRole("button", { name: "Use existing Buzz account" }),
+          screen.getByRole("button", { name: "Use existing Mira account" }),
         );
       });
     const input = screen.getByLabelText("Community address");
@@ -232,7 +232,7 @@ it.each(["uncertain", "cancelled"] as const)(
         screen.getByRole("heading", { name: "Check your phone" }),
       ).toBeTruthy();
     expect(
-      screen.queryByAltText("Scan this QR code with Buzz on your phone"),
+      screen.queryByAltText("Scan this QR code with Mira on your phone"),
     ).toBeNull();
     await act(async () => {
       await vi.advanceTimersByTimeAsync(240000);
@@ -344,7 +344,7 @@ it("copies the current QR and explains phone verification", async () => {
       "If it shows a code, check that the digits match.",
     );
     expect(surface.textContent).toContain(
-      "Then choose Codes match here to send your Buzz identity.",
+      "Then choose Codes match here to send your Mira identity.",
     );
   }
 });

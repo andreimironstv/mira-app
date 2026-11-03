@@ -47,7 +47,7 @@ struct Session {
 struct Status(StatusCode);
 impl std::fmt::Display for Status {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "Buzz answered {}", self.0)
+        write!(f, "Mira answered {}", self.0)
     }
 }
 impl std::error::Error for Status {}
@@ -103,7 +103,7 @@ impl Session {
             Ok::<_, Box<dyn std::error::Error>>(response.into_body().collect().await?.to_bytes())
         })
         .await
-        .map_err(|_| "Buzz did not answer within a minute")??;
+        .map_err(|_| "Mira did not answer within a minute")??;
         if bytes.is_empty() {
             return Ok(json!({}));
         }
@@ -126,7 +126,7 @@ impl Session {
             while !serves_this_user(port, client).await? {
                 if Instant::now() >= deadline {
                     return Err(
-                        "Could not confirm that this user's Buzz serves an advertised port".into(),
+                        "Could not confirm that this user's Mira serves an advertised port".into(),
                     );
                 }
                 tokio::time::sleep(Duration::from_millis(10)).await;
@@ -328,7 +328,7 @@ async fn discovered(wanted: Option<&str>) -> Result<Vec<(Session, Value)>> {
             Err(error) => {
                 let cause = std::iter::successors(Some(error.as_ref()), |error| error.source());
                 unreachable = Some(format!(
-                    "Could not reach Buzz: {}",
+                    "Could not reach Mira: {}",
                     cause.last().unwrap_or(&*error)
                 ));
             }
@@ -336,7 +336,7 @@ async fn discovered(wanted: Option<&str>) -> Result<Vec<(Session, Value)>> {
     }
     if live.is_empty() {
         return Err(unreachable
-            .unwrap_or_else(|| "No running Buzz offers agent tools to this user's agents".into())
+            .unwrap_or_else(|| "No running Mira offers agent tools to this user's agents".into())
             .into());
     }
     Ok(live)
@@ -551,7 +551,7 @@ fn main() {
     match result {
         Ok(code) => std::process::exit(code),
         Err(error) => {
-            eprintln!("Buzz agent command: {error}");
+            eprintln!("Mira agent command: {error}");
             std::process::exit(1);
         }
     }

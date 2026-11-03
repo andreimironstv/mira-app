@@ -60,7 +60,7 @@ export class CoreMemoryCache {
     const timeout = AbortSignal.timeout(FIRST_READ_MS);
     try {
       const reads = this.reads(pubkey);
-      if (!reads) throw new Error("Buzz is not connected");
+      if (!reads) throw new Error("Mira is not connected");
       const cached = this.latest.get(this.key(reads.scope, pubkey));
       if (cached !== undefined) return cached;
       return await this.read(

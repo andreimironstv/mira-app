@@ -105,7 +105,7 @@ it.each([
   `buzz:agent-activity?agent=${"a".repeat(64)}`,
   // Only the exact buzz scheme: no other case, prefix, suffix or padding.
   "BUZZ://channel/general",
-  `Buzz://message?channel=general&id=${message}`,
+  `Mira://message?channel=general&id=${message}`,
   "buzz-app://channel/general",
   "buzz-dev-3fa9c1://channel/general",
   "xbuzz://channel/general",

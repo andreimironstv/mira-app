@@ -105,7 +105,7 @@ fn read_all(root: &Path) -> Result<Vec<Saved>, String> {
                 "buzz-desktop: legacy communities: {}: {error}",
                 root.display()
             );
-            "Could not read old Buzz's communities".to_string()
+            "Could not read old Mira's communities".to_string()
         })?;
     let mut communities = Vec::new();
     for path in found {
@@ -114,7 +114,7 @@ fn read_all(root: &Path) -> Result<Vec<Saved>, String> {
                 "buzz-desktop: legacy communities: {}: {error}",
                 path.display()
             );
-            "Could not read old Buzz's communities".to_string()
+            "Could not read old Mira's communities".to_string()
         })?;
         for community in saved {
             if !communities.contains(&community) {

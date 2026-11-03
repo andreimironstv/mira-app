@@ -201,7 +201,7 @@ second
     expect(block).not.toContain("<strong>");
   });
 
-  it("hides complete HTML comments, such as Buzz Desktop's wave marker", () => {
+  it("hides complete HTML comments, such as Mira Desktop's wave marker", () => {
     const wave = render("<!-- buzz:wave:v1 -->\nLogan waved at you.");
     expect(wave).toContain("<p>Logan waved at you.</p>");
     expect(wave).not.toContain("buzz:wave");
@@ -787,7 +787,7 @@ describe("Markdown inline extensions", () => {
     expect(html).toContain("PLUGIN :party_parrot: @Mic</span>");
   });
 
-  it("renders a message ending in a bare Buzz link without duplicate React keys", () => {
+  it("renders a message ending in a bare Mira link without duplicate React keys", () => {
     const error = vi.spyOn(console, "error").mockImplementation(() => {});
     const content = "see buzz://channel/x";
     const { container } = renderDom(
@@ -868,7 +868,7 @@ it.each([false, true])(
   },
 );
 
-it("keeps resolved private channel labels and lock icons for Buzz links", () => {
+it("keeps resolved private channel labels and lock icons for Mira links", () => {
   const entry = {
     id: "link",
     title: "Links",

@@ -166,7 +166,7 @@ it.each([false, true])(
         content: [
           {
             type: "text",
-            text: expect.stringContaining("# Buzz quick guide"),
+            text: expect.stringContaining("# Mira quick guide"),
           },
         ],
       },
@@ -1077,7 +1077,7 @@ it("never reports memory cut short by a limit as missing", async () => {
   ).rejects.toThrow("Memory mem/notes could not be read; try again.");
   // A failed lookup reaches the caller as it is, so denial or a lost
   // connection is not reported as a retryable read.
-  const denied = new Error("Buzz is not connected");
+  const denied = new Error("Mira is not connected");
   vi.mocked(client.memories).mockRejectedValueOnce(denied);
   await expect(
     callTool(client, {}, "mem_set", { slug: "notes", text: "new" }),
@@ -1510,7 +1510,7 @@ it("creates a system channel", async () => {
   ).rejects.toThrow("type must be stream, forum or system.");
 });
 
-it("creates a Solo chat with its members in the create, as Buzz does", async () => {
+it("creates a Solo chat with its members in the create, as Mira does", async () => {
   const { client, published } = relay();
   const answer = await callTool(client, {}, "channel_create", {
     name: "triage",
@@ -2419,7 +2419,7 @@ it("creates nothing from a template it cannot name exactly", async () => {
       template,
     });
   await expect(create("a")).rejects.toThrow(
-    "Channel templates are kept in Buzz Desktop and are unavailable here.",
+    "Channel templates are kept in Mira Desktop and are unavailable here.",
   );
   client.templates = vi.fn(async () => [
     { name: "Team", canvas: "", agents: [] },
@@ -2961,7 +2961,7 @@ it("lists, opens and closes tabs for the working channel's threads", async () =>
   ]);
   await expect(
     callTool(client, { channel: "chan" }, "tabs", {}),
-  ).rejects.toThrow("Tabs are kept in Buzz Desktop and are unavailable here.");
+  ).rejects.toThrow("Tabs are kept in Mira Desktop and are unavailable here.");
   const tabs = {
     list: vi.fn(() => [
       { root, pane: "side", shown: true },
@@ -3733,7 +3733,7 @@ it("refuses Git where the host holds no key", async () => {
   ]);
   await expect(
     callTool(client, { channel: "chan" }, "repo", {}),
-  ).rejects.toThrow("Git access needs Buzz Desktop.");
+  ).rejects.toThrow("Git access needs Mira Desktop.");
 });
 
 it("validates creation inputs and reports hosts without agent creation", async () => {

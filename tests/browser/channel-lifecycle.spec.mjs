@@ -534,11 +534,11 @@ test.describe("Solo chat lifecycle", () => {
     ).toBeVisible();
     await expect(page).not.toHaveURL(url);
     await page
-      .getByRole("button", { name: "Search Buzz", exact: true })
+      .getByRole("button", { name: "Search Mira", exact: true })
       .click();
-    const search = page.getByRole("dialog", { name: "Search Buzz" });
+    const search = page.getByRole("dialog", { name: "Search Mira" });
     await search
-      .getByRole("combobox", { name: "Search Buzz" })
+      .getByRole("combobox", { name: "Search Mira" })
       .fill("Lifecycle channel");
     const result = search
       .getByRole("group", { name: "Chats" })
@@ -660,7 +660,7 @@ test.describe("remote archive focus", () => {
         exact: true,
       });
       const elsewhere = page.getByRole("button", {
-        name: "Search Buzz",
+        name: "Search Mira",
         exact: true,
       });
       if (surface === "thread") {
@@ -782,14 +782,14 @@ test.describe("remote Solo unarchive", () => {
     await page.goto(app.origin);
     await openPage(page, "Messages");
     await page
-      .getByRole("button", { name: "Search Buzz", exact: true })
+      .getByRole("button", { name: "Search Mira", exact: true })
       .click();
     const search = page.getByRole("dialog", {
-      name: "Search Buzz",
+      name: "Search Mira",
       exact: true,
     });
     await search
-      .getByRole("combobox", { name: "Search Buzz" })
+      .getByRole("combobox", { name: "Search Mira" })
       .fill("Lifecycle channel");
     await search
       .getByRole("group", { name: "Chats" })
@@ -813,7 +813,7 @@ test.describe("remote Solo unarchive", () => {
       "settling",
     );
     const outside = page.getByRole("button", {
-      name: "Search Buzz",
+      name: "Search Mira",
       exact: true,
     });
     const editor = page.getByRole("textbox", {

@@ -2456,7 +2456,7 @@ it("a fresh search for a refuted name searches again, and non-word text refutes 
         ? [{ pubkey: "9".repeat(64), name: "Zed" }]
         : []),
       ...(query.startsWith("🐝 B")
-        ? [{ pubkey: "8".repeat(64), name: "🐝 Buzz Bot" }]
+        ? [{ pubkey: "8".repeat(64), name: "🐝 Mira Bot" }]
         : []),
     ],
     hasMore: false,
@@ -2478,7 +2478,7 @@ it("a fresh search for a refuted name searches again, and non-word text refutes 
   await waitFor(() => expect(last()?.items).toEqual([]));
   fresh.rerender(complete("🐝 B"));
   await waitFor(() =>
-    expect(last()?.items.map((item) => item.label)).toEqual(["🐝 Buzz Bot"]),
+    expect(last()?.items.map((item) => item.label)).toEqual(["🐝 Mira Bot"]),
   );
 });
 

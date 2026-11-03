@@ -1219,7 +1219,7 @@ export class CodexRuntime {
       call.namespace !== "buzz" ||
       !sessionTools(this.added()).some((tool) => tool.name === call.tool)
     )
-      throw new Error("No active Buzz tool for this thread and turn");
+      throw new Error("No active Mira tool for this thread and turn");
     const check = () => {
       turn.signal.throwIfAborted();
       if (turn.finished) throw new Error("The Codex turn has ended");
@@ -1230,7 +1230,7 @@ export class CodexRuntime {
       typeof call.arguments !== "object" ||
       Array.isArray(call.arguments)
     )
-      throw new Error("Buzz tool arguments must be an object");
+      throw new Error("Mira tool arguments must be an object");
     const args = call.arguments as Record<string, unknown>;
     const request = active?.reply;
     const answering = active ? [...active.requests] : [];
@@ -1303,13 +1303,13 @@ export class CodexRuntime {
     const { key, pubkey } = request.agent;
     const reads = this.reads(key);
     if (reads?.scope !== request.scope)
-      throw new Error("Buzz is not connected to this community");
+      throw new Error("Mira is not connected to this community");
     const { connection } = reads;
     const listing = await this.memoryReads.read(reads, pubkey, signal, slug);
     signal.throwIfAborted();
     const current = this.reads(key);
     if (current?.scope !== request.scope || current.connection !== connection)
-      throw new Error("Buzz is not connected to this community");
+      throw new Error("Mira is not connected to this community");
     return listing;
   }
   /** Stops the thread's shells. `linger` keeps looking that long: a command

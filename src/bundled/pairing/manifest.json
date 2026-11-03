@@ -2,6 +2,6 @@
   "id": "buzz.pairing",
   "name": "Pair mobile",
   "apiVersion": 1,
-  "description": "Pair a mobile device with your Buzz account and community.",
+  "description": "Pair a mobile device with your Mira account and community.",
   "discovery": { "category": "people-and-communities", "tags": ["builderlab"] }
 }

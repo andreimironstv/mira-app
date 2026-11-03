@@ -442,16 +442,16 @@ mod macos {
         #[test]
         fn bundle_requires_the_real_executable_layout() {
             assert!(bundle_layout(
-                Path::new("/Applications/Buzz.app"),
-                Path::new("/Applications/Buzz.app/Contents/MacOS/Buzz")
+                Path::new("/Applications/Mira.app"),
+                Path::new("/Applications/Mira.app/Contents/MacOS/Mira")
             ));
             for path in [
-                "/Applications/Other.app/Contents/MacOS/Buzz",
-                "/Applications/Buzz.app/Buzz",
-                "/target/debug/Buzz",
+                "/Applications/Other.app/Contents/MacOS/Mira",
+                "/Applications/Mira.app/Mira",
+                "/target/debug/Mira",
             ] {
                 assert!(!bundle_layout(
-                    Path::new("/Applications/Buzz.app"),
+                    Path::new("/Applications/Mira.app"),
                     Path::new(path)
                 ));
             }

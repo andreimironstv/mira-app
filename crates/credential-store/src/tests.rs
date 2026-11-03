@@ -289,8 +289,8 @@ fn home_child() {
 #[test]
 fn human_identity_slots_stay_separate() {
     assert_eq!(HUMAN_ACCOUNT, "human");
-    assert_eq!(human_service(true), "xyz.block.buzz.desktop.identity.debug");
-    assert_eq!(human_service(false), "xyz.block.buzz.desktop.identity");
+    assert_eq!(human_service(true), "ro.miraai.mira.desktop.identity.debug");
+    assert_eq!(human_service(false), "ro.miraai.mira.desktop.identity");
     assert_eq!(HUMAN_SERVICE, human_service(cfg!(debug_assertions)));
     assert_eq!(
         human_store(true),

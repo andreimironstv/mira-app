@@ -62,7 +62,7 @@ export function PresenceIndicator({
       title={
         presence.limited(pubkey)
           ? "Presence demand limit reached"
-          : "Recent Buzz session status in this community; periodically refreshed"
+          : "Recent Mira session status in this community; periodically refreshed"
       }
     >
       {symbol} {label}

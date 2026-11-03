@@ -71,7 +71,7 @@ async function disk(releases: readonly string[], current?: string) {
   homes.push(home);
   const dir =
     process.platform === "darwin"
-      ? join(home, "Library/Application Support/Buzz/claude-code")
+      ? join(home, "Library/Application Support/Mira/claude-code")
       : join(home, ".local/share/buzz/claude-code");
   for (const version of releases) {
     const binary = join(dir, version, "claude");

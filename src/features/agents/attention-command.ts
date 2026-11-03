@@ -115,7 +115,7 @@ export function registerAttention(
           throw new Error("cwd must be absolute");
         if (!spawn)
           throw new Error(
-            "This host cannot run commands as the agent. Update Buzz first.",
+            "This host cannot run commands as the agent. Update Mira first.",
           );
         let failure: Error | undefined;
         const process = await spawn("attention-command", {

@@ -92,7 +92,7 @@ export function sessionHint(added: readonly AddedTool[] = []) {
   const plugins = added.length
     ? ` and tools plugins add (${added.map((tool) => tool.name).join(", ")})`
     : "";
-  return `Read and act in Buzz as this agent. Search for the rest when you need them: your attention (Interests, event watches and timers; interest_set and watch_add say how they work), Nexus workers an owner lets you run (solo_worker_connections)${plugins}.`;
+  return `Read and act in Mira as this agent. Search for the rest when you need them: your attention (Interests, event watches and timers; interest_set and watch_add say how they work), Nexus workers an owner lets you run (solo_worker_connections)${plugins}.`;
 }
 
 /** Changes when the added tools change, so a session that keeps the list it
@@ -131,7 +131,7 @@ export async function callSessionTool(
   args: Record<string, unknown>,
   added: readonly AddedTool[] = [],
 ): Promise<Reply> {
-  if (!client) throw new Error("Buzz is not ready yet. Try again.");
+  if (!client) throw new Error("Mira is not ready yet. Try again.");
   // Hold the reviewed destination and arguments while the checker waits.
   if (client.protect) {
     context = structuredClone(context);

@@ -20,11 +20,11 @@ permissions:
 env:
   # Legacy login origin, only when FI is not configured: the build scripts
   # reject a nonempty legacy origin alongside the FI descriptor.
-  BUZZ_BUILDERLAB_URL: ${{ !vars.BUZZ_BUILD_FEDERATED_IDENTITY_CONFIG && (vars.BUZZ_BUILDERLAB_URL || 'https://app.builderlab.xyz') || '' }}
+  BUZZ_BUILDERLAB_URL: ${{ !vars.BUZZ_BUILD_FEDERATED_IDENTITY_CONFIG && (vars.BUZZ_BUILDERLAB_URL || 'https://account.mira-ai.ro') || '' }}
   # Public verification inputs; the native build and plugins.updater must match.
   # Candidate-only runs build without the updater.
-  BUZZ_UPDATER_PUBLIC_KEY: ${{ !inputs.candidates && 'dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJDQjQ2RDZFMUEwOERFMTEKUldRUjNnZ2FibTIwTE10QkVaMzFyYkZlY0R4ajhmbFBjdncvNVRCYnNpSm9kaFNBaHQzemZlZHkK' || '' }}
-  BUZZ_UPDATER_ENDPOINT: ${{ !inputs.candidates && 'https://github.com/block/buzz-app/releases/download/preview-feed/latest.json' || '' }}
+  BUZZ_UPDATER_PUBLIC_KEY: ${{ !inputs.candidates && vars.MIRA_UPDATER_PUBLIC_KEY || '' }}
+  BUZZ_UPDATER_ENDPOINT: ${{ !inputs.candidates && 'https://github.com/andreimironstv/mira-app/releases/download/preview-feed/latest.json' || '' }}
 
 concurrency:
   group: desktop-preview-${{ inputs.candidates && github.ref || 'macos-prerelease' }}
@@ -32,7 +32,7 @@ concurrency:
 
 jobs:
   build:
-    if: github.repository == 'block/buzz-app' && !inputs.candidates && !inputs.promote_version
+    if: github.repository == 'andreimironstv/mira-app' && !inputs.candidates && !inputs.promote_version
     name: Build, sign, and notarize
     runs-on: macos-latest
     timeout-minutes: 120
@@ -116,7 +116,7 @@ jobs:
           app_dir=$(mktemp -d "$RUNNER_TEMP/verify-release.XXXXXX")
           hdiutil attach "$SIGNED_DMG" -readonly -nobrowse -mountpoint "$app_dir" >/dev/null
           trap 'hdiutil detach "$app_dir" >/dev/null' EXIT
-          app="$app_dir/Buzz.app"
+          app="$app_dir/Mira.app"
           codesign --verify --deep --strict --verbose=2 \
             -R '=anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] exists and certificate leaf[field.1.2.840.113635.100.6.1.13] exists and certificate leaf[subject.OU] = EYF346PHUG' "$app"
           spctl --assess --type execute --verbose=4 "$app"
@@ -157,14 +157,14 @@ jobs:
           app_dir=$(mktemp -d "$RUNNER_TEMP/updater-app.XXXXXX")
           hdiutil attach "$SIGNED_DMG" -readonly -nobrowse -mountpoint "$app_dir" >/dev/null
           trap 'hdiutil detach "$app_dir" >/dev/null' EXIT
-          app="$app_dir/Buzz.app"
+          app="$app_dir/Mira.app"
           test -d "$app" || { echo '::error::Signed DMG contains no app'; exit 1; }
           archive="$PWD/release-assets/Buzz_${VERSION}_aarch64.app.tar.gz"
           # ditto copies the complete signed bundle (including symlinks and metadata).
           staged_app=$(mktemp -d "$RUNNER_TEMP/updater-staging.XXXXXX")
-          ditto "$app" "$staged_app/Buzz.app"
-          codesign --verify --deep --strict "$staged_app/Buzz.app"
-          (cd "$staged_app" && COPYFILE_DISABLE=1 tar -czf "$archive" 'Buzz.app')
+          ditto "$app" "$staged_app/Mira.app"
+          codesign --verify --deep --strict "$staged_app/Mira.app"
+          (cd "$staged_app" && COPYFILE_DISABLE=1 tar -czf "$archive" 'Mira.app')
           pnpm tauri signer sign "$archive"
           test -s "$archive" && test -s "$archive.sig" || { echo '::error::Updater signing failed'; exit 1; }
           (cd release-assets && shasum -a 256 ./*.dmg ./*.tar.gz > SHA256SUMS)
@@ -237,7 +237,7 @@ jobs:
           for try in 1 2 3; do
             gh release create "v$VERSION" release-assets/* \
               --target "$SOURCE_SHA" --prerelease --latest=false \
-              --title "Buzz $VERSION (desktop preview)" \
+              --title "Mira $VERSION (desktop preview)" \
               --notes "Desktop preview from commit $SOURCE_SHA, built by Actions run $GITHUB_RUN_ID. Includes Apple Silicon macOS (signed and notarized), Windows x64 (unsigned NSIS installer), and Linux x64 (Ubuntu 24.04 deb and AppImage). Windows/Linux still require desktop acceptance. Updater-enabled installs update from the preview feed." &&
               exit 0
             test "$try" -lt 3 || exit 1
@@ -256,7 +256,7 @@ jobs:
     needs: [build, publish]
     # Explicit promotions skip build/publish; automatic promotions require both to succeed.
     if: >-
-      ${{ !cancelled() && github.repository == 'block/buzz-app' && github.ref == 'refs/heads/main' && !inputs.candidates &&
+      ${{ !cancelled() && github.repository == 'andreimironstv/mira-app' && github.ref == 'refs/heads/main' && !inputs.candidates &&
           ((inputs.promote_version != '' && needs.build.result == 'skipped' && needs.publish.result == 'skipped') ||
            (inputs.promote_version == '' && needs.build.result == 'success' && needs.publish.result == 'success')) }}
     runs-on: ubuntu-latest
@@ -284,20 +284,20 @@ jobs:
             [[ -s "$RUNNER_TEMP/candidate/$asset" && -s "$RUNNER_TEMP/candidate/$asset.sig" ]]
           done
           # Previews built before the executable became `Buzz` stay re-promotable until pruned.
-          executable=$(tar -tzf "$RUNNER_TEMP/candidate/$archive" | grep -xE 'Buzz\.app/Contents/MacOS/(Buzz|buzz-foundation)')
-          tar -xOzf "$RUNNER_TEMP/candidate/$archive" "$executable" > "$RUNNER_TEMP/candidate/Buzz"
-          test -s "$RUNNER_TEMP/candidate/Buzz"
+          executable=$(tar -tzf "$RUNNER_TEMP/candidate/$archive" | grep -xE 'Mira\.app/Contents/MacOS/(Mira|buzz-foundation)')
+          tar -xOzf "$RUNNER_TEMP/candidate/$archive" "$executable" > "$RUNNER_TEMP/candidate/Mira"
+          test -s "$RUNNER_TEMP/candidate/Mira"
           current=''
           if gh release view preview-feed >/dev/null 2>&1; then
             gh release download preview-feed --pattern latest.json --dir "$RUNNER_TEMP/current"
             current="$RUNNER_TEMP/current/latest.json"
           fi
-          node scripts/preview-feed.mjs generate "$VERSION" "$RUNNER_TEMP/candidate" "$RUNNER_TEMP/candidate/latest.json" "$RUNNER_TEMP/candidate/Buzz" ${current:+"$current"}
-          node scripts/preview-feed.mjs verify "$VERSION" "$RUNNER_TEMP/candidate" "$RUNNER_TEMP/candidate/latest.json" "$RUNNER_TEMP/candidate/Buzz" ${current:+"$current"}
+          node scripts/preview-feed.mjs generate "$VERSION" "$RUNNER_TEMP/candidate" "$RUNNER_TEMP/candidate/latest.json" "$RUNNER_TEMP/candidate/Mira" ${current:+"$current"}
+          node scripts/preview-feed.mjs verify "$VERSION" "$RUNNER_TEMP/candidate" "$RUNNER_TEMP/candidate/latest.json" "$RUNNER_TEMP/candidate/Mira" ${current:+"$current"}
           if [[ -z "$current" ]]; then
             gh release create preview-feed "$RUNNER_TEMP/candidate/latest.json" \
               --target "$GITHUB_SHA" --prerelease --latest=false \
-              --title 'Buzz preview updater feed' \
+              --title 'Mira preview updater feed' \
               --notes 'Rolling manifest for desktop previews. Not the stable channel.'
           elif cmp -s "$RUNNER_TEMP/candidate/latest.json" "$current"; then
             echo 'Preview feed already points to this candidate.'
@@ -315,7 +315,7 @@ jobs:
         run: node scripts/prune-preview-releases.mjs --apply
 
   windows:
-    if: github.repository == 'block/buzz-app' && (inputs.candidates || (github.ref == 'refs/heads/main' && !inputs.promote_version))
+    if: github.repository == 'andreimironstv/mira-app' && (inputs.candidates || (github.ref == 'refs/heads/main' && !inputs.promote_version))
     name: Windows x64 installer (unsigned)
     env:
       BUZZ_BUILD_FEDERATED_IDENTITY_CONFIG: ${{ vars.BUZZ_BUILD_FEDERATED_IDENTITY_CONFIG }}
@@ -372,14 +372,14 @@ jobs:
           # NSIS /D must be last and unquoted, including paths containing spaces.
           $process = Start-Process $installers[0].FullName -ArgumentList "/S /D=$destination" -Wait -PassThru
           if ($process.ExitCode -ne 0) { throw "Installer failed: $($process.ExitCode)" }
-          if (!(Test-Path "$destination\Buzz.exe")) { throw 'App executable missing' }
+          if (!(Test-Path "$destination\Mira.exe")) { throw 'App executable missing' }
           if (!(Test-Path "$destination\bin\goose-acp.exe")) { throw 'goose-acp missing' }
           if (!(Test-Path "$destination\bin\buzz-agent-command.exe")) { throw 'buzz-agent-command missing' }
           if (!(Test-Path "$destination\bin\buzz.exe")) { throw 'buzz missing' }
           & "$destination\bin\buzz.exe" --help | Out-Null
           if ($LASTEXITCODE -ne 0) { throw 'buzz does not run' }
           if ($env:CANDIDATES -ne 'true') {
-            $binary = [Text.Encoding]::ASCII.GetString([IO.File]::ReadAllBytes("$destination\Buzz.exe"))
+            $binary = [Text.Encoding]::ASCII.GetString([IO.File]::ReadAllBytes("$destination\Mira.exe"))
             foreach ($value in @($env:BUZZ_UPDATER_PUBLIC_KEY, $env:BUZZ_UPDATER_ENDPOINT)) {
               if (!$value -or !$binary.Contains($value)) { throw 'App executable does not embed the updater configuration' }
             }
@@ -401,7 +401,7 @@ jobs:
           retention-days: 7
 
   linux:
-    if: github.repository == 'block/buzz-app' && (inputs.candidates || (github.ref == 'refs/heads/main' && !inputs.promote_version))
+    if: github.repository == 'andreimironstv/mira-app' && (inputs.candidates || (github.ref == 'refs/heads/main' && !inputs.promote_version))
     name: Linux x64 installers
     runs-on: ubuntu-latest
     # Shipped old-Buzz recipe, without its mesh/Kubernetes/updater dependencies.
@@ -452,21 +452,21 @@ jobs:
           test "${#debs[@]}" -eq 1 && test "${#images[@]}" -eq 1
           bash scripts/fix-appimage.sh "${images[0]}"
           dpkg-deb -x "${debs[0]}" "$RUNNER_TEMP/deb"
-          test -x "$RUNNER_TEMP/deb/usr/bin/Buzz"
-          test -x "$RUNNER_TEMP/deb/usr/lib/Buzz Foundation/bin/goose-acp"
-          test -x "$RUNNER_TEMP/deb/usr/lib/Buzz Foundation/bin/buzz-agent-command"
-          test -x "$RUNNER_TEMP/deb/usr/lib/Buzz Foundation/bin/buzz"
-          "$RUNNER_TEMP/deb/usr/lib/Buzz Foundation/bin/buzz" --help > /dev/null
+          test -x "$RUNNER_TEMP/deb/usr/bin/Mira"
+          test -x "$RUNNER_TEMP/deb/usr/lib/Mira/bin/goose-acp"
+          test -x "$RUNNER_TEMP/deb/usr/lib/Mira/bin/buzz-agent-command"
+          test -x "$RUNNER_TEMP/deb/usr/lib/Mira/bin/buzz"
+          "$RUNNER_TEMP/deb/usr/lib/Mira/bin/buzz" --help > /dev/null
           image=$(realpath "${images[0]}")
           mkdir "$RUNNER_TEMP/appimage"
           (cd "$RUNNER_TEMP/appimage" && "$image" --appimage-extract >/dev/null)
-          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Buzz"
+          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Mira"
           test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Buzz.bin"
-          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Buzz Foundation/bin/goose-acp"
-          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Buzz Foundation/bin/buzz-agent-command"
-          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Buzz Foundation/bin/buzz"
+          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Mira/bin/goose-acp"
+          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Mira/bin/buzz-agent-command"
+          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Mira/bin/buzz"
           # The updater selects each install's feed entry by its embedded bundle type.
-          binaries=("$RUNNER_TEMP/deb/usr/bin/Buzz" "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Buzz.bin")
+          binaries=("$RUNNER_TEMP/deb/usr/bin/Mira" "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Buzz.bin")
           grep -aqF __TAURI_BUNDLE_TYPE_VAR_DEB "${binaries[0]}" || { echo '::error::deb app lacks its bundle type'; exit 1; }
           grep -aqF __TAURI_BUNDLE_TYPE_VAR_APP "${binaries[1]}" || { echo '::error::AppImage app lacks its bundle type'; exit 1; }
           if [[ "$CANDIDATES" != true ]]; then
@@ -491,7 +491,7 @@ jobs:
 
   updater_signatures:
     # Installer jobs never receive the signing key; sign their verified bytes here.
-    if: github.repository == 'block/buzz-app' && github.ref == 'refs/heads/main' && !inputs.candidates && !inputs.promote_version
+    if: github.repository == 'andreimironstv/mira-app' && github.ref == 'refs/heads/main' && !inputs.candidates && !inputs.promote_version
     name: Sign Windows and Linux updater installers
     needs: [windows, linux]
     runs-on: ubuntu-latest

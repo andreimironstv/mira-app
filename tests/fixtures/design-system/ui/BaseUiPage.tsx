@@ -138,16 +138,16 @@ export function BaseUiPage() {
     <>
       <PageHeader
         title="Base UI backing"
-        intro="See which Base UI primitives each Buzz component uses, directly or through another component. The registry and its tests keep this reference aligned with component imports."
+        intro="See which Base UI primitives each Mira component uses, directly or through another component. The registry and its tests keep this reference aligned with component imports."
       />
 
       <Section
         title="Every component"
-        description="Base UI part lists direct imports. Inherited lists primitives used through another Buzz component: IconButton, for example, gets Base UI Button behavior through Button."
+        description="Base UI part lists direct imports. Inherited lists primitives used through another Mira component: IconButton, for example, gets Base UI Button behavior through Button."
       >
         <table className="w-full table-fixed border-collapse text-left">
           <caption className="sr-only">
-            Each Buzz component, the Base UI part it imports, and the part it
+            Each Mira component, the Base UI part it imports, and the part it
             inherits through composition
           </caption>
           <colgroup>

@@ -453,7 +453,7 @@ export function MessageLink({
         />
       )}
       {unavailable && (
-        <span role="status"> This Buzz link couldn’t be opened here.</span>
+        <span role="status"> This Mira link couldn’t be opened here.</span>
       )}
     </>
   );

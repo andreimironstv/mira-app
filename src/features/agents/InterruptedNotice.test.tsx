@@ -52,7 +52,7 @@ it("asks before resuming the agents the app stopped, and goes once answered", as
   await screen.findByRole("dialog", { name: "Resume interrupted agents?" });
   expect(
     screen.getByText(
-      "Echo and Claude were working when Buzz closed or reloaded.",
+      "Echo and Claude were working when Mira closed or reloaded.",
     ),
   ).toBeVisible();
   expect(
@@ -70,7 +70,7 @@ it("forgets them when the owner does not resume", async () => {
   const agents = fake(["Echo"]);
   await screen.findByRole("dialog", { name: "Resume interrupted agent?" });
   expect(
-    screen.getByText("Echo was working when Buzz closed or reloaded."),
+    screen.getByText("Echo was working when Mira closed or reloaded."),
   ).toBeVisible();
   act(() =>
     fireEvent.click(screen.getByRole("button", { name: "Don’t resume" })),

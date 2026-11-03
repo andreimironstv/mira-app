@@ -1,5 +1,5 @@
 //! Buzz was `dev.local.buzz.foundation` before 1.0. Its first launch as
-//! `xyz.block.buzz.desktop` renames what Tauri and the WebView keep under the
+//! `ro.miraai.mira.desktop` renames what Tauri and the WebView keep under the
 //! old identifier, with any sign-out trash and pending sign-out marker, so an
 //! update keeps its data and still finishes a sign-out the old build committed.
 //! Development builds shared that storage until they became `.dev`; the first
@@ -11,14 +11,14 @@ use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
 
 pub(crate) const LEGACY: &str = "dev.local.buzz.foundation";
-pub(crate) const CURRENT: &str = "xyz.block.buzz.desktop";
+pub(crate) const CURRENT: &str = "ro.miraai.mira.desktop";
 /// What `just desktop` and debug bundles run as (`scripts/desktop-config.mjs`).
-pub(crate) const DEV: &str = "xyz.block.buzz.desktop.dev";
-const BUSY: &str = "Quit every other Buzz window, then open Buzz again to finish moving its storage. Nothing was moved.";
+pub(crate) const DEV: &str = "ro.miraai.mira.desktop.dev";
+const BUSY: &str = "Quit every other Mira window, then open Mira again to finish moving its storage. Nothing was moved.";
 const AGENT_STOPPING: &str =
-    "An agent is still stopping. Open Buzz again in a moment to finish moving its storage.";
-const FAILED: &str = "Buzz couldn't finish moving its storage. Open Buzz again to retry.";
-const SIGN_OUT_PENDING: &str = "Open the installed Buzz to finish signing out, then open this build again. Nothing was copied.";
+    "An agent is still stopping. Open Mira again in a moment to finish moving its storage.";
+const FAILED: &str = "Mira couldn't finish moving its storage. Open Mira again to retry.";
+const SIGN_OUT_PENDING: &str = "Open the installed Mira to finish signing out, then open this build again. Nothing was copied.";
 
 /// Each path the legacy identifier names, with its new name. The release
 /// identifier takes them all; development (`.dev`) only its own pending sign-out,
@@ -163,7 +163,7 @@ fn due(moves: &[(PathBuf, PathBuf)]) -> Result<Vec<&(PathBuf, PathBuf)>, String>
     }
     if !conflicts.is_empty() {
         return Err(format!(
-            "Buzz found storage from before 1.0 beside this version's:{conflicts}\nMove one of each pair elsewhere, then open Buzz again. Nothing was moved."
+            "Mira found storage from before 1.0 beside this version's:{conflicts}\nMove one of each pair elsewhere, then open Mira again. Nothing was moved."
         ));
     }
     Ok(due)

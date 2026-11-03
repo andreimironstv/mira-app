@@ -728,7 +728,7 @@ describe("a change", () => {
     expect(requests().map((request) => request.action)).toEqual(["readiness"]);
   });
 
-  it("sends nothing when the owner's Buzz is not ready", async () => {
+  it("sends nothing when the owner's Mira is not ready", async () => {
     const { call, requests } = community((intent) =>
       intent.action === "readiness"
         ? [{ phase: "refused", reason: "approval_required" }]

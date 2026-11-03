@@ -99,7 +99,7 @@ it("downloads a background update, offers restart, then installs and relaunches"
 
 it("reports a refused restart and stays running", async () => {
   platform.relaunch.mockRejectedValueOnce(
-    "Agent shutdown incomplete; restart Buzz to finish the update: busy",
+    "Agent shutdown incomplete; restart Mira to finish the update: busy",
   );
   const updates = start();
   const { update, download, install } = handle();
@@ -111,7 +111,7 @@ it("reports a refused restart and stays running", async () => {
   expect(updates.snapshot()).toEqual({
     state: "error",
     message:
-      "Agent shutdown incomplete; restart Buzz to finish the update: busy",
+      "Agent shutdown incomplete; restart Mira to finish the update: busy",
   });
 });
 

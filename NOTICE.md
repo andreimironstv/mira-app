@@ -251,3 +251,9 @@ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
 DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
+
+## Mira
+
+Mira is a modified version of Buzz (https://github.com/block/buzz-app), Copyright
+Block, Inc., licensed under the Apache License, Version 2.0. Modifications: product
+name, visual identity and hosted service endpoints, listed under `rebrand/`.

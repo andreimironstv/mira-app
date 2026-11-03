@@ -21,7 +21,7 @@ const nonIconDependencies = new Set([
   "@fontsource-variable/inter",
   "@fontsource/jetbrains-mono",
   "@jsquash/webp", // Lossless media encoder, not an icon catalog.
-  "@modelcontextprotocol/server", // The standalone Buzz MCP server.
+  "@modelcontextprotocol/server", // The standalone Mira MCP server.
   "@noble/curves",
   "@playwright/test",
   "@pydantic/genai-prices", // LLM price data for Usage estimates.
@@ -44,7 +44,7 @@ const nonIconDependencies = new Set([
   "@xterm/xterm",
   "blurhash",
   "consola", // Runtime logging, not an icon catalog.
-  "d3-scale", // Chart scales and ticks; marks are Buzz-rendered SVG.
+  "d3-scale", // Chart scales and ticks; marks are Mira-rendered SVG.
   "dockview-react",
   "emoji-mart",
   "flexlayout-react",
@@ -75,7 +75,7 @@ const nonIconDependencies = new Set([
   "remark-breaks",
   "remark-gfm",
   "rolldown",
-  "sonner", // Headless toast behavior; Buzz supplies controls and Tabler icons.
+  "sonner", // Headless toast behavior; Mira supplies controls and Tabler icons.
   "tailwindcss",
   "typescript",
   "undici",

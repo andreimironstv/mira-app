@@ -676,7 +676,7 @@ it("admits only bounded name/about/visibility/lifetime metadata and preserves ex
     tags: [
       ["h", id],
       ["name", "name"],
-      ["about", `Buzz Huddle (buzz.huddles/v1)\nparent:${id}`],
+      ["about", `Mira Huddle (buzz.huddles/v1)\nparent:${id}`],
     ],
   });
   for (const event of invalid)
@@ -1031,9 +1031,9 @@ it("rejects the Huddle marker before signing an ordinary channel edit", async ()
   await expect(
     h.owner.capability.save(base, {
       ...draft,
-      description: `Buzz Huddle (buzz.huddles/v1)\nparent:${id}`,
+      description: `Mira Huddle (buzz.huddles/v1)\nparent:${id}`,
     }),
-  ).rejects.toThrow("Buzz Huddle (");
+  ).rejects.toThrow("Mira Huddle (");
   expect(h.sign).not.toHaveBeenCalled();
   expect(h.publish).not.toHaveBeenCalled();
 });

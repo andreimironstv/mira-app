@@ -16,7 +16,7 @@ const cleanName = (value: unknown) =>
 /** NIP-11 names are presentation, never a relay identity or permission. */
 export function publishedCommunityName(value: unknown) {
   const name = cleanName(value);
-  return name && name !== "Buzz Relay" ? name : undefined;
+  return name && name !== "Mira Relay" ? name : undefined;
 }
 
 export const communityDefaultName = (

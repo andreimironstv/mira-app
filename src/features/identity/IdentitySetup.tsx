@@ -86,7 +86,7 @@ export function IdentitySetup({
                 disabled={state.busy}
                 onClick={() => void identity.importLegacy()}
               >
-                Continue with your Buzz identity
+                Continue with your Mira identity
               </Button>
             )}
             <Button
@@ -144,7 +144,7 @@ export function IdentitySetup({
       >
         <div className={importing ? styles.importContent : styles.setupContent}>
           <h1 id="identity-setup-title" className="text-heading">
-            {importing ? "Use your existing identity" : "Your Buzz identity"}
+            {importing ? "Use your existing identity" : "Your Mira identity"}
           </h1>
           {state.status === "loading" ? (
             <p role="status">Opening your saved identity…</p>
@@ -183,7 +183,7 @@ export function IdentitySetup({
                   <Field
                     label="Private key (nsec)"
                     controlId="import-nsec"
-                    description="Copy this from Identity details in your old Buzz app. Never share it with anyone."
+                    description="Copy this from Identity details in your old Mira app. Never share it with anyone."
                   >
                     <Input
                       autoFocus

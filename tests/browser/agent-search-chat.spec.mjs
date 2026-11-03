@@ -31,15 +31,15 @@ test("search opens a new Solo chat with one of the viewer's agents", async ({
       .getByRole("button", { name: "Earlier with Honey", exact: true }),
   ).toBeVisible();
   // Navigation load can finish before React mounts the shell shortcut owner.
-  const search = page.getByRole("button", { name: "Search Buzz", exact: true });
+  const search = page.getByRole("button", { name: "Search Mira", exact: true });
   await search.focus();
   await expect(search).toBeFocused();
   const modifier = await page.evaluate(() =>
     /Mac|iPhone|iPad/.test(navigator.platform) ? "Meta" : "Control",
   );
   await page.keyboard.press(`${modifier}+k`);
-  const dialog = page.getByRole("dialog", { name: "Search Buzz" });
-  const input = dialog.getByRole("combobox", { name: "Search Buzz" });
+  const dialog = page.getByRole("dialog", { name: "Search Mira" });
+  const input = dialog.getByRole("combobox", { name: "Search Mira" });
   await input.fill("honey");
   // fill() selects in the page, then inserts over the protocol; a rare WebKit
   // run has shown an empty palette afterwards. Fail here, not on the results.

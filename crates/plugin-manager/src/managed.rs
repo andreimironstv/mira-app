@@ -181,7 +181,7 @@ pub fn parse(text: &str) -> Result<Policy> {
     };
     match root.remove("version") {
         Some(Value::Number(version)) if version.as_u64() == Some(1) => {}
-        Some(_) => return Err("Unsupported version; this Buzz reads version 1".into()),
+        Some(_) => return Err("Unsupported version; this Mira reads version 1".into()),
         None => return Err("Missing version".into()),
     }
     let source = match root.remove("source") {
@@ -242,7 +242,7 @@ fn entry_plugin(entry: Value) -> Result<ManagedPlugin> {
     let id = text(&mut entry, "id")?;
     valid_id(&id)?;
     if is_reserved(&id) {
-        return Err(format!("{id:?} is included with Buzz"));
+        return Err(format!("{id:?} is included with Mira"));
     }
     let repository = repository_url(&text(&mut entry, "repository")?)?;
     let reference = text(&mut entry, "reference")?;
@@ -544,7 +544,7 @@ mod tests {
         assert_eq!(parsed.plugins[0].id, "acme.ok");
         assert_eq!(parsed.problems.len(), bad.len().min(MAX_PROBLEMS));
         assert!(parsed.problems[0].starts_with("Plugin 1: "));
-        assert!(parsed.problems[3].contains("included with Buzz"));
+        assert!(parsed.problems[3].contains("included with Mira"));
     }
 
     #[test]
@@ -700,7 +700,7 @@ mod tests {
 
     #[test]
     fn locates_the_file_beside_profiles_unless_overridden() {
-        let home = Path::new("/data/xyz.block.buzz.desktop");
+        let home = Path::new("/data/ro.miraai.mira.desktop");
         assert_eq!(path(home, None).unwrap(), home.join("managed-plugins.json"));
         assert_eq!(
             path(home, Some("".into())).unwrap(),

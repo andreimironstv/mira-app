@@ -75,7 +75,7 @@ export function SignOutDialog({
   }
   return (
     <AlertDialog
-      title="Sign out of Buzz?"
+      title="Sign out of Mira?"
       description="Signing out removes your private key from this device. Your key is how you sign in, so save it before you continue. You’ll need it to sign back in as this identity."
       onClose={onClose}
       pending={pending}
@@ -103,7 +103,7 @@ export function SignOutDialog({
           onCheckedChange={setHaveKey}
         />
         <Checkbox
-          label="Also erase everything else Buzz stores on this device"
+          label="Also erase everything else Mira stores on this device"
           checked={wipe}
           disabled={pending || wipeRefusal !== null}
           onCheckedChange={(checked) => {
@@ -147,7 +147,7 @@ export function SignOutDialog({
         )}
         {!wipe && (
           <p className="text-body-sm text-muted">
-            Your settings, agents and other Buzz data stay on this device. Sign
+            Your settings, agents and other Mira data stay on this device. Sign
             back in with this key and they’ll be here. Agents start only for
             this key.
           </p>

@@ -417,7 +417,7 @@ it.each(["member", "guest"] as const)(
       name: "Delete message?",
     });
     expect(confirmation).toHaveTextContent(
-      "This requests removal of this message from Buzz’s relay.",
+      "This requests removal of this message from Mira’s relay.",
     );
     expect(confirmation).toHaveTextContent("People may still have copies.");
     expect(h.publications).toHaveLength(0);

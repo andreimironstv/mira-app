@@ -118,7 +118,7 @@ export function KeyImport({
                 Enter your private key
               </h1>
               <p className="text-body text-subtle">
-                Paste your private key to sign in to Buzz. You can also drop a
+                Paste your private key to sign in to Mira. You can also drop a
                 text file holding it here, or choose one.
               </p>
               <div className={styles.importForm}>

@@ -101,8 +101,8 @@ fn the_builderlab_endpoint_keeps_the_deployment_path_and_port() {
         Some("https://login.example:8443/deployment/api/goose/v3/builderlab/decisions")
     );
     assert_eq!(
-        builderlab_endpoint("https://app.builderlab.xyz", "/api/goose/").as_deref(),
-        Some("https://app.builderlab.xyz/api/goose/v3/builderlab/decisions")
+        builderlab_endpoint("https://account.mira-ai.ro", "/api/goose/").as_deref(),
+        Some("https://account.mira-ai.ro/api/goose/v3/builderlab/decisions")
     );
     assert_eq!(builderlab_endpoint("", ""), None);
 }

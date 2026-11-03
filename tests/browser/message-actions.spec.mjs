@@ -451,7 +451,7 @@ test("message actions reveal, copy, restore focus and reply across responsive la
 
 // Browser-only: clipboard -> rendered Markdown -> cross-conversation navigation
 // must finish with the actual virtual row visible and focused.
-test("copied Buzz links and the desktop alias reveal their destination from a conversation", async ({
+test("copied Mira links and the desktop alias reveal their destination from a conversation", async ({
   page,
   app,
 }) => {

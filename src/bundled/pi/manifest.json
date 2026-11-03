@@ -2,7 +2,7 @@
   "id": "buzz.pi",
   "name": "Pi",
   "apiVersion": 1,
-  "description": "Run local Pi agents in Buzz.",
+  "description": "Run local Pi agents in Mira.",
   "discovery": {
     "category": "agents",
     "tags": ["code", "coding-agents"]

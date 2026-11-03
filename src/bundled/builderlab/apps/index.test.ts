@@ -224,7 +224,7 @@ it("uses the tenant readiness deadline instead of giving up after 90 seconds", a
 });
 
 it("returns a complete fetch-js artifact shape for a Public pilot", async () => {
-  const { call, responses } = await setup("https://app.builderlab.xyz", false);
+  const { call, responses } = await setup("https://account.mira-ai.ro", false);
   responses.push(
     json({
       app_id: "demo",
@@ -254,7 +254,7 @@ it("returns a complete fetch-js artifact shape for a Public pilot", async () => 
 });
 
 it("keeps Public workspace authorization failures visible and performs no mutation", async () => {
-  const { call, respond } = await setup("https://app.builderlab.xyz");
+  const { call, respond } = await setup("https://account.mira-ai.ro");
   respond.mockResolvedValueOnce({
     status: 403,
     headers: {},
@@ -319,7 +319,7 @@ it("says who can open an app after a visibility switch", async () => {
     audience: "only_you",
     shared_community_ids: ["buzz-alpha"],
     who_can_open:
-      "Only your owner. 1 other person can also open it. So can members of the Buzz community it is shared with.",
+      "Only your owner. 1 other person can also open it. So can members of the Mira community it is shared with.",
   });
   await expect(
     call("apps_visibility", { app_id: "demo", audience: "private" }),
@@ -399,6 +399,6 @@ it("counts everyone else who can still open a private app", async () => {
       ),
     ).who_can_open,
   ).toBe(
-    "Only your owner. 2 other people can also open it. So can members of the 2 Buzz communities it is shared with.",
+    "Only your owner. 2 other people can also open it. So can members of the 2 Mira communities it is shared with.",
   );
 });

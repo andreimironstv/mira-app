@@ -15,7 +15,7 @@ import {
 const { admitDeletion } = brokerApi;
 const request: DeletionRequest = {
   community_id: "11111111-1111-4111-8111-111111111111",
-  host: "North.communities.buzz.xyz",
+  host: "North.workspace.mira-ai.ro",
   request_id: "22222222-2222-4222-8222-222222222222",
   acknowledgement_version: 1,
 };
@@ -396,7 +396,7 @@ it("requires the exact pending tuple to be readable after persistence", () => {
 it.each([
   ["request_id", "33333333-3333-4333-8333-333333333333"],
   ["community_id", "wrong-community"],
-  ["host", "north.communities.buzz.xyz"],
+  ["host", "north.workspace.mira-ai.ro"],
   ["acknowledgement_version", 2],
   ["status", "unknown_stage"],
 ])("rejects an admission response with mismatched %s", async (field, value) => {

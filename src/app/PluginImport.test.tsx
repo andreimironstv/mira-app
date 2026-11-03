@@ -250,7 +250,7 @@ it("shows exact declared access and changes before an enabled update", async () 
   expect(scopes.getByText("Run a program on your computer.")).toBeVisible();
   expect(scopes.getByText(/account’s full access/)).toBeVisible();
   expect(scopes.getAllByText(/HTTPS requests to this address/)).toHaveLength(3);
-  expect(scopes.getByText(/Buzz’s local MCP server/)).toBeVisible();
+  expect(scopes.getByText(/Mira’s local MCP server/)).toBeVisible();
   expect(screen.getByText(/beyond these declarations/)).toBeVisible();
   expect(
     screen.getByRole("region", { name: "Declared access changes" }),
@@ -1081,11 +1081,11 @@ it("opens installed details instead of adding another source", async () => {
   expect(manager.installImport).not.toHaveBeenCalled();
   expect(manager.change).not.toHaveBeenCalled();
   discard.mockRejectedValueOnce(new Error("Discard failed"));
-  fireEvent.click(screen.getByRole("button", { name: "Open in Buzz" }));
+  fireEvent.click(screen.getByRole("button", { name: "Open in Mira" }));
   expect(await screen.findByRole("alert")).toHaveTextContent("Discard failed");
   expect(openInstalled).not.toHaveBeenCalled();
   fireEvent.click(screen.getByRole("button", { name: "Back" }));
-  fireEvent.click(screen.getByRole("button", { name: "Open in Buzz" }));
+  fireEvent.click(screen.getByRole("button", { name: "Open in Mira" }));
   await waitFor(() =>
     expect(openInstalled).toHaveBeenCalledExactlyOnceWith(manifest.id),
   );

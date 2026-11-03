@@ -2,7 +2,7 @@
   "id": "buzz.goose",
   "name": "Goose",
   "apiVersion": 1,
-  "description": "Run local Goose agents in Buzz.",
+  "description": "Run local Goose agents in Mira.",
   "discovery": {
     "category": "agents",
     "tags": ["Essentials", "code", "coding-agents"]

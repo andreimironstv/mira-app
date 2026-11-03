@@ -657,7 +657,7 @@ export class ClaudeProcess {
       response = {
         subtype: "error",
         request_id: id,
-        error: `Buzz does not handle ${String(request.subtype)}`,
+        error: `Mira does not handle ${String(request.subtype)}`,
       };
     return this.write({ type: "control_response", response }).catch(
       () => undefined,

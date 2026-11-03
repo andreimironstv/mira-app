@@ -40,7 +40,7 @@ afterEach(() => {
 });
 const item = () => ({
   id: crypto.randomUUID(),
-  title: "Buzz",
+  title: "Mira",
   body: "Hello",
 });
 function callback(index = 0) {

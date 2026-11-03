@@ -573,7 +573,7 @@ test("asynchronous browser display failure reaches Settings once without redeliv
   await page.evaluate(() => window.notificationEvents[0].onerror?.());
   await expect(
     page.getByRole("dialog", {
-      name: "Buzz couldn’t send the notification",
+      name: "Mira couldn’t send the notification",
       exact: true,
     }),
   ).toContainText("The browser could not display a notification.");

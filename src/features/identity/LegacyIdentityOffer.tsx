@@ -33,8 +33,8 @@ export function useLegacyIdentityOffer(identity: Identity, open: boolean) {
   const dismiss = () => setOffered(false);
   return (
     <AlertDialog
-      title="Continue with your Buzz identity?"
-      description="Old Buzz was used on this device. Continue with the identity it saved instead of setting up a new one. Your computer may ask you to allow access."
+      title="Continue with your Mira identity?"
+      description="Old Mira was used on this device. Continue with the identity it saved instead of setting up a new one. Your computer may ask you to allow access."
       onClose={dismiss}
       pending={state.busy}
       // Launch focuses nothing, so the landing's heading takes focus back.

@@ -43,7 +43,7 @@ export const confirmations = {
 export const dialogs = [
   {
     id: "search",
-    name: "Search Buzz",
+    name: "Search Mira",
     group: "Shared dialogs",
     path: "App header → magnifying glass or ⌘K / Ctrl+K",
     source: "src/app/shell/PageSearch.tsx",

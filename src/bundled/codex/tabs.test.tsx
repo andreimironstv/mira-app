@@ -562,7 +562,7 @@ it("finds the thread's Codex session another build started", async () => {
     threads: [
       {
         id: "elsewhere",
-        name: `Buzz #general · Sol · ${tag}`,
+        name: `Mira #general · Sol · ${tag}`,
         updatedAt: 5,
       },
     ],
@@ -590,7 +590,7 @@ it("shows the channel's current kind for a session another build started", async
     threads: [
       {
         id: "elsewhere",
-        name: `Buzz general · Sol · ${tag}`,
+        name: `Mira general · Sol · ${tag}`,
         updatedAt: 5,
       },
     ],
@@ -1366,7 +1366,7 @@ it("lists models without a sign-in when the model provider needs no OpenAI accou
   expect(f.provider.snapshot().readiness).toBe("ready");
 });
 
-it("offers to install Codex from its card when Buzz has no copy", async () => {
+it("offers to install Codex from its card when Mira has no copy", async () => {
   const f = fixture({ installed: false });
   render(
     <f.tabs.CreateModel
@@ -1468,7 +1468,7 @@ it("moves the card from Install Codex to Sign in once the install succeeds", asy
   await waitFor(() => expect(model).toHaveFocus());
 });
 
-it("installs and signs in Buzz's copy of Codex from its provider settings", async () => {
+it("installs and signs in Mira's copy of Codex from its provider settings", async () => {
   const f = fixture({ installed: false, signedIn: false });
   const provider = new CodexProvider(f.spawn, localStore(), f.setup);
   const { ProviderDialogBody } = createTabs(

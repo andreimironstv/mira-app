@@ -938,13 +938,13 @@ it("lists active primary pages in their sidebar and header placements", async ()
   );
 
   expect(screen.queryByRole("tab", { name: "Agents" })).not.toBeInTheDocument();
-  await userEvent.click(screen.getByRole("button", { name: "Search Buzz" }));
-  const search = await screen.findByRole("dialog", { name: "Search Buzz" });
+  await userEvent.click(screen.getByRole("button", { name: "Search Mira" }));
+  const search = await screen.findByRole("dialog", { name: "Search Mira" });
   expect(
     within(search).queryByRole("option", { name: "Fixture notes" }),
   ).not.toBeInTheDocument();
   await userEvent.type(
-    within(search).getByRole("combobox", { name: "Search Buzz" }),
+    within(search).getByRole("combobox", { name: "Search Mira" }),
     "Fixture notes",
   );
   expect(

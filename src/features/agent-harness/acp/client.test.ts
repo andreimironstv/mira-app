@@ -198,7 +198,7 @@ afterEach(() => {
 });
 
 describe("starting a harness", () => {
-  it("passes the plugin's argv unchanged, with the Buzz identity removed last", async () => {
+  it("passes the plugin's argv unchanged, with the Mira identity removed last", async () => {
     const harness = fakeHarness();
     await start(harness, {
       args: ["cursor-agent", "acp", "--model", "x y"],
@@ -219,13 +219,13 @@ describe("starting a harness", () => {
     });
   });
 
-  it("refuses a harness that cannot take Buzz tools over HTTP MCP", async () => {
+  it("refuses a harness that cannot take Mira tools over HTTP MCP", async () => {
     for (const http of [false, undefined, "yes"]) {
       const harness = fakeHarness({
         capabilities: { mcpCapabilities: { http } },
       });
       await expect(start(harness)).rejects.toThrow(
-        "This Harness cannot reach Buzz tools (no HTTP MCP support)",
+        "This Harness cannot reach Mira tools (no HTTP MCP support)",
       );
       expect(harness.started[0]?.killed).toBe(true);
     }
@@ -444,14 +444,14 @@ describe("a session without hooks", () => {
   it("leads the first prompt with the instructions, once, when ACP's systemPrompt is not advertised", async () => {
     const harness = fakeHarness();
     const acp = await start(harness);
-    const session = await acp.open({ cwd: "/work", systemPrompt: "Be Buzz." });
+    const session = await acp.open({ cwd: "/work", systemPrompt: "Be Mira." });
     const [opened] = harness.sent("session/new");
     expect(opened?.params).not.toHaveProperty("systemPrompt");
     expect(opened?.params).not.toHaveProperty("_meta");
     await session.send("first");
     await session.send("second");
     expect(harness.turns.map((turn) => turn.text)).toEqual([
-      "Be Buzz.\n\nfirst",
+      "Be Mira.\n\nfirst",
       "second",
     ]);
   });
@@ -459,14 +459,14 @@ describe("a session without hooks", () => {
   it("keeps the instructions for the next prompt when the first is rejected", async () => {
     const harness = fakeHarness({ rejectPrompts: 1 });
     const acp = await start(harness);
-    const session = await acp.open({ cwd: "/work", systemPrompt: "Be Buzz." });
+    const session = await acp.open({ cwd: "/work", systemPrompt: "Be Mira." });
     await expect(session.send("first")).resolves.toMatchObject({
       ok: false,
       error: "Sign in first",
     });
     await expect(session.send("second")).resolves.toMatchObject({ ok: true });
     expect(harness.turns.map((turn) => turn.text)).toEqual([
-      "Be Buzz.\n\nsecond",
+      "Be Mira.\n\nsecond",
     ]);
   });
 
@@ -478,10 +478,10 @@ describe("a session without hooks", () => {
       },
     });
     const acp = await start(harness);
-    const session = await acp.open({ cwd: "/work", systemPrompt: "Be Buzz." });
+    const session = await acp.open({ cwd: "/work", systemPrompt: "Be Mira." });
     expect(harness.sent("session/new")[0]?.params?.systemPrompt).toEqual({
       mode: "append",
-      content: [{ type: "text", text: "Be Buzz." }],
+      content: [{ type: "text", text: "Be Mira." }],
     });
     await session.send("first");
     expect(harness.turns.map((turn) => turn.text)).toEqual(["first"]);

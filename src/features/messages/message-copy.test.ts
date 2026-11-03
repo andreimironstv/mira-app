@@ -61,7 +61,7 @@ it("does not guess edited, stripped, unsigned, or ambiguous mentions", () => {
     ),
   ).toBe(row.content);
 });
-it("copies an original-Buzz message link that opens with the recipient's community and thread hint", () => {
+it("copies an original-Mira message link that opens with the recipient's community and thread hint", () => {
   const link = messageCopyLink(
     { ...row, threadRootId: "d".repeat(64) },
     `https://relay.test:${person}`,

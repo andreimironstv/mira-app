@@ -920,7 +920,7 @@ it("saves a reviewed provider change with the destination settings", async () =>
     "ThinkingDropped",
   );
   expect(dialog).toHaveTextContent(
-    "Your agent will continue the conversation in Buzz.",
+    "Your agent will continue the conversation in Mira.",
   );
   expect(dialog).toHaveTextContent("Anything Echo left running will stop.");
   expect(dialog).toHaveTextContent(
@@ -1066,7 +1066,7 @@ it("imports an earlier agent as the chosen type and shows it in Your agents", as
   );
   const list = await screen.findByRole("region", { name: "Agents to import" });
   // Names are unique here, so each card shows only where it comes from.
-  expect(within(list).getAllByText("Buzz (Legacy)")).toHaveLength(2);
+  expect(within(list).getAllByText("Mira (Legacy)")).toHaveLength(2);
   expect(within(list).queryByText(/npub/)).not.toBeInTheDocument();
   await user.click(screen.getByRole("button", { name: "Import as Echo, Bea" }));
   expect(agents.port).toHaveBeenCalledWith({
@@ -1675,8 +1675,8 @@ it("tells same-named agents to import apart by their keys", async () => {
     await screen.findByRole("button", { name: /Import them now/ }),
   );
   const list = await screen.findByRole("region", { name: "Agents to import" });
-  expect(within(list).getByText("Buzz (Legacy)")).toBeInTheDocument();
-  expect(within(list).getAllByText(/^Buzz \(Legacy\) · npub…/)).toHaveLength(2);
+  expect(within(list).getByText("Mira (Legacy)")).toBeInTheDocument();
+  expect(within(list).getAllByText(/^Mira \(Legacy\) · npub…/)).toHaveLength(2);
 });
 
 it("imports agents only as a type that runs here", async () => {
@@ -2025,7 +2025,7 @@ it.each([
   "keeps %s import diagnostics reachable after incomplete discovery",
   async (tab, menu, entry, partialResult) => {
     const user = userEvent.setup();
-    const warning = "Couldn't read Buzz (Legacy) agents.";
+    const warning = "Couldn't read Mira (Legacy) agents.";
     const { agents } = setup([agent("Ada", 1)], {
       found: [],
       warnings: [warning],
@@ -2117,7 +2117,7 @@ it("offers first-run import diagnostics after discovery fails", async () => {
 
 it("offers import diagnostics to a first-time owner after warning-only discovery", async () => {
   const user = userEvent.setup();
-  const warning = "Couldn't read Buzz (Legacy) agents.";
+  const warning = "Couldn't read Mira (Legacy) agents.";
   const { agents } = setup([], { found: [], warnings: [warning] });
   await act(async () => {
     await agents.portable.mock.results[0]?.value;
@@ -2126,7 +2126,7 @@ it("offers import diagnostics to a first-time owner after warning-only discovery
     name: /Check for agents to import/,
   });
   expect(
-    screen.queryByText("You have agents in Buzz (Legacy)."),
+    screen.queryByText("You have agents in Mira (Legacy)."),
   ).not.toBeInTheDocument();
   await user.click(entry);
   const dialog = screen.getByRole("dialog", { name: "Import an agent" });
@@ -2137,7 +2137,7 @@ it("offers import diagnostics to a first-time owner after warning-only discovery
   expect(agents.port).not.toHaveBeenCalled();
 });
 
-it("imports an old Buzz agent as the type chosen on its button", async () => {
+it("imports an old Mira agent as the type chosen on its button", async () => {
   const user = userEvent.setup();
   const { agents, types } = setup([]);
   types.push({
@@ -2262,7 +2262,7 @@ it("lists old teams with how many members are here, and imports one as a team", 
   expect(within(teams).getByText("Night Shift")).toBeInTheDocument();
   // Cy is here already; Bea is still listed as an agent.
   expect(
-    within(teams).getByText("2 members · 1 already here · Buzz (Legacy)"),
+    within(teams).getByText("2 members · 1 already here · Mira (Legacy)"),
   ).toBeInTheDocument();
   await user.click(
     screen.getByRole("button", { name: "Import as Echo, team Night Shift" }),
@@ -2293,7 +2293,7 @@ it("counts no member of a team as here when they were imported into another comm
   await openImport(user);
   const teams = await screen.findByRole("region", { name: "Teams to import" });
   expect(
-    within(teams).getByText("2 members · Buzz (Legacy)"),
+    within(teams).getByText("2 members · Mira (Legacy)"),
   ).toBeInTheDocument();
   expect(within(teams).queryByText(/already here/)).not.toBeInTheDocument();
   expect(
@@ -2388,7 +2388,7 @@ it("keeps Import open and names each part of a team import that did not come", a
     "Imported team Late Shift with Bea. Couldn't import Cy: Keychain access was denied.",
   );
   expect(
-    screen.getByText("2 members · 1 already here · Buzz (Legacy)"),
+    screen.getByText("2 members · 1 already here · Mira (Legacy)"),
   ).toBeInTheDocument();
   await user.click(importTeam);
   onImport();
@@ -2422,7 +2422,7 @@ it("neither counts nor adds a member another account on this device has", async 
   await openImport(user);
   const teams = await screen.findByRole("region", { name: "Teams to import" });
   expect(
-    within(teams).getByText("2 members · Buzz (Legacy)"),
+    within(teams).getByText("2 members · Mira (Legacy)"),
   ).toBeInTheDocument();
   await user.click(
     within(teams).getByRole("button", {
@@ -3139,7 +3139,7 @@ it("offers importing first agents only when there are some to import", async () 
   setup([]);
   const tile = await screen.findByRole("button", { name: /Import them now/ });
   // Agents show by picture alone; one without a picture shows its initial.
-  expect(tile).toHaveTextContent("You have agents in Buzz (Legacy).");
+  expect(tile).toHaveTextContent("You have agents in Mira (Legacy).");
   expect(tile).not.toHaveTextContent("Ada");
   expect(
     tile.querySelectorAll("[data-avatar-stack] > [data-avatar-shape]"),

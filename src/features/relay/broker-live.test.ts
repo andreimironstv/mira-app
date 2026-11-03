@@ -73,7 +73,7 @@ function fixture() {
       new Response(body, {
         headers: {
           "Content-Type": "text/event-stream",
-          "X-Buzz-Live-ID": String(index + 1).padStart(32, "0"),
+          "X-Mira-Live-ID": String(index + 1).padStart(32, "0"),
         },
       }),
     );

@@ -11,7 +11,7 @@ pub(super) async fn prepare(
             return Err("The active account changed. Reopen Pair mobile.".into());
         }
         let secret = nostr_pairing::SecretKey::from_slice(secret)
-            .map_err(|_| "Couldn’t read your Buzz account.")?;
+            .map_err(|_| "Couldn’t read your Mira account.")?;
         payload(&Keys::new(secret), &viewer, &origin)
     })
     .await
@@ -23,7 +23,7 @@ pub(super) fn payload(
     relay: &str,
 ) -> Result<Zeroizing<String>, String> {
     if keys.public_key().to_hex() != expected {
-        return Err("The saved Buzz account has changed. Reopen Pair mobile and try again.".into());
+        return Err("The saved Mira account has changed. Reopen Pair mobile and try again.".into());
     }
     #[derive(serde::Serialize)]
     #[serde(rename_all = "camelCase")]
@@ -35,7 +35,7 @@ pub(super) fn payload(
     let secret = Zeroizing::new(
         keys.secret_key()
             .to_bech32()
-            .map_err(|_| "Couldn’t prepare your Buzz account.")?,
+            .map_err(|_| "Couldn’t prepare your Mira account.")?,
     );
     serde_json::to_string(&Payload {
         relay_url: relay,
@@ -43,7 +43,7 @@ pub(super) fn payload(
         nsec: &secret,
     })
     .map(Zeroizing::new)
-    .map_err(|_| "Couldn’t prepare your Buzz account.".into())
+    .map_err(|_| "Couldn’t prepare your Mira account.".into())
 }
 #[cfg(test)]
 mod tests {

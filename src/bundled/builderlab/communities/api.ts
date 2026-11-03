@@ -1,5 +1,5 @@
 // Block-hosted community accounts through a Builderlab account backend.
-export const HOST_SUFFIX = "communities.buzz.xyz";
+export const HOST_SUFFIX = "workspace.mira-ai.ro";
 export const VALID_NAME = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 export const ACKNOWLEDGEMENT_VERSION = 1;
 export const DELETION_PENDING_KEY = "buzz.hosted-community-deletion.v1";
@@ -60,20 +60,20 @@ export type Reply = {
 type Body = Record<string, string | number>;
 
 const messages: Record<string, string> = {
-  missing_mapping: "Connect your Buzz identity before creating a community.",
+  missing_mapping: "Connect your Mira identity before creating a community.",
   invalid_name: "Use lowercase letters, numbers, and hyphens.",
-  taken: "That Buzz address is already taken.",
+  taken: "That Mira address is already taken.",
   limit_reached: "You've reached your community limit.",
   unauthorized:
-    "This Builderlab account can't manage Buzz identities right now. Try signing in again.",
+    "This Builderlab account can't manage Mira identities right now. Try signing in again.",
   relay_unavailable: "Community provisioning is temporarily unavailable.",
   identity_already_bound:
-    "This Builderlab account is connected to another Buzz identity.",
+    "This Builderlab account is connected to another Mira identity.",
   pubkey_already_bound:
-    "This Buzz identity is connected to another Builderlab account.",
+    "This Mira identity is connected to another Builderlab account.",
   not_owner: "Only the community owner can do that.",
   transferee_not_registered:
-    "That person needs a connected Buzz identity before you can transfer ownership to them.",
+    "That person needs a connected Mira identity before you can transfer ownership to them.",
   invalid_request: "The deletion request is invalid.",
   confirmation_mismatch: "The host confirmation does not match exactly.",
   must_archive: "Archive the community before deleting it.",
@@ -143,7 +143,7 @@ export const broker: Backend = {
       return auth;
     if (response.ok || response.status === 404)
       throw new Unsupported(
-        "Hosted communities need the Buzz development broker and are unavailable in this build.",
+        "Hosted communities need the Mira development broker and are unavailable in this build.",
       );
     throw new Error(
       value?.error ?? `Builderlab request failed (${response.status})`,

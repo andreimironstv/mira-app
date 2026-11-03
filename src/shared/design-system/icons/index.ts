@@ -34,14 +34,14 @@ export const GooseLogoIcon = defineIcon("custom", GooseLogoArtwork, {
   meaning: "Goose harness",
   category: "Custom brand mark",
   provenance:
-    "Official Block Goose mark (Apache-2.0), reused from old Buzz by explicit design request; see NOTICE.md",
+    "Official Block Goose mark (Apache-2.0), reused from old Mira by explicit design request; see NOTICE.md",
   intendedSizes: [{ width: 32, height: 32 }],
 });
 export const PiLogoIcon = defineIcon("custom", PiLogoArtwork, {
   meaning: "Pi harness",
   category: "Custom brand mark",
   provenance:
-    "Official Earendil Pi favicon (MIT), reused from old Buzz by explicit design request; see NOTICE.md",
+    "Official Earendil Pi favicon (MIT), reused from old Mira by explicit design request; see NOTICE.md",
   intendedSizes: [{ width: 32, height: 32 }],
 });
 
@@ -297,7 +297,7 @@ export const RobotIcon = defineIcon("custom", RobotArtwork, {
   meaning: "AI agent",
   category: "Product mark",
   provenance:
-    "Original Buzz Soft & wide robot, Fuller canvas refinement with inward ears, selected by the designer",
+    "Original Mira Soft & wide robot, Fuller canvas refinement with inward ears, selected by the designer",
   intendedSizes: [
     { width: 14, height: 14 },
     { width: 16, height: 16 },
@@ -384,21 +384,21 @@ export const BlockLogoIcon = defineIcon("custom", BlockLogoArtwork, {
   meaning: "Block, Inc. corporate mark",
   category: "Custom brand mark",
   provenance:
-    "Block, Inc. corporate mark, current-color grid from the Builderlab Buzz site's block-logo.svg.",
+    "Block, Inc. corporate mark, current-color grid from the Builderlab Mira site's block-logo.svg.",
   intendedSizes: [{ width: 18, height: 18 }],
 });
 export const GitHubIssueIcon = defineIcon("custom", GitHubIssueArtwork, {
   meaning: "Open GitHub issue",
   category: "Product mark",
   provenance:
-    "Buzz-owned mark based on GitHub’s issue symbol and Tabler Circle geometry.",
+    "Mira-owned mark based on GitHub’s issue symbol and Tabler Circle geometry.",
   intendedSizes: [{ width: 22, height: 22 }],
 });
 export const BestieIcon = defineIcon("custom", BestieMarkArtwork, {
   meaning: "Bestie page",
   category: "Product mark",
   provenance:
-    "Buzz-owned Bestie artwork from public/bestie.png, framed as an SVG image for icon slots.",
+    "Mira-owned Bestie artwork from public/bestie.png, framed as an SVG image for icon slots.",
   intendedSizes: [
     { width: 15, height: 15 },
     { width: 17, height: 17 },
@@ -521,7 +521,7 @@ import { HashArrowInArtwork } from "./HashArrowIn";
 export const HashArrowInIcon = defineIcon("custom", HashArrowInArtwork, {
   meaning: "Send to channel",
   category: "messaging",
-  provenance: "Original Buzz HashArrowIn; retained by explicit design request",
+  provenance: "Original Mira HashArrowIn; retained by explicit design request",
   intendedSizes: [{ width: 16, height: 16 }],
 });
 
@@ -529,7 +529,7 @@ export const ClaudeLogoIcon = defineIcon("custom", ClaudeLogoArtwork, {
   meaning: "Claude harness",
   category: "Custom brand mark",
   provenance:
-    "Bundled Claude mark reused from old Buzz by explicit design request; see NOTICE.md",
+    "Bundled Claude mark reused from old Mira by explicit design request; see NOTICE.md",
   intendedSizes: [{ width: 32, height: 32 }],
 });
 
@@ -545,7 +545,7 @@ export const HermesLogoIcon = defineIcon("custom", HermesLogoArtwork, {
   meaning: "Hermes harness",
   category: "Custom brand mark",
   provenance:
-    "Bundled Hermes mark reused from old Buzz by explicit design request; see NOTICE.md",
+    "Bundled Hermes mark reused from old Mira by explicit design request; see NOTICE.md",
   intendedSizes: [
     { width: 24, height: 24 },
     { width: 32, height: 32 },

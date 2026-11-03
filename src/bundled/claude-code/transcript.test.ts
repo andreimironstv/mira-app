@@ -130,7 +130,7 @@ it("groups a session file into prompted turns with steering, tools and replies",
   );
 });
 
-it("shows what the agent posted as its reply once sent, and names Buzz tools as Codex does", () => {
+it("shows what the agent posted as its reply once sent, and names Mira tools as Codex does", () => {
   clock = 0;
   const send = (id: string, text: string, tool = "send") =>
     line("assistant", [
@@ -180,7 +180,7 @@ it("shows what the agent posted as its reply once sent, and names Buzz tools as 
   ]);
 });
 
-it("leaves a bare send or reply_in_subthread, outside Buzz, as an ordinary tool", () => {
+it("leaves a bare send or reply_in_subthread, outside Mira, as an ordinary tool", () => {
   clock = 0;
   const [turn] = claudeTurns(
     [

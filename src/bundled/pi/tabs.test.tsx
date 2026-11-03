@@ -356,7 +356,7 @@ it("says when Pi has no provider for the choice", async () => {
   });
   await waitFor(() => expect(provider).toBeEnabled());
   expect(provider).toHaveAccessibleDescription(
-    /databricks isn't one of Pi's built-in providers, and no Pi package Buzz loaded adds it/,
+    /databricks isn't one of Pi's built-in providers, and no Pi package Mira loaded adds it/,
   );
   const use = within(dialog).getByRole("button", { name: "Use" });
   expect(use).toHaveAttribute("aria-disabled", "true");

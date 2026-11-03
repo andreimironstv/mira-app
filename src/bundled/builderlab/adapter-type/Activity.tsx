@@ -50,7 +50,7 @@ export function ActivityPanel({
   openSettings?: ((section: string) => void) | undefined;
   openConversation?: AgentViewProps["openConversation"];
 }) {
-  if (!activity) return <Note>Activity shows once Buzz is connected.</Note>;
+  if (!activity) return <Note>Activity shows once Mira is connected.</Note>;
   return (
     <ActivityFeed
       agent={agent}
@@ -116,7 +116,7 @@ function ActivityFeed({
       before={
         <>
           <Note>
-            Turns from all of this agent's conversations, captured while Buzz
+            Turns from all of this agent's conversations, captured while Mira
             has been open. Earlier turns aren't shown.
           </Note>
           {snapshot.status === "interrupted" && (

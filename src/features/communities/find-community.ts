@@ -85,7 +85,7 @@ async function relayInfo(response: Response) {
   const info = body as Record<string, unknown>;
   // buzz-relay nip11.rs hard-codes both; either identifies the software.
   if (
-    info.name !== "Buzz Relay" &&
+    info.name !== "Mira Relay" &&
     !(
       typeof info.software === "string" &&
       info.software.startsWith(BUZZ_SOFTWARE)

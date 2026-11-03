@@ -11,7 +11,7 @@ set -eu
 
 # Shared by every Buzz build on this computer, so there is one download.
 if [ "$(uname)" = Darwin ]; then
-  dir="$HOME/Library/Application Support/Buzz/codex"
+  dir="$HOME/Library/Application Support/Mira/codex"
 else
   dir="${XDG_DATA_HOME:-$HOME/.local/share}/buzz/codex"
 fi
@@ -62,7 +62,7 @@ if [ "$command" = run ] || [ "$command" = adopt ]; then
     esac
   fi
   [ "$home" != "$shared" ] ||
-    { echo "Buzz's Codex home must differ from the shared one" >&2; exit 1; }
+    { echo "Mira's Codex home must differ from the shared one" >&2; exit 1; }
   # Codex can't make its skills folder through a link to nothing. Something
   # else in the way is left for Codex to handle, as it would in the shared home.
   mkdir -p "$shared/skills" "$shared/rules" 2>/dev/null || true
@@ -83,7 +83,7 @@ if [ "$command" = run ] || [ "$command" = adopt ]; then
       [ "$shared/auth.json" -nt "$home/auth.json" ] ||
         (umask 077 && cat "$home/auth.json" >"$auth.buzz" && mv -f "$auth.buzz" "$auth") || {
         rm -f "$auth.buzz"
-        echo "Buzz couldn't save the Codex sign-in to $shared/auth.json" >&2
+        echo "Mira couldn't save the Codex sign-in to $shared/auth.json" >&2
         exit 1
       }
       rm -f "$home/auth.json"
@@ -94,7 +94,7 @@ if [ "$command" = run ] || [ "$command" = adopt ]; then
     [ -e "$home/$name" ] || [ -L "$home/$name" ] ||
       ln -sn "$shared/$name" "$home/$name" 2>/dev/null || true
     [ "$(readlink "$home/$name")" = "$shared/$name" ] ||
-      { echo "Buzz's Codex setup conflicts with $home/$name" >&2; exit 1; }
+      { echo "Mira's Codex setup conflicts with $home/$name" >&2; exit 1; }
   done
   export CODEX_HOME="$home"
 fi

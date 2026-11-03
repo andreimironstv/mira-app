@@ -7,7 +7,7 @@ async function expectPageRegistered(page, name) {
   await expect(pageChoice(choices, name)).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(
-    page.getByRole("dialog", { name: "Search Buzz", includeHidden: true }),
+    page.getByRole("dialog", { name: "Search Mira", includeHidden: true }),
   ).toHaveCount(0);
 }
 for (const operation of ["complete", "resolve"]) {

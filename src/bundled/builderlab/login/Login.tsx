@@ -8,8 +8,8 @@ const kept = () =>
   brokerBuilderlab()
     ? "Your sign-in stays on the development server through app reloads, until you sign out or the session expires."
     : nativeBuilderlab()
-      ? "Buzz keeps your sign-in in your system keychain until you sign out."
-      : "Your credential stays in memory until you sign out or close Buzz.";
+      ? "Mira keeps your sign-in in your system keychain until you sign out."
+      : "Your credential stays in memory until you sign out or close Mira.";
 
 export function Login({
   session,
@@ -17,7 +17,7 @@ export function Login({
   active,
   showHeading = true,
   cancelOnUnmount = true,
-  unavailableReason = "Open the Buzz desktop app to sign in with Builderlab.",
+  unavailableReason = "Open the Mira desktop app to sign in with Builderlab.",
   openIdentity,
 }: {
   session: BuilderlabSession;
@@ -73,7 +73,7 @@ export function Login({
             {state.checking
               ? "Checking your Builderlab sign-in…"
               : state.status === "pending"
-                ? "Finish sign-in in your browser, then return to Buzz."
+                ? "Finish sign-in in your browser, then return to Mira."
                 : state.account
                   ? state.account.email
                     ? `Signed in as ${state.account.email}.`

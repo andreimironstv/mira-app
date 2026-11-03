@@ -122,8 +122,8 @@ async function harness(
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          ...(live ? { "X-Buzz-Live-ID": live.identity() } : {}),
-          ...(priority ? { "X-Buzz-Read-Priority": priority } : {}),
+          ...(live ? { "X-Mira-Live-ID": live.identity() } : {}),
+          ...(priority ? { "X-Mira-Read-Priority": priority } : {}),
         },
         body: JSON.stringify(body),
         signal,
@@ -152,7 +152,7 @@ test.each([
     });
     const request = {
       community_id: "11111111-1111-4111-8111-111111111111",
-      host: "north.communities.buzz.xyz",
+      host: "north.workspace.mira-ai.ro",
       request_id: "22222222-2222-4222-8222-222222222222",
       acknowledgement_version: 1,
     };
@@ -4012,7 +4012,7 @@ test("Builderlab HTTP accepts full agent instructions and isolates the fixed nat
       [
         "viewer",
         "/v1/auth/hosted-site/native-session",
-        "X-Buzz-Builderlab-Revision",
+        "X-Mira-Builderlab-Revision",
       ],
     ]) {
       const refused = await fetch(`${h.base}/api/builderlab/request`, {
@@ -4024,7 +4024,7 @@ test("Builderlab HTTP accepts full agent instructions and isolates the fixed nat
       });
       const forwarded = await fetch(`${h.base}/api/builderlab/${action}`, {
         method: "POST",
-        headers: { [header]: revision, "X-Buzz-Community": "buzz.example" },
+        headers: { [header]: revision, "X-Mira-Community": "buzz.example" },
         body: JSON.stringify({ fixture: action }),
       });
       expect(forwarded.status).toBe(200);
@@ -4036,7 +4036,7 @@ test("Builderlab HTTP accepts full agent instructions and isolates the fixed nat
       });
     }
     expect(nativeCalls).toHaveLength(2);
-    expect(nativeCalls[0].headers["X-Buzz-Community"]).toBe("buzz.example");
+    expect(nativeCalls[0].headers["X-Mira-Community"]).toBe("buzz.example");
   } finally {
     await h.close();
   }

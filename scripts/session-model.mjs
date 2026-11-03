@@ -247,7 +247,7 @@ export function sessionModel(
       context.push(
         entry.instructions(
           r.timestamp,
-          "Recorded Buzz system prompt additions",
+          "Recorded Mira system prompt additions",
           r.payload.systemPrompt,
         ),
       );
@@ -255,7 +255,7 @@ export function sessionModel(
       context.push(
         entry.instructions(
           r.timestamp,
-          "Recorded Buzz tool definitions",
+          "Recorded Mira tool definitions",
           JSON.stringify(r.payload, null, 2),
         ),
       );

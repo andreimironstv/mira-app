@@ -21,7 +21,7 @@ export function registerDiscovery(agents: {
     async call() {
       if (!agents.attentionProviders)
         throw new Error(
-          "Update Buzz to a version with Attention provider discovery.",
+          "Update Mira to a version with Attention provider discovery.",
         );
       return JSON.stringify({ providers: agents.attentionProviders() });
     },

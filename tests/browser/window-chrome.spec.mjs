@@ -92,7 +92,7 @@ test("window controls stay usable through the launch overlay and identity handof
       )
       .toBe(2);
     await expect(
-      page.getByRole("heading", { name: "Buzz", exact: true }),
+      page.getByRole("heading", { name: "Mira", exact: true }),
     ).toBeVisible();
     expect(errors.unexplained()).toEqual([]);
   } finally {

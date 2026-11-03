@@ -313,14 +313,14 @@ function ConnectedAppContent({ services }: { services: AppServices }) {
   // Keep the parser launch surface through local bootstrap, not network refresh.
   if (!settings && restoring)
     return document.getElementById("buzz-launch") ? null : (
-      <div className="buzz-launch" role="status" aria-label="Opening Buzz">
+      <div className="buzz-launch" role="status" aria-label="Opening Mira">
         <LoadingWindowHeader />
         <picture>
           <source
             media="(prefers-reduced-motion: reduce)"
             srcSet="/buzz-mark.svg"
           />
-          <img src="/buzz-loading-mark.svg" alt="Buzz" width="72" height="72" />
+          <img src="/buzz-loading-mark.svg" alt="Mira" width="72" height="72" />
         </picture>
       </div>
     );
@@ -493,7 +493,7 @@ function ConnectedAppContent({ services }: { services: AppServices }) {
         <EmptyState
           icon={<WarningCircleIcon />}
           title="This page isn’t available"
-          description="It may have been removed, or you may need to update Buzz."
+          description="It may have been removed, or you may need to update Mira."
           action={
             <>
               {messagesButton("primary")}

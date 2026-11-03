@@ -150,26 +150,26 @@ it("loads the broker's Vite config without native-compatibility warnings", () =>
                 );
                 assert.equal(
                   result.config.define['import.meta.env.VITE_BUZZ_BUILDERLAB_URL'],
-                  JSON.stringify(local ? '' : 'https://app.builderlab.xyz'),
+                  JSON.stringify(local ? '' : 'https://account.mira-ai.ro'),
                 );
               }
             }
             // Desktop shares .env.local/process inputs with the native build.
             // Mode-specific values cannot point the renderer at another same-origin path.
-            writeFileSync('.env.local', String.fromCharCode(0xfeff) + 'BUZZ_BUILDERLAB_URL=https://app.builderlab.xyz/');
-            writeFileSync('.env.development', 'BUZZ_BUILDERLAB_URL=https://app.builderlab.xyz/staging');
-            writeFileSync('.env.production', 'BUZZ_BUILDERLAB_URL=https://app.builderlab.xyz/staging');
+            writeFileSync('.env.local', String.fromCharCode(0xfeff) + 'BUZZ_BUILDERLAB_URL=https://account.mira-ai.ro/');
+            writeFileSync('.env.development', 'BUZZ_BUILDERLAB_URL=https://account.mira-ai.ro/staging');
+            writeFileSync('.env.production', 'BUZZ_BUILDERLAB_URL=https://account.mira-ai.ro/staging');
             for (const [command, mode] of [['serve', 'development'], ['build', 'production']]) {
               delete process.env.BUZZ_BUILDERLAB_URL;
               const result = await loadConfigFromFile({ command, mode }, configFile);
               assert.equal(
                 result.config.define['import.meta.env.VITE_BUZZ_BUILDERLAB_URL'],
-                JSON.stringify('https://app.builderlab.xyz/'),
+                JSON.stringify('https://account.mira-ai.ro/'),
               );
             }
             // Process input still overrides the shared local value, including empty.
             for (const [command, override, expected] of [
-              ['serve', undefined, 'https://app.builderlab.xyz/'],
+              ['serve', undefined, 'https://account.mira-ai.ro/'],
               ['build', 'https://login.example:8443/deployment/', 'https://login.example:8443/deployment/'],
               ['build', '', ''],
             ]) {

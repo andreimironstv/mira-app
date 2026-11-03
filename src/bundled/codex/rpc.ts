@@ -76,7 +76,7 @@ export class AppServer {
     await this.request("initialize", {
       clientInfo: {
         name: "buzz_codex_plugin",
-        title: "Buzz Codex",
+        title: "Mira Codex",
         version: "0.1.0",
       },
       capabilities: {
@@ -135,7 +135,7 @@ export class AppServer {
             error: {
               code: -32601,
               message:
-                "Buzz Codex runs with approvalPolicy=never; interactive requests are unsupported",
+                "Mira Codex runs with approvalPolicy=never; interactive requests are unsupported",
             },
           }).catch((error) => this.fail(error));
         } else this.emit(message);

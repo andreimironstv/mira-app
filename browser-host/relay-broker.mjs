@@ -245,7 +245,7 @@ function loadIdentity(authorizedViewer) {
   }
   if (!expected)
     throw new Error(
-      "Set BUZZ_DEV_VIEWER in .env.local to your existing Buzz public key (hex or npub, never nsec). See docs/contributing.md#live-relay-development.",
+      "Set BUZZ_DEV_VIEWER in .env.local to your existing Mira public key (hex or npub, never nsec). See docs/contributing.md#live-relay-development.",
     );
   // The installed Buzz desktop keeps its secrets blob in the OS credential
   // store under service `buzz-desktop`, username `secrets`: the macOS Keychain,
@@ -269,7 +269,7 @@ function loadIdentity(authorizedViewer) {
       command: "secret-tool",
       args: ["lookup", "service", "buzz-desktop", "username", "secrets"],
       failure:
-        "Secret service read unavailable (needs libsecret-tools, an unlocked keyring in this desktop session, and Buzz desktop signed in); no credential fallback",
+        "Secret service read unavailable (needs libsecret-tools, an unlocked keyring in this desktop session, and Mira desktop signed in); no credential fallback",
     },
   };
   const reader = readers[process.platform];
@@ -300,7 +300,7 @@ function loadIdentity(authorizedViewer) {
   if (getPublicKey(decoded.data) !== expected) {
     decoded.data.fill(0);
     throw new Error(
-      "Keychain identity does not match BUZZ_DEV_VIEWER. Check the public key of your existing Buzz account; do not replace or delete its credential.",
+      "Keychain identity does not match BUZZ_DEV_VIEWER. Check the public key of your existing Mira account; do not replace or delete its credential.",
     );
   }
   return decoded.data;
@@ -1529,7 +1529,7 @@ export function relayBrokerPlugin({
             } catch {
               return json(res, 503, {
                 error:
-                  "Current Buzz agent library unavailable; no files were changed",
+                  "Current Mira agent library unavailable; no files were changed",
               });
             }
           }
@@ -1846,7 +1846,7 @@ export function relayBrokerPlugin({
             // write (which can otherwise delay establishment until the heartbeat).
             res.useChunkedEncodingByDefault = false;
             res.writeHead(200, {
-              "X-Buzz-Live-ID": streamId,
+              "X-Mira-Live-ID": streamId,
               "Content-Type": "text/event-stream",
               "Cache-Control": "no-store",
               Connection: "close",

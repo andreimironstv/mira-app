@@ -109,7 +109,7 @@ export function PageSearch({
     () =>
       services?.shortcuts.registerHost({
         id: SEARCH_ID,
-        title: "Search Buzz",
+        title: "Search Mira",
         binding: SEARCH_BINDING,
         order: HOST_SHORTCUT_ORDER.search,
         allowInEditable: true,
@@ -188,8 +188,8 @@ export function PageSearch({
         variant="inverted"
         size="md"
         shape="round"
-        aria-label="Search Buzz"
-        title={`Search Buzz (${shortcut})`}
+        aria-label="Search Mira"
+        title={`Search Mira (${shortcut})`}
         onClick={() => {
           trigger.current?.focus();
           begin();
@@ -199,7 +199,7 @@ export function PageSearch({
       <Dialog
         open={open}
         onOpenChange={setSearchOpen}
-        title={scopedChannelId ? "Search this conversation" : "Search Buzz"}
+        title={scopedChannelId ? "Search this conversation" : "Search Mira"}
         footerGap="none"
         motion="default"
         dismissOnOutsideClick
@@ -337,7 +337,7 @@ function CommunitySearch({
         query={query}
         onQueryChange={onQueryChange}
         input={input}
-        label={scopedChannelId ? "Search this conversation" : "Search Buzz"}
+        label={scopedChannelId ? "Search this conversation" : "Search Mira"}
         scope={
           scopedChannelId
             ? { label: "This conversation", onRemove: () => onScopeChange() }

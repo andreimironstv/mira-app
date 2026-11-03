@@ -62,7 +62,7 @@ export function pluginNotificationText(
   label: string,
 ): NotificationText {
   return Object.freeze({
-    title: shortText(input.title ?? "", 128) || "Buzz",
+    title: shortText(input.title ?? "", 128) || "Mira",
     body: plainText(input.body ?? "") || `New ${label.toLowerCase()}`,
   });
 }

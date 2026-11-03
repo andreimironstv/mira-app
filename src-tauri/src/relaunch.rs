@@ -48,7 +48,7 @@ mod macos {
         }
         let env = app.env();
         let spawned = bundle()
-            .ok_or_else(|| "Buzz is not running from an app bundle".to_string())
+            .ok_or_else(|| "Mira is not running from an app bundle".to_string())
             .and_then(|bundle| {
                 relauncher(
                     Path::new("/usr/bin/open"),
@@ -60,7 +60,7 @@ mod macos {
                 .map_err(|error| error.to_string())
             });
         if let Err(error) = spawned {
-            eprintln!("Could not relaunch Buzz after it exits: {error}");
+            eprintln!("Could not relaunch Mira after it exits: {error}");
             tauri::process::restart(&env);
         }
     }
@@ -122,7 +122,7 @@ mod macos {
                 .unwrap();
             let args = [OsString::from("--flag"), OsString::from("two words")];
 
-            let mut command = relauncher(&open, old.id(), "/Applications/Buzz.app".as_ref(), &args);
+            let mut command = relauncher(&open, old.id(), "/Applications/Mira.app".as_ref(), &args);
             let mut waiter = command.env("OLD", old.id().to_string()).spawn().unwrap();
             // Exit the old process only once the relauncher is polling it (its
             // `sleep` child is running) or has already finished without waiting.
@@ -149,7 +149,7 @@ mod macos {
             }
             assert_eq!(
                 std::fs::read_to_string(&record).unwrap(),
-                "exited\n-n\n/Applications/Buzz.app\n--args\n--flag\ntwo words\n"
+                "exited\n-n\n/Applications/Mira.app\n--args\n--flag\ntwo words\n"
             );
         }
     }

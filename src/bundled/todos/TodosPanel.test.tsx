@@ -961,7 +961,7 @@ it("renders task Markdown outside checkbox labels and shows a legacy named assig
   );
 });
 
-it("routes copied Buzz links and filters unsupported task destinations", async () => {
+it("routes copied Mira links and filters unsupported task destinations", async () => {
   const f = fixture();
   const message = `buzz://channel/general/${"a".repeat(64)}`;
   f.canvas.read.mockResolvedValue({

@@ -2,6 +2,6 @@
   "id": "buzz.feedback",
   "name": "Feedback",
   "apiVersion": 1,
-  "description": "Send feedback about Buzz.",
+  "description": "Send feedback about Mira.",
   "discovery": { "category": "people-and-communities" }
 }

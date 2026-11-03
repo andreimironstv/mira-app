@@ -1,6 +1,6 @@
 # Pi
 
-Create agents that run Pi on your computer, with any provider Pi supports, and answer you in Buzz. Each conversation continues its own Pi conversation.
+Create agents that run Pi on your computer, with any provider Pi supports, and answer you in Mira. Each conversation continues its own Pi conversation.
 
 ## Getting started
 
@@ -9,7 +9,7 @@ Create agents that run Pi on your computer, with any provider Pi supports, and a
 3. Mention your agent in a conversation to give it work.
 
 To give your Pi agents your own tools, hooks or providers, see
-[Add your own Pi extensions to Buzz](https://github.com/block/buzz-app/blob/main/src/bundled/pi/EXTENSIONS.md).
+[Add your own Pi extensions to Mira](https://github.com/block/buzz-app/blob/main/src/bundled/pi/EXTENSIONS.md).
 
 ---
 
@@ -17,7 +17,7 @@ To give your Pi agents your own tools, hooks or providers, see
 
 Agents run on [Pi durable](https://github.com/earendil-works/pi/blob/main/packages/durable/README.md) in one Node
 host ([`host.mjs`](host.mjs)). Each agent has its own SQLite storage, and each
-Buzz thread or channel is one durable Pi conversation. Agents owns identity,
+Mira thread or channel is one durable Pi conversation. Agents owns identity,
 admission and signing; this plugin owns the turn after handover. The host also
 loads the Pi durable parts of the Pi packages in Pi's settings
 ([`EXTENSIONS.md`](EXTENSIONS.md)).
@@ -32,8 +32,8 @@ The live test runs the real host on Pi's faux provider.
 ## Packages
 
 [`launch.mjs`](launch.mjs) installs [`deps/package-lock.json`](deps/package-lock.json)
-with `npm ci` (no install scripts) into a per-lock folder under Buzz's app data
-`pi/deps/`, shared by every Buzz build. To update Pi, change
+with `npm ci` (no install scripts) into a per-lock folder under Mira's app data
+`pi/deps/`, shared by every Mira build. To update Pi, change
 [`deps/package.json`](deps/package.json), then:
 
 ```sh
@@ -44,8 +44,8 @@ npm install --package-lock-only --ignore-scripts --omit-lockfile-registry-resolv
 ## Limits
 
 - Pi's `read`, `write`, `edit` and `bash` run in the workspace with no sandbox
-  or approvals. Buzz tools are `buzz_<name>`.
-- Keys in Pi's `auth.json` must be literal: Buzz runs no `!command` key and
+  or approvals. Mira tools are `buzz_<name>`.
+- Keys in Pi's `auth.json` must be literal: Mira runs no `!command` key and
   reads no `$NAME` key. Set up a provider that needs more than a key with
   `pi`.
 - Pi packages load only from a local folder, and only their `pi.durable`
@@ -55,7 +55,7 @@ npm install --package-lock-only --ignore-scripts --omit-lockfile-registry-resolv
   and shows no steps; its thread's session controls interrupt it. An
   unaddressed watch's or timer's run is ended, and so is a plugin wake's
   unless a run that continues shares its conversation.
-- When the app quits or the host stops during a Buzz tool call, Pi tells the
+- When the app quits or the host stops during a Mira tool call, Pi tells the
   model the call may have run, so a `send` it makes again may be posted
   twice. A Stop or Interrupt ends the run instead.
 - A conversation keeps the `core` memory it was first shown until Pi compacts

@@ -94,7 +94,7 @@ export function PairingSettings({
       if (attempt !== lifetime.current) return;
       if (client.viewer && viewer !== client.viewer)
         throw new Error(
-          "Your saved Buzz account doesn’t match this account. Open the matching account before pairing.",
+          "Your saved Mira account doesn’t match this account. Open the matching account before pairing.",
         );
       setAccount(viewer);
     } catch (error) {
@@ -153,13 +153,13 @@ export function PairingSettings({
   const confirmed = ["transferring", "complete"].includes(state.phase);
   const done = state.phase === "complete";
   const verificationInstructions =
-    "If your phone asks for a code, enter these digits and finish confirming on your phone. If it shows a code, check that the digits match. Then choose Codes match here to send your Buzz identity.";
+    "If your phone asks for a code, enter these digits and finish confirming on your phone. If it shows a code, check that the digits match. Then choose Codes match here to send your Mira identity.";
   const steps = [
     {
       id: "scan",
       title: "Scan QR code",
       detail:
-        "Open Buzz on your phone and choose Add community to scan the code shown here.",
+        "Open Mira on your phone and choose Add community to scan the code shown here.",
       complete: scanned,
     },
     {
@@ -183,7 +183,7 @@ export function PairingSettings({
         Pair mobile
       </h2>
       <p className="mt-0 mb-6 text-body-sm text-muted">
-        Connect the Buzz mobile app to this community. Pairing is secured with
+        Connect the Mira mobile app to this community. Pairing is secured with
         end-to-end encryption and a verification code.
       </p>
       <div className="w-full [container-type:inline-size]">
@@ -205,7 +205,7 @@ export function PairingSettings({
                 <p role="status" className="text-body-sm text-muted">
                   {isTauri()
                     ? "Pairing uses this app’s native identity and is unavailable with the development broker. Restart with BUZZ_DEV_VIEWER empty to use native sign-in."
-                    : "Open the Buzz desktop app to pair your phone."}
+                    : "Open the Mira desktop app to pair your phone."}
                 </p>
               ) : (
                 <>
@@ -216,7 +216,7 @@ export function PairingSettings({
                       <Button disabled={reading} onClick={() => void prepare()}>
                         {reading
                           ? "Opening your account…"
-                          : "Use existing Buzz account"}
+                          : "Use existing Mira account"}
                       </Button>
                     ) : (
                       <>
@@ -268,7 +268,7 @@ export function PairingSettings({
                     <img
                       className="block size-60 max-w-full shrink-0 bg-white"
                       src={`data:image/svg+xml,${encodeURIComponent(reducedMotion ? state.svg.replace(/<style>[\s\S]*?<\/style>/g, "") : state.svg)}`}
-                      alt="Scan this QR code with Buzz on your phone"
+                      alt="Scan this QR code with Mira on your phone"
                       width={240}
                       height={240}
                     />

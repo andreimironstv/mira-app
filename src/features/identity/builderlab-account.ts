@@ -175,7 +175,7 @@ const ACCOUNT_ERRORS: Readonly<
   Record<string, Readonly<{ message?: string; retryable?: true }>>
 > = {
   invalid_origin: {
-    message: "Builderlab didn’t accept this request from Buzz.",
+    message: "Builderlab didn’t accept this request from Mira.",
   },
   invalid_challenge: {
     message:

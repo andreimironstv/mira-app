@@ -29,7 +29,7 @@ impl LegacySource {
 pub(crate) fn read_json(path: &Path, optional: bool) -> Result<Value> {
     let meta = match fs::symlink_metadata(path) {
         Err(e) if optional && e.kind() == std::io::ErrorKind::NotFound => return Ok(json!({})),
-        Err(_) => return Err("Could not read chosen Buzz source".into()),
+        Err(_) => return Err("Could not read chosen Mira source".into()),
         Ok(meta) => meta,
     };
     if !meta.is_file() || meta.len() > MAX_BYTES as u64 {

@@ -313,7 +313,7 @@ fn old_teams(path: &std::path::Path) -> Result<Vec<(String, OldTeam)>> {
 fn team_name(raw: &str) -> String {
     let name = raw.trim();
     if name.is_empty() {
-        return "Team from old Buzz".into();
+        return "Team from old Mira".into();
     }
     let mut units = 0;
     name.chars()

@@ -983,7 +983,7 @@ fn source_allowed_for(
         return false;
     };
     match source {
-        Source::Hosted => config.service_url == "https://app.builderlab.xyz/api/goose",
+        Source::Hosted => config.service_url == "https://account.mira-ai.ro/api/goose",
         Source::Builderlab => url::Url::parse(&config.service_url)
             .ok()
             .is_some_and(|url| {

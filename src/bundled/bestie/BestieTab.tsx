@@ -131,7 +131,7 @@ function BestieTab({
         <PreferenceRow
           icon={<BestieIcon size="1rem" />}
           title="This is your Bestie"
-          subtitle="It's pinned at the top of Buzz, with your DM as its home."
+          subtitle="It's pinned at the top of Mira, with your DM as its home."
           trailing={
             <MenuRoot>
               <MenuTrigger

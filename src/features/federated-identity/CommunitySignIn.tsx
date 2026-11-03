@@ -4,7 +4,7 @@ import { Button } from "../../shared/design-system/ui/Button";
 
 export function recoveryMessage(code: string) {
   if (code === "storage-busy")
-    return "Secure storage is busy. Close another Buzz instance and try again.";
+    return "Secure storage is busy. Close another Mira instance and try again.";
   if (code.startsWith("storage-"))
     return "Sign-in could not access secure storage. Check your system’s credential permissions and try again.";
   if (code === "sign-in-canceled")
@@ -57,7 +57,7 @@ function Action({
   if (/binding[-_]mismatch/.test(refusal))
     return (
       <p role="alert" className="text-body-sm text-danger">
-        This account is linked to a different Buzz identity. Open Settings →
+        This account is linked to a different Mira identity. Open Settings →
         Builderlab hosting to review the existing identity link. Keep this key
         until you have reviewed the link.
       </p>
@@ -72,8 +72,8 @@ function Action({
   if (ISSUER_REFUSALS.has(refusal))
     return (
       <p role="alert" className="text-body-sm text-danger">
-        Buzz couldn’t confirm your organization sign-in for this community.
-        Restart Buzz to try again. If it keeps happening, contact your
+        Mira couldn’t confirm your organization sign-in for this community.
+        Restart Mira to try again. If it keeps happening, contact your
         administrator.
       </p>
     );

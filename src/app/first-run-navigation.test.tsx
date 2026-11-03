@@ -138,7 +138,7 @@ function relayAnswer(args: unknown) {
   });
   const self = relaySelf[request.community];
   if (!self) return answer(404);
-  if (request.path === "/") return answer(200, { name: "Buzz Relay", self });
+  if (request.path === "/") return answer(200, { name: "Mira Relay", self });
   if (request.path === "/query") {
     if (request.community === relayB) return new Promise(() => {});
     return answer(200, []);

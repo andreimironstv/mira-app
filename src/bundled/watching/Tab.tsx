@@ -1077,7 +1077,7 @@ export function createTab({
         h(
           "p",
           { className: "text-caption text-subtle" },
-          "Watches only run while Buzz is open on this device.",
+          "Watches only run while Mira is open on this device.",
         ),
         agent &&
           here &&

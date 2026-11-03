@@ -372,7 +372,7 @@ export class CodexSetup {
       this.refused.add(latest);
       const reason = `Codex ${latest} failed its test: ${message(error)}`;
       this.set({
-        notice: current ? `${reason}. Buzz keeps using ${current}.` : reason,
+        notice: current ? `${reason}. Mira keeps using ${current}.` : reason,
       });
       throw new Error(reason);
     }

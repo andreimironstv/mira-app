@@ -415,7 +415,7 @@ it("reads turns that each fit app-server's output frame but together do not", as
 
 it("merges the threads other builds started, found by tag or by their earlier name", async () => {
   const tag = sessionTag(agent.key, lookup);
-  const title = `Buzz #dev · thread ${root.slice(0, 8)} · Sol`;
+  const title = `Mira #dev · thread ${root.slice(0, 8)} · Sol`;
   const threads = [
     { id: "tagged", name: `Renamed · ${tag}`, updatedAt: 3 },
     { id: "legacy", name: title, updatedAt: 2 },

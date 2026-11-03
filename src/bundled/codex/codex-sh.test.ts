@@ -73,7 +73,7 @@ async function disk(releases: readonly string[], current?: string) {
   homes.push(home);
   const dir =
     process.platform === "darwin"
-      ? join(home, "Library/Application Support/Buzz/codex")
+      ? join(home, "Library/Application Support/Mira/codex")
       : join(home, ".local/share/buzz/codex");
   for (const version of releases) {
     const binary = join(dir, version, "bin/codex");
@@ -261,7 +261,7 @@ async function echoing() {
   return { ...f, own: `${f.dir}-home`, codex: join(f.home, ".codex") };
 }
 
-it("runs Codex in Buzz's own home, linked to the shared settings and sign-in", async () => {
+it("runs Codex in Mira's own home, linked to the shared settings and sign-in", async () => {
   const f = await echoing();
   const { stdout } = await f.step("run", "app-server");
   expect(stdout.trim().split("\n")).toEqual([
@@ -278,7 +278,7 @@ it("runs Codex in Buzz's own home, linked to the shared settings and sign-in", a
   await f.step("run", "app-server");
 });
 
-it("reuses the original shared home when launched from a Buzz Codex agent", async () => {
+it("reuses the original shared home when launched from a Mira Codex agent", async () => {
   const f = await echoing();
   await f.step("run");
   const { stdout } = await run(
@@ -310,7 +310,7 @@ it("refuses an inherited isolated home without its original config link", async 
   expect(await readFile(join(f.own, "config.toml"), "utf8")).toBe("keep me");
 });
 
-it("sets up Buzz's home once when runs start at once", async () => {
+it("sets up Mira's home once when runs start at once", async () => {
   const f = await echoing();
   // A link made meanwhile to a folder must not lead a run to link inside it.
   await mkdir(join(f.codex, "skills"), { recursive: true });
@@ -359,7 +359,7 @@ async function signIn(own: string, auth: string) {
   await writeFile(join(own, "auth.json"), auth, { mode: 0o600 });
 }
 
-it("hands a sign-in made in Buzz's home to the shared one, and links it again", async () => {
+it("hands a sign-in made in Mira's home to the shared one, and links it again", async () => {
   const f = await echoing();
   await mkdir(f.codex, { recursive: true });
   await writeFile(join(f.codex, "auth.json"), "revoked");
@@ -372,7 +372,7 @@ it("hands a sign-in made in Buzz's home to the shared one, and links it again", 
   expect(await readFile(join(f.codex, "auth.json"), "utf8")).toBe("signed in");
 });
 
-it("keeps a newer shared sign-in over the one in Buzz's home", async () => {
+it("keeps a newer shared sign-in over the one in Mira's home", async () => {
   const f = await echoing();
   await f.step("run");
   await signIn(f.own, "older");
@@ -427,7 +427,7 @@ it("leaves the shared sign-in alone when another run hands it over while it wait
   expect((await stat(join(f.codex, "auth.json"))).ino).toBe(handed);
 });
 
-it("leaves a sign-in Codex is still writing in Buzz's home", async () => {
+it("leaves a sign-in Codex is still writing in Mira's home", async () => {
   const f = await echoing();
   await mkdir(f.codex, { recursive: true });
   await writeFile(join(f.codex, "auth.json"), "signed in");
@@ -501,7 +501,7 @@ it("lets go of the hand-over lock before Codex starts", async () => {
   }
 });
 
-it("keeps Buzz's conversations when switching releases", async () => {
+it("keeps Mira's conversations when switching releases", async () => {
   const f = await echoing();
   await f.step("run");
   await mkdir(join(f.own, "sessions"));
@@ -513,7 +513,7 @@ it("keeps Buzz's conversations when switching releases", async () => {
   expect(await readlink(join(f.own, "skills"))).toBe(join(f.codex, "skills"));
 });
 
-it("copies a saved thread from the user's home once, never over Buzz's copy", async () => {
+it("copies a saved thread from the user's home once, never over Mira's copy", async () => {
   const { home, dir, step } = await disk([]);
   const day = "sessions/2026/10/14";
   const name = "rollout-2026-10-14T14-32-19-thread-1.jsonl";
@@ -523,9 +523,9 @@ it("copies a saved thread from the user's home once, never over Buzz's copy", as
   await step("adopt", "thread-1");
   const copy = join(`${dir}-home`, day, name);
   expect(await readFile(copy, "utf8")).toBe('{"a":1}\n{"b"\n');
-  await writeFile(copy, "continued in Buzz\n");
+  await writeFile(copy, "continued in Mira\n");
   await step("adopt", "thread-1");
-  expect(await readFile(copy, "utf8")).toBe("continued in Buzz\n");
+  expect(await readFile(copy, "utf8")).toBe("continued in Mira\n");
   // Nothing to copy is not an error.
   await step("adopt", "thread-2");
   await expect(step("adopt", "../thread-1")).rejects.toThrow("Invalid thread");

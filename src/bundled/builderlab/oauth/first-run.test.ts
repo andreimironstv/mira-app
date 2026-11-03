@@ -37,7 +37,7 @@ it("requests under the bundled Builderlab grant without a plugin owner", async (
     headers: {},
     body: "{}",
   });
-  const request = { url: "https://app.builderlab.xyz/api/goose/v1/auth/me" };
+  const request = { url: "https://account.mira-ai.ro/api/goose/v1/auth/me" };
   await bundledHost.request(request);
   expect(invoke).toHaveBeenCalledWith("plugin_host_request", {
     id: "block.builderlab",

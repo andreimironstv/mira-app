@@ -1679,7 +1679,7 @@ export class AgentsService extends Service implements Agents {
           const type = this.types().find((type) => type.key === agent.type);
           if (!type?.retire)
             throw new Error(
-              "This runtime cannot safely change protection while Buzz is open",
+              "This runtime cannot safely change protection while Mira is open",
             );
           await this.runners.retype(agent.key, agent.name, async () => {
             for (const member of members) await type.retire?.(member.key);
@@ -2097,7 +2097,7 @@ export class AgentsService extends Service implements Agents {
       typeof tool.call !== "function"
     )
       throw new Error(
-        "Agent tools need a lowercase name no Buzz tool has, a description, a JSON object inputSchema and call",
+        "Agent tools need a lowercase name no Mira tool has, a description, a JSON object inputSchema and call",
       );
     // Reserved from registration, not activation: plugins starting together
     // are not active yet, and the second to take a name must fail.
@@ -2117,7 +2117,7 @@ export class AgentsService extends Service implements Agents {
       )
     )
       throw new Error(
-        "Attention command sources are built into Buzz. Update the Attention UI plugin.",
+        "Attention command sources are built into Mira. Update the Attention UI plugin.",
       );
     if (
       !plugin ||
@@ -2992,7 +2992,7 @@ export class AgentsService extends Service implements Agents {
         continue;
       }
       if (!listed.has(member.pubkey)) {
-        failed.push({ name, error: "No longer available in old Buzz" });
+        failed.push({ name, error: "No longer available in old Mira" });
         continue;
       }
       // Checked with no wait before the import starts.
@@ -3348,7 +3348,7 @@ export class AgentsService extends Service implements Agents {
       this.sessionState(key, place) === "unavailable"
     )
       throw new Error(
-        "Use session controls in the Buzz app that runs this agent.",
+        "Use session controls in the Mira app that runs this agent.",
       );
     await this.runners.control(key, async () => {
       const current = shown();

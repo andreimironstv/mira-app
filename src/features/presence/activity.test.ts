@@ -90,7 +90,7 @@ it("Online resumes automatic detection and migrates saved Online", async () => {
   activity.dispose();
 });
 
-it("uses machine idle outside Buzz and falls back after native failures, with no late disposal work", async () => {
+it("uses machine idle outside Mira and falls back after native failures, with no late disposal work", async () => {
   vi.useFakeTimers();
   vi.stubGlobal(
     "document",

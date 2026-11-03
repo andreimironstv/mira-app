@@ -32,7 +32,7 @@ const instructions = (who = agent, teammate = other) =>
   message(
     0,
     "developer",
-    `You are Sol (pubkey ${who}), a coding agent in Buzz.\nTeam:\n- Relay (pubkey ${teammate})`,
+    `You are Sol (pubkey ${who}), a coding agent in Mira.\nTeam:\n- Relay (pubkey ${teammate})`,
   );
 const prompt = message(
   1,
@@ -122,7 +122,7 @@ it("observes each model response once, its input less the cached part, with its 
   ).toEqual(["A subagent’s rollout is gone", "1 rollout line unreadable"]);
 });
 
-it("keeps only threads Buzz started for this agent", () => {
+it("keeps only threads Mira started for this agent", () => {
   const work = record(1000, 1, 0, 1);
   // A teammate's thread names the agent only in its team section.
   expect(
@@ -187,26 +187,26 @@ it("finds the agent's threads by name, reads their rollouts, and later only thos
   const threads = [
     {
       id: "mine",
-      name: "Buzz #dev · Sol · buzz:1",
+      name: "Mira #dev · Sol · buzz:1",
       path: rollout("mine", agent),
       updatedAt,
     },
     // Another agent named Sol, in another build.
     {
       id: "theirs",
-      name: "Buzz #dev · Sol",
+      name: "Mira #dev · Sol",
       path: rollout("theirs", other),
       updatedAt,
     },
     {
       id: "gone",
-      name: "Buzz #dev · Sol",
+      name: "Mira #dev · Sol",
       path: join(home, "gone.jsonl"),
       updatedAt,
     },
     {
       id: "old",
-      name: "Buzz #old · Sol",
+      name: "Mira #old · Sol",
       path: rollout("old", agent),
       updatedAt: updatedAt - 86_400,
     },
@@ -324,7 +324,7 @@ it("reads at most four rollouts at once, across agents and their subagents", asy
     {
       id: name,
       parentThreadId: undefined as string | undefined,
-      name: `Buzz #dev · ${name}`,
+      name: `Mira #dev · ${name}`,
       who,
       updatedAt,
     },

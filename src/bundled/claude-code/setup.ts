@@ -471,7 +471,7 @@ export class ClaudeSetup {
       return;
     if (compareVersions(latest, MIN_VERSION) < 0)
       throw new Error(
-        `Claude ${latest} is older than Buzz needs (${MIN_VERSION}).`,
+        `Claude ${latest} is older than Mira needs (${MIN_VERSION}).`,
       );
     const platform =
       PLATFORMS[(await collect(spawn, "platform", [])).stdout.trim()];
@@ -493,7 +493,7 @@ export class ClaudeSetup {
       this.refused.add(latest);
       const reason = `Claude ${latest} failed its test: ${message(error)}`;
       this.set({
-        notice: current ? `${reason}. Buzz keeps using ${current}.` : reason,
+        notice: current ? `${reason}. Mira keeps using ${current}.` : reason,
       });
       throw new Error(reason);
     }
