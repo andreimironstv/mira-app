@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const script = fileURLToPath(
   new URL("../../scripts/prune-preview-releases.mjs", import.meta.url),
 );
-const repository = "block/buzz-app";
+const repository = "andreimironstv/mira-app";
 const now = Date.parse("2026-10-15T12:00:00Z");
 const day = 24 * 60 * 60 * 1000;
 const listArgs = [

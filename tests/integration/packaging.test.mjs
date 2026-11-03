@@ -59,7 +59,7 @@ function selected(
   job,
   inputs = {},
   ref = "refs/heads/main",
-  repository = "block/buzz-app",
+  repository = "andreimironstv/mira-app",
 ) {
   return new Function("github", "inputs", `return (${job.if})`)(
     { ref, repository },

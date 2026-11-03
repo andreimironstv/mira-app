@@ -62,6 +62,8 @@ const COMMENT_BY_EXT = {
 const PROTECTED_LINE = [
   /^\s*(@testable\s+)?import\s+Buzz\b/,
   /BLOCK\/Buzz/,
+  // A lowercase "buzz" search finds this fixture's name.
+  /🐝 Buzz Bot/,
   // The Cargo package keeps its upstream name.
   /-p Buzz\b/,
   /Based on <a href="https:\/\/github\.com\/block\/buzz-app">Buzz<\/a>/,
@@ -75,6 +77,13 @@ const PRODUCT_NAME =
 
 // Targeted edits for what the word rule cannot express.
 const FILE_RULES = [
+  {
+    // Ranking fixtures search for the product name itself.
+    file: /^src\/app\/shell\/SearchResults\.test\.tsx$/,
+    from: /\["buzz", "(Channels|People)", "(?:buzz-dev|Mira Aldrin)", \["IdentityBuzz"\]\]/g,
+    to: (_, group) =>
+      `["mira", "${group}", "${group === "People" ? "Mira Aldrin" : "mira-dev"}", ["IdentityMira"]]`,
+  },
   {
     file: /^src\/app\/shell\/SearchSettings\.test\.tsx$/,
     from: /"ShortcutsBuzz"/g,
@@ -135,7 +144,7 @@ const FILE_RULES = [
   },
   {
     // Releases and the update feed belong to this fork.
-    file: /^(\.github\/workflows|scripts)\//,
+    file: /^(\.github\/workflows|scripts|tests\/integration)\//,
     from: /\bblock\/buzz-app\b/g,
     to: () => "andreimironstv/mira-app",
   },

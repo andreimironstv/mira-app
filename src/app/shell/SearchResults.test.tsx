@@ -5137,8 +5137,8 @@ it("preserves remembered page ranking when inline settings match", async () => {
 });
 
 it.each([
-  ["buzz", "Channels", "buzz-dev", ["IdentityBuzz"]],
-  ["buzz", "People", "Mira Aldrin", ["IdentityBuzz"]],
+  ["mira", "Channels", "mira-dev", ["IdentityMira"]],
+  ["mira", "People", "Mira Aldrin", ["IdentityMira"]],
   [
     "community",
     "Channels",
