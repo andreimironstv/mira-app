@@ -1184,7 +1184,7 @@ test("socket publication retains broker signature, purpose, origin and relay-sco
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Mira-Live-ID": traffic.identity(),
+          "X-Buzz-Live-ID": traffic.identity(),
           ...overrides,
         },
         body: JSON.stringify(body),
@@ -1210,7 +1210,7 @@ test("socket publication retains broker signature, purpose, origin and relay-sco
     expect(h.publications).toHaveLength(0);
     expect(h.upstream.some((url) => url.endsWith("/events"))).toBe(false);
     const wrongStream = await post("/api/relay/publish", event, {
-      "X-Mira-Live-ID": "f".repeat(32),
+      "X-Buzz-Live-ID": "f".repeat(32),
     });
     expect(await wrongStream.json()).toMatchObject({ sent: false });
   } finally {
@@ -1887,7 +1887,7 @@ test.each([
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Mira-Live-ID": traffic.identity(),
+          "X-Buzz-Live-ID": traffic.identity(),
         },
         body: JSON.stringify(event),
       });
@@ -1954,7 +1954,7 @@ test("publication diagnostics distinguish missing and mismatched live owner with
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Mira-Live-ID": liveId,
+          "X-Buzz-Live-ID": liveId,
         },
         body: JSON.stringify(event),
       });
@@ -2004,7 +2004,7 @@ test("publication diagnostics separate local unsent duplicates from lost socket 
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-Mira-Live-ID": traffic.identity(),
+          "X-Buzz-Live-ID": traffic.identity(),
         },
         body: JSON.stringify(event),
       });

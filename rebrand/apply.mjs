@@ -21,13 +21,17 @@ const OVERLAY = join(ROOT, "rebrand", "overlay");
 const IN_SCOPE = [
   /^README\.md$/,
   /^(index|huddle)\.html$/,
+  /^vite[^/]*\.config\.ts$/,
+  /^src-tauri\/build\.rs$/,
   /^src\//,
   /^src-tauri\/(src\/|tauri[^/]*\.json$|[^/]*\.plist$)/,
   /^crates\/[^/]+\/(src|tests)\//,
   /^browser-host\//,
   /^tests\//,
   /^scripts\//,
-  /^\.github\/workflows\/(release|desktop-release-tag)\.yml$/,
+  /^\.github\/workflows\/(?!rebrand-check)/,
+  // Compiled into the MCP help tool.
+  /^docs\/buzz-help\.md$/,
 ];
 const OUT_OF_SCOPE = [
   /(^|\/)node_modules\//,
@@ -57,16 +61,48 @@ const COMMENT_BY_EXT = {
 // Where the word is an identifier or test input rather than the product name.
 const PROTECTED_LINE = [
   /^\s*(@testable\s+)?import\s+Buzz\b/,
+  /BLOCK\/Buzz/,
+  // The Cargo package keeps its upstream name.
+  /-p Buzz\b/,
   /Based on <a href="https:\/\/github\.com\/block\/buzz-app">Buzz<\/a>/,
 ];
 
 // `\b` misses the name right after an escaped newline or tab, as in "\nBuzz".
-// A host such as "Buzz.Example" is test input, not the name.
+// A host such as "Buzz.Example" is test input, not the name, and "X-Buzz-Live-ID"
+// or "Buzz-App" is a protocol header or repository name.
 const PRODUCT_NAME =
-  /(?:(?<=[\x5c][ntr])|\b)Buzz\b(?!\.(?!(?:app|exe|dmg)\b)[A-Za-z])/g;
+  /(?:(?<=[\x5c][ntr])|(?<!\bX-)\b)Buzz\b(?!-[A-Z]|:\/\/|\.(?!(?:app|exe|dmg)\b)[A-Za-z])/g;
 
 // Targeted edits for what the word rule cannot express.
 const FILE_RULES = [
+  {
+    file: /^src\/app\/shell\/SearchSettings\.test\.tsx$/,
+    from: /"ShortcutsBuzz"/g,
+    to: () => '"ShortcutsMira"',
+  },
+  {
+    // Also the regex-escaped and mixed-case spellings in tests.
+    file: /./,
+    from: /\bcommunities([\x5c]*\.)buzz\1xyz\b/g,
+    to: (_, dot) => `workspace${dot}mira-ai${dot}ro`,
+  },
+  {
+    file: /./,
+    from: /\bCommunities\.BUZZ\.xyz\b/g,
+    to: () => "Workspace.MIRA-AI.ro",
+  },
+  {
+    // The executable would otherwise keep the Cargo package's name.
+    file: /^src-tauri\/tauri\.conf\.json$/,
+    from: /("productName": "Mira",)(?!\s*"mainBinaryName")/,
+    to: (_, head) => `${head}\n  "mainBinaryName": "Mira",`,
+  },
+  {
+    // Installer file names follow productName.
+    file: /^(\.github\/workflows|scripts)\//,
+    from: /\bBuzz(?=_)/g,
+    to: () => "Mira",
+  },
   {
     // Same length as upstream's, so no line ever reflows under a formatter.
     // `xyz.block.buzz.app` stays: it is where old Buzz keeps data to import.

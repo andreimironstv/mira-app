@@ -19,10 +19,10 @@ const versionPattern =
 const release = `v${version}`;
 // Linux entries are installer-specific: a deb install must never receive an AppImage.
 const assets = {
-  "darwin-aarch64": `Buzz_${version}_aarch64.app.tar.gz`,
-  "windows-x86_64": `Buzz_${version}_x64_unsigned.exe`,
-  "linux-x86_64-deb": `Buzz_${version}_amd64.deb`,
-  "linux-x86_64-appimage": `Buzz_${version}_x86_64.AppImage`,
+  "darwin-aarch64": `Mira_${version}_aarch64.app.tar.gz`,
+  "windows-x86_64": `Mira_${version}_x64_unsigned.exe`,
+  "linux-x86_64-deb": `Mira_${version}_amd64.deb`,
+  "linux-x86_64-appimage": `Mira_${version}_x86_64.AppImage`,
 };
 const usage =
   "Usage: preview-feed.mjs generate|verify <version> <asset-dir> <manifest-file> <macos-app-binary-file> [current-manifest-file]";

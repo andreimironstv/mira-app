@@ -553,7 +553,7 @@ it("lists only Personal space and app sections without a selected community", ()
   const personal = sections({ selected: null, cards: settingsCards });
   expect(rows(personal, "profile")).toEqual(["ProfilePersonal space"]);
   expect(rows(personal, "pair mobile")).toEqual(["Pair mobilePersonal space"]);
-  expect(rows(personal, "shortcuts")).toEqual(["ShortcutsBuzz"]);
+  expect(rows(personal, "shortcuts")).toEqual(["ShortcutsMira"]);
   for (const query of ["local settings", "custom emoji", "leave"])
     expect(rows(personal, query)).toEqual([]);
 });

@@ -57,7 +57,7 @@ async function setup() {
         return new Response(body, {
           headers: {
             "Content-Type": "text/event-stream",
-            "X-Mira-Live-ID": "1".repeat(32),
+            "X-Buzz-Live-ID": "1".repeat(32),
           },
         });
       if (url.endsWith("/query")) return Response.json([]);

@@ -2144,7 +2144,7 @@ export const test = base.extend({
           const streamId = randomBytes(16).toString("hex");
           response.useChunkedEncodingByDefault = false;
           response.writeHead(200, {
-            "X-Mira-Live-ID": streamId,
+            "X-Buzz-Live-ID": streamId,
             "Content-Type": "text/event-stream",
             "Cache-Control": "no-store",
             Connection: "close",

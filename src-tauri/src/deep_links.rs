@@ -216,7 +216,7 @@ mod tests {
         let links = DeepLinks::default();
         for raw in [
             "BUZZ://channel/general",
-            "Mira://channel/general",
+            "Buzz://channel/general",
             "http://example.com",
             "https://example.com/?next=buzz://channel/general",
             "buzz",

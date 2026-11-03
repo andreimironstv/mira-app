@@ -141,7 +141,7 @@ it("classifies the buzz scheme case-insensitively, matching URL normalization", 
   // external `_blank` handling.
   expect(isBuzzLink("buzz://channel/general")).toBe(true);
   expect(isBuzzLink("BUZZ://channel/general")).toBe(true);
-  expect(isBuzzLink("Mira://message?channel=general&id=x")).toBe(true);
+  expect(isBuzzLink("Buzz://message?channel=general&id=x")).toBe(true);
   expect(isBuzzLink(example)).toBe(true);
   expect(isBuzzLink("https://example.com")).toBe(false);
   expect(isBuzzLink("javascript:alert(1)")).toBe(false);

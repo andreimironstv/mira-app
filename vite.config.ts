@@ -24,11 +24,11 @@ function sharedBuilderlabUrl() {
       "code" in error &&
       error.code === "ENOENT"
     )
-      return "https://app.builderlab.xyz";
+      return "https://account.mira-ai.ro";
     throw new Error("Could not read shared Builderlab build configuration.");
   }
   return (
-    parseEnv(local.replace(/^\uFEFF/, ""))[key] ?? "https://app.builderlab.xyz"
+    parseEnv(local.replace(/^\uFEFF/, ""))[key] ?? "https://account.mira-ai.ro"
   );
 }
 

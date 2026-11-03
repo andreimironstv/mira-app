@@ -123,7 +123,7 @@ async function harness({ connected = true } = {}) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          ...(liveId ? { "X-Mira-Live-ID": liveId } : {}),
+          ...(liveId ? { "X-Buzz-Live-ID": liveId } : {}),
           ...(origin ? { Origin: origin } : {}),
         },
         body: JSON.stringify(value),

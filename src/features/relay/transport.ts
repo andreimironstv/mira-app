@@ -525,7 +525,7 @@ export async function connectBrokerTransport(
   const publicationHeaders = () => ({
     "Content-Type": "application/json",
     // Matched development frontend/host: publication requires the existing owner.
-    "X-Mira-Live-ID": traffic?.identity?.() ?? "",
+    "X-Buzz-Live-ID": traffic?.identity?.() ?? "",
   });
   const publish = async (event: RelayEvent, signal: AbortSignal) => {
     const result = await fetch(`${endpoint}/publish`, {
@@ -922,7 +922,7 @@ export async function connectBrokerTransport(
                 credentials: "same-origin",
                 headers: {
                   "Content-Type": "application/json",
-                  "X-Mira-Read-Priority": priority,
+                  "X-Buzz-Read-Priority": priority,
                 },
                 body: JSON.stringify(
                   readSnapshotFilter(session.viewer as string),
@@ -1233,7 +1233,7 @@ export async function connectBrokerTransport(
                 credentials: "same-origin",
                 headers: {
                   "Content-Type": "application/json",
-                  "X-Mira-Read-Priority": "background",
+                  "X-Buzz-Read-Priority": "background",
                 },
                 body: JSON.stringify(
                   channelIds.map((channelId) => ({
@@ -1261,7 +1261,7 @@ export async function connectBrokerTransport(
           credentials: "same-origin",
           headers: {
             "Content-Type": "application/json",
-            "X-Mira-Read-Priority": priority,
+            "X-Buzz-Read-Priority": priority,
           },
           body: JSON.stringify({ query, limit, page }),
           signal,
@@ -1287,7 +1287,7 @@ export async function connectBrokerTransport(
           credentials: "same-origin",
           headers: {
             "Content-Type": "application/json",
-            "X-Mira-Read-Priority": priority,
+            "X-Buzz-Read-Priority": priority,
           },
           body: JSON.stringify(filters),
           signal: signal ?? null,

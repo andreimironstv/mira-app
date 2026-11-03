@@ -36,7 +36,7 @@ function fixture() {
             {
               headers: {
                 "Content-Type": "text/event-stream",
-                "X-Mira-Live-ID": "1".repeat(32),
+                "X-Buzz-Live-ID": "1".repeat(32),
               },
             },
           ),

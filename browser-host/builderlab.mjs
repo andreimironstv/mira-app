@@ -511,7 +511,7 @@ export function createBuilderlab({
           input.community.length > 253
         )
           throw new Error("Invalid decision community");
-        headers["X-Mira-Community"] = input.community;
+        headers["X-Buzz-Community"] = input.community;
       }
       let body = input.body;
       if (input.file) {

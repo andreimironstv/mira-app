@@ -121,7 +121,7 @@ it("does not expose check head plumbing on non-PR objects", async () => {
 
 it.each([
   ["block/buzz", "tho/small-improvement", "tho/small-improvement"],
-  ["BLOCK/Mira", "tho/small-improvement", "tho/small-improvement"],
+  ["BLOCK/Buzz", "tho/small-improvement", "tho/small-improvement"],
   ["contributor/buzz", "tho/small-improvement", "block:tho/small-improvement"],
   [
     "block/another-repo",

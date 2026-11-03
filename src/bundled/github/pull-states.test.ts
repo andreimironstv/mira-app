@@ -126,7 +126,7 @@ it("keys a pull request by its canonical URL, so pasted variants share one entry
   // casing, and plain, as a watch gives it.
   const query = `${pull}?notification_referrer_id=abc&diff=split`;
   const slash = `${pull}/`;
-  const cased = "https://github.com/Block/Mira-App/pull/7";
+  const cased = "https://github.com/Block/Buzz-App/pull/7";
   const stop = [
     states.watch(query, changed[0]),
     states.watch(slash, changed[1]),

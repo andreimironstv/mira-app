@@ -203,7 +203,7 @@ describe("step", () => {
 describe("pullOf", () => {
   it("accepts pull request URLs only, in one spelling", () => {
     expect(
-      pullOf("https://github.com/Block/Mira-App/pull/7/files#diff"),
+      pullOf("https://github.com/Block/Buzz-App/pull/7/files#diff"),
     ).toEqual({
       owner: "block",
       name: "buzz-app",

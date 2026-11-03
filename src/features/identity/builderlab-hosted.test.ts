@@ -20,7 +20,7 @@ const hosted = (input: string, self?: string) =>
 it.each([
   "wss://workspace.mira-ai.ro",
   "https://design.workspace.mira-ai.ro",
-  "WSS://Design.Communities.BUZZ.xyz.",
+  "WSS://Design.Workspace.MIRA-AI.ro.",
   "https://workspace.mira-ai.ro:443",
 ])("%s is hosted by a public build's Builderlab", (input) => {
   expect(hosted(input)).toBe(true);

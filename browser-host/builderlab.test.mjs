@@ -681,7 +681,7 @@ it("forwards native-validated Decisions through the same server session and comm
   );
   expect(h.requests.at(-1).init.headers).toMatchObject({
     "X-BB-Session-Credential": "secret",
-    "X-Mira-Community": "buzz.example.com",
+    "X-Buzz-Community": "buzz.example.com",
   });
   await expect(
     h.builderlab.request(

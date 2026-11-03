@@ -1846,7 +1846,7 @@ export function relayBrokerPlugin({
             // write (which can otherwise delay establishment until the heartbeat).
             res.useChunkedEncodingByDefault = false;
             res.writeHead(200, {
-              "X-Mira-Live-ID": streamId,
+              "X-Buzz-Live-ID": streamId,
               "Content-Type": "text/event-stream",
               "Cache-Control": "no-store",
               Connection: "close",

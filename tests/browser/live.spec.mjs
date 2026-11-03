@@ -164,7 +164,7 @@ test("production WS → broker → mounted UI delivers messages and retries a pa
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Mira-Read-Priority": "background",
+        "X-Buzz-Read-Priority": "background",
       },
       body: JSON.stringify([
         {

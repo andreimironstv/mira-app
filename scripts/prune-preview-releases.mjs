@@ -51,7 +51,7 @@ assert.deepEqual(
 for (const [target, asset] of Object.entries(assets)) {
   assert.equal(
     manifest.platforms[target].url,
-    `https://github.com/${repository}/releases/download/${protectedTag}/Buzz_${manifest.version}_${asset}`,
+    `https://github.com/${repository}/releases/download/${protectedTag}/Mira_${manifest.version}_${asset}`,
     "Unexpected preview feed asset URL",
   );
 }

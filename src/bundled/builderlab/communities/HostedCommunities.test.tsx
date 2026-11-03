@@ -1343,7 +1343,7 @@ it("restores an accepted archived row only after its bound abort on Refresh", as
   expect(deletionPosts()[1]?.[1]).toEqual(original);
   expect(await screen.findByRole("button", { name: "Delete" })).toBeEnabled();
   expect(
-    screen.getByText(/North\.communities\.buzz\.xyz · Archived/),
+    screen.getByText(/North\.workspace\.mira-ai\.ro · Archived/),
   ).toBeVisible();
   expect(
     screen.getByText(
@@ -2269,7 +2269,7 @@ it.each([
       original,
     ]);
     expect(
-      screen.queryByText(/North\.communities\.buzz\.xyz · Archived/),
+      screen.queryByText(/North\.workspace\.mira-ai\.ro · Archived/),
     ).not.toBeInTheDocument();
     expect(screen.getByText("Deletion started")).toBeVisible();
     expect(localStorage.getItem(DELETION_PENDING_KEY)).toBeNull();
@@ -2292,7 +2292,7 @@ it("does not replay an accepted row during Refresh when capability is off", asyn
   );
   expect(deletionPosts()).toHaveLength(1);
   expect(
-    screen.queryByText(/North\.communities\.buzz\.xyz · Archived/),
+    screen.queryByText(/North\.workspace\.mira-ai\.ro · Archived/),
   ).not.toBeInTheDocument();
 });
 
