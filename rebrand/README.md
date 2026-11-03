@@ -37,6 +37,6 @@ stays, because it is where old Buzz keeps the data this app can import.
 - **Hosted services:** `account.mira-ai.ro` and `<name>.workspace.mira-ai.ro`,
   served by mira-cloud. Set the relay's real NIP-11 key in `apply.mjs` after the
   first deployment; it is all zeros until then, which matches no relay.
-- **Updates:** builds never use Block's feed or key. Auto-update stays off until
-  you set the repository variable `MIRA_UPDATER_PUBLIC_KEY` and the matching
-  signing secret.
+- **Updates:** builds use this fork's release feed and `brand/updater.pub`. The
+  matching private key is in the repository's `TAURI_SIGNING_PRIVATE_KEY` secret.
+  Losing it means shipped apps can no longer verify updates, so keep a backup.

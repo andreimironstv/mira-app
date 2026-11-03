@@ -123,7 +123,7 @@ if [[ ! -f "$APP_BIN" ]]; then
   exit 1
 fi
 if [[ -e "$APP_BIN.bin" ]]; then
-  echo "Error: usr/bin/Buzz.bin already exists — shim already installed?" >&2
+  echo "Error: usr/bin/Mira.bin already exists — shim already installed?" >&2
   exit 1
 fi
 
@@ -150,7 +150,7 @@ for var in GST_PLUGIN_SYSTEM_PATH_1_0 GST_PLUGIN_SYSTEM_PATH \
     unset "$var"
   fi
 done
-exec -a "Mira" "$here/Buzz.bin" "$@"
+exec -a "Mira" "$here/Mira.bin" "$@"
 SHIM
 chmod +x "$APP_BIN"
 

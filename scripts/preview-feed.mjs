@@ -9,7 +9,8 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 // Must match the key and endpoint embedded by the updater-enabled release build (#312).
-const publicKeyBase64 = process.env.MIRA_UPDATER_PUBLIC_KEY ?? "";
+const publicKeyBase64 =
+  "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI2REREOEMwQjZGMEFEOUUKUldTZXJmQzJ3TmpkSm5GbzNEbHFvL0d1ZWZCSWhqY2c5cG5iVWF5cWVBWVdjTzF0VWg4eklKQlcK";
 const endpoint =
   "https://github.com/andreimironstv/mira-app/releases/download/preview-feed/latest.json";
 const [command, version, assetDir, manifestPath, binaryPath, currentPath] =

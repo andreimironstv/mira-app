@@ -88,7 +88,7 @@ for (const wayland of ["bundled", "excluded by linuxdeploy"]) {
       "fixture",
     );
     assert.equal(
-      readFileSync(join(f.repacked, "usr/bin/Buzz.bin"), "utf8"),
+      readFileSync(join(f.repacked, "usr/bin/Mira.bin"), "utf8"),
       "fixture app",
     );
   });

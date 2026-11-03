@@ -23,7 +23,7 @@ env:
   BUZZ_BUILDERLAB_URL: ${{ !vars.BUZZ_BUILD_FEDERATED_IDENTITY_CONFIG && (vars.BUZZ_BUILDERLAB_URL || 'https://account.mira-ai.ro') || '' }}
   # Public verification inputs; the native build and plugins.updater must match.
   # Candidate-only runs build without the updater.
-  BUZZ_UPDATER_PUBLIC_KEY: ${{ !inputs.candidates && vars.MIRA_UPDATER_PUBLIC_KEY || '' }}
+  BUZZ_UPDATER_PUBLIC_KEY: ${{ !inputs.candidates && 'dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI2REREOEMwQjZGMEFEOUUKUldTZXJmQzJ3TmpkSm5GbzNEbHFvL0d1ZWZCSWhqY2c5cG5iVWF5cWVBWVdjTzF0VWg4eklKQlcK' || '' }}
   BUZZ_UPDATER_ENDPOINT: ${{ !inputs.candidates && 'https://github.com/andreimironstv/mira-app/releases/download/preview-feed/latest.json' || '' }}
 
 concurrency:
@@ -461,12 +461,12 @@ jobs:
           mkdir "$RUNNER_TEMP/appimage"
           (cd "$RUNNER_TEMP/appimage" && "$image" --appimage-extract >/dev/null)
           test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Mira"
-          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Buzz.bin"
+          test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Mira.bin"
           test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Mira/bin/goose-acp"
           test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Mira/bin/buzz-agent-command"
           test -x "$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Mira/bin/buzz"
           # The updater selects each install's feed entry by its embedded bundle type.
-          binaries=("$RUNNER_TEMP/deb/usr/bin/Mira" "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Buzz.bin")
+          binaries=("$RUNNER_TEMP/deb/usr/bin/Mira" "$RUNNER_TEMP/appimage/squashfs-root/usr/bin/Mira.bin")
           grep -aqF __TAURI_BUNDLE_TYPE_VAR_DEB "${binaries[0]}" || { echo '::error::deb app lacks its bundle type'; exit 1; }
           grep -aqF __TAURI_BUNDLE_TYPE_VAR_APP "${binaries[1]}" || { echo '::error::AppImage app lacks its bundle type'; exit 1; }
           if [[ "$CANDIDATES" != true ]]; then

@@ -73,7 +73,7 @@ const PROTECTED_LINE = [
 // A host such as "Buzz.Example" is test input, not the name, and "X-Buzz-Live-ID"
 // or "Buzz-App" is a protocol header or repository name.
 const PRODUCT_NAME =
-  /(?:(?<=[\x5c][ntr])|(?<!\bX-)\b)Buzz\b(?!-[A-Z]|:\/\/|\.(?!(?:app|exe|dmg)\b)[A-Za-z])/g;
+  /(?:(?<=[\x5c][ntr])|(?<!\bX-)\b)Buzz\b(?!-[A-Z]|:\/\/|\.(?!(?:app|bin|exe|dmg)\b)[A-Za-z])/g;
 
 // Targeted edits for what the word rule cannot express.
 const FILE_RULES = [
@@ -108,7 +108,7 @@ const FILE_RULES = [
   },
   {
     // Installer file names follow productName.
-    file: /^(\.github\/workflows|scripts)\//,
+    file: /^(\.github\/workflows|scripts|tests\/integration)\//,
     from: /\bBuzz(?=_)/g,
     to: () => "Mira",
   },
@@ -149,16 +149,11 @@ const FILE_RULES = [
     to: () => "andreimironstv/mira-app",
   },
   {
-    // Never verify updates with Block's key. No key disables the updater.
-    file: /^\.github\/workflows\/release\.yml$/,
-    from: /(BUZZ_UPDATER_PUBLIC_KEY: \$\{\{ !inputs\.candidates && )'[^']+'/,
-    to: (_, head) => `${head}vars.MIRA_UPDATER_PUBLIC_KEY`,
-  },
-  {
-    file: /^scripts\/preview-feed\.mjs$/,
-    from: /const publicKeyBase64 =\s*"[^"]+"/,
+    // Never verify updates with Block's key.
+    file: /./,
+    from: /dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJDQjQ2RDZFMUEwOERFMTEKUldRUjNnZ2FibTIwTE10QkVaMzFyYkZlY0R4ajhmbFBjdncvNVRCYnNpSm9kaFNBaHQzemZlZHkK/g,
     to: () =>
-      'const publicKeyBase64 = process.env.MIRA_UPDATER_PUBLIC_KEY ?? ""',
+      readFileSync(join(ROOT, "rebrand/brand/updater.pub"), "utf8").trim(),
   },
   {
     // The longer repository name no longer fits on one line.

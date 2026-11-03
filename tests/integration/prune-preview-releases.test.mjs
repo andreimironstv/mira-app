@@ -62,7 +62,7 @@ function fixture(t) {
       }).map(([target, asset]) => [
         target,
         {
-          url: `https://github.com/${repository}/releases/download/${tag(1)}/Buzz_0.0.0-preview.1.1_${asset}`,
+          url: `https://github.com/${repository}/releases/download/${tag(1)}/Mira_0.0.0-preview.1.1_${asset}`,
         },
       ]),
     ),

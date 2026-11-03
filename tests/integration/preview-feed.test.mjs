@@ -29,7 +29,7 @@ function run(...args) {
 const endpoint =
   "https://github.com/andreimironstv/mira-app/releases/download/preview-feed/latest.json";
 const publicKeyBase64 =
-  "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJDQjQ2RDZFMUEwOERFMTEKUldRUjNnZ2FibTIwTE10QkVaMzFyYkZlY0R4ajhmbFBjdncvNVRCYnNpSm9kaFNBaHQzemZlZHkK";
+  "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI2REREOEMwQjZGMEFEOUUKUldTZXJmQzJ3TmpkSm5GbzNEbHFvL0d1ZWZCSWhqY2c5cG5iVWF5cWVBWVdjTzF0VWg4eklKQlcK";
 // Inject a disposable public key into a copy of the promotion script, never into production.
 function fixture(dir, version = "0.0.0-preview.22.1") {
   const { privateKey, publicKey } = generateKeyPairSync("ed25519");
@@ -50,10 +50,10 @@ function fixture(dir, version = "0.0.0-preview.22.1") {
   const assetDir = join(dir, "assets");
   mkdirSync(assetDir);
   const installers = [
-    `Buzz_${version}_aarch64.app.tar.gz`,
-    `Buzz_${version}_x64_unsigned.exe`,
-    `Buzz_${version}_amd64.deb`,
-    `Buzz_${version}_x86_64.AppImage`,
+    `Mira_${version}_aarch64.app.tar.gz`,
+    `Mira_${version}_x64_unsigned.exe`,
+    `Mira_${version}_amd64.deb`,
+    `Mira_${version}_x86_64.AppImage`,
   ].map((name) => join(assetDir, name));
   const [archive] = installers;
   const binary = join(dir, "buzz-foundation");
@@ -119,7 +119,7 @@ test("preview candidate requires verified archive and updater-enabled binary wit
   assert.equal(data.platforms["darwin-aarch64"].signature, validSignature);
   assert.equal(
     data.platforms["darwin-aarch64"].url,
-    "https://github.com/andreimironstv/mira-app/releases/download/v0.0.0-preview.22.1/Buzz_0.0.0-preview.22.1_aarch64.app.tar.gz",
+    "https://github.com/andreimironstv/mira-app/releases/download/v0.0.0-preview.22.1/Mira_0.0.0-preview.22.1_aarch64.app.tar.gz",
   );
   assert.equal(execute("verify").status, 0);
   const older = join(dir, "older.json");
