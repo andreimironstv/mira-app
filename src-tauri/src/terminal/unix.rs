@@ -28,7 +28,7 @@ pub(super) fn command(context: &TerminalContext, id: &str) -> Result<CommandBuil
     cmd.env("SHELL", shell);
     cmd.env("PATH", "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin");
     cmd.env("TERM", "xterm-256color");
-    cmd.env("TERM_PROGRAM", "Buzz");
+    cmd.env("TERM_PROGRAM", "Mira");
     cmd.env("COLORTERM", "truecolor");
     cmd.env("BUZZ_CHANNEL_ID", &context.channel_id);
     cmd.env("BUZZ_CHANNEL", context.display());

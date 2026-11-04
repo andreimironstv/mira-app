@@ -1,6 +1,6 @@
 # Channels
 
-Where your conversations happen in Buzz: channels, direct messages, and threads, all in **Messages**.
+Where your conversations happen in Mira: channels, direct messages, and threads, all in **Messages**.
 
 ## Getting started
 

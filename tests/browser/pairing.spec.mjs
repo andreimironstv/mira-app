@@ -24,7 +24,7 @@ test("comparison code replaces QR, preserves leading zeros, and waits for phone 
 }) => {
   await settings(page, app);
   await expect(
-    page.getByAltText("Scan this QR code with Buzz on your phone"),
+    page.getByAltText("Scan this QR code with Mira on your phone"),
   ).toBeVisible();
   await phone(page, { phase: "code", code: "001234" });
   await expect(
@@ -70,7 +70,7 @@ test("phone confirmation, retry after expiry, and leaving Settings cancel the se
 }) => {
   await settings(page, app);
   await expect(
-    page.getByAltText("Scan this QR code with Buzz on your phone"),
+    page.getByAltText("Scan this QR code with Mira on your phone"),
   ).toBeVisible();
   await phone(page, { phase: "code", code: "654321" });
   await page.getByRole("button", { name: "Codes match", exact: true }).click();
@@ -90,7 +90,7 @@ test("phone confirmation, retry after expiry, and leaving Settings cancel the se
   await expect(page.getByRole("alert")).toContainText("Pairing expired");
   await page.getByRole("button", { name: "Try again", exact: true }).click();
   await expect(
-    page.getByAltText("Scan this QR code with Buzz on your phone"),
+    page.getByAltText("Scan this QR code with Mira on your phone"),
   ).toBeVisible();
   await settingsSections(page)
     .getByRole("button", { name: "Manage plugins", exact: true })
@@ -136,7 +136,7 @@ test("leaving during native setup cancels its late result", async ({
     .getByRole("button", { name: "Pair mobile", exact: true })
     .click();
   await expect(
-    page.getByAltText("Scan this QR code with Buzz on your phone"),
+    page.getByAltText("Scan this QR code with Mira on your phone"),
   ).toBeVisible();
 });
 
@@ -146,14 +146,14 @@ test("reloading a contributed Settings route waits for its plugin to activate", 
 }) => {
   await settings(page, app);
   await expect(
-    page.getByAltText("Scan this QR code with Buzz on your phone"),
+    page.getByAltText("Scan this QR code with Mira on your phone"),
   ).toBeVisible();
   await page.reload();
   await expect(
     page.getByRole("heading", { name: "Pair mobile", exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByAltText("Scan this QR code with Buzz on your phone"),
+    page.getByAltText("Scan this QR code with Mira on your phone"),
   ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Pair mobile", exact: true }),
@@ -166,7 +166,7 @@ test("expired QR refreshes automatically and leaving stops it", async ({
 }) => {
   await settings(page, app);
   await expect(
-    page.getByAltText("Scan this QR code with Buzz on your phone"),
+    page.getByAltText("Scan this QR code with Mira on your phone"),
   ).toBeVisible();
   const starts = () =>
     page.evaluate(
@@ -177,7 +177,7 @@ test("expired QR refreshes automatically and leaving stops it", async ({
   await phone(page, { phase: "expired" });
   await expect.poll(starts).toBe(before + 1);
   await expect(
-    page.getByAltText("Scan this QR code with Buzz on your phone"),
+    page.getByAltText("Scan this QR code with Mira on your phone"),
   ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Cancel pairing", exact: true }),
@@ -227,7 +227,7 @@ test("reduced motion removes QR animation styles", async ({ page, app }) => {
     svg: '<svg xmlns="http://www.w3.org/2000/svg"><style>circle { animation: reveal 58ms; }</style><circle r="1"/></svg>',
     uri: "nostrpair://fixture",
   });
-  const qr = page.getByAltText("Scan this QR code with Buzz on your phone");
+  const qr = page.getByAltText("Scan this QR code with Mira on your phone");
   await expect
     .poll(async () => decodeURIComponent(await qr.getAttribute("src")))
     .not.toContain("<style>");
@@ -252,7 +252,7 @@ test("Personal space pairs with a manually entered community address", async ({
   });
   await pairing.click();
   await expect(pairing).toHaveAttribute("aria-current", "page");
-  const qr = page.getByAltText("Scan this QR code with Buzz on your phone");
+  const qr = page.getByAltText("Scan this QR code with Mira on your phone");
   // With no community selected, pairing waits for the address it needs.
   await expect(qr).toHaveCount(0);
   const address = page.getByLabel("Community address", { exact: true });

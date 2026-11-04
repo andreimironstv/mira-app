@@ -28,16 +28,16 @@ const sha = "a".repeat(40);
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const assets = {
   macos: [
-    `Buzz_${version}_aarch64.dmg`,
-    `Buzz_${version}_aarch64.app.tar.gz`,
-    `Buzz_${version}_aarch64.app.tar.gz.sig`,
+    `Mira_${version}_aarch64.dmg`,
+    `Mira_${version}_aarch64.app.tar.gz`,
+    `Mira_${version}_aarch64.app.tar.gz.sig`,
   ],
-  windows: [`Buzz_${version}_x64_unsigned.exe`],
-  linux: [`Buzz_${version}_amd64.deb`, `Buzz_${version}_x86_64.AppImage`],
+  windows: [`Mira_${version}_x64_unsigned.exe`],
+  linux: [`Mira_${version}_amd64.deb`, `Mira_${version}_x86_64.AppImage`],
   signatures: [
-    `Buzz_${version}_x64_unsigned.exe.sig`,
-    `Buzz_${version}_amd64.deb.sig`,
-    `Buzz_${version}_x86_64.AppImage.sig`,
+    `Mira_${version}_x64_unsigned.exe.sig`,
+    `Mira_${version}_amd64.deb.sig`,
+    `Mira_${version}_x86_64.AppImage.sig`,
   ],
 };
 const assembly = jobs.publish.steps.find((step) =>

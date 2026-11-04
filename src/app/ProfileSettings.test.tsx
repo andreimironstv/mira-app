@@ -40,7 +40,7 @@ function communities(): Communities {
     status: "ready" as const,
     relayAvailable: true,
     viewer,
-    profile: { name: "Buzz User", picture: "" },
+    profile: { name: "Mira User", picture: "" },
     memberships: [],
     selected: null,
   };
@@ -431,7 +431,7 @@ it("keeps a community draft when publication fails and retries a failed read", a
     screen.getByRole("button", { name: "Retry loading profile" }),
   );
   const name = await screen.findByLabelText("Display name");
-  expect(name).toHaveValue("Buzz User");
+  expect(name).toHaveValue("Mira User");
   await user.clear(name);
   await user.type(name, "Keep this draft");
   await user.click(screen.getByRole("button", { name: "Save" }));
@@ -477,14 +477,14 @@ it("previews draft profile content and the shared avatar crop before saving", as
   render(<ProfileSettings communities={service} />, { wrapper: ToastProvider });
 
   const preview = screen.getByRole("region", { name: "Profile preview" });
-  expect(preview).toHaveTextContent("Buzz User");
+  expect(preview).toHaveTextContent("Mira User");
   expect(preview.querySelector('[data-avatar-shape="circle"]')).toBeVisible();
 
   await user.clear(screen.getByLabelText("Display name"));
   await user.type(screen.getByLabelText("Display name"), "Clay");
   await user.type(
     screen.getByLabelText("Profile description (optional)"),
-    "Building with Buzz",
+    "Building with Mira",
   );
   await user.click(screen.getByRole("button", { name: "Edit avatar" }));
   await user.type(
@@ -494,7 +494,7 @@ it("previews draft profile content and the shared avatar crop before saving", as
   await user.click(screen.getByRole("button", { name: "Done" }));
 
   expect(preview).toHaveTextContent("Clay");
-  expect(preview).toHaveTextContent("Building with Buzz");
+  expect(preview).toHaveTextContent("Building with Mira");
   expect(preview.querySelector("img")).toHaveAttribute(
     "src",
     "https://example.test/profile.png",
@@ -508,14 +508,14 @@ it("edits and trims the profile description with a visible limit", async () => {
 
   const description = screen.getByLabelText("Profile description (optional)");
   expect(screen.getByText("0 of 500 characters")).toBeVisible();
-  await user.type(description, "  Building with Buzz  ");
+  await user.type(description, "  Building with Mira  ");
   expect(screen.getByText("22 of 500 characters")).toBeVisible();
   await user.click(screen.getByRole("button", { name: "Save" }));
 
   expect(service.saveProfile).toHaveBeenCalledWith({
-    name: "Buzz User",
+    name: "Mira User",
     picture: "",
-    about: "Building with Buzz",
+    about: "Building with Mira",
   });
   expect(await screen.findByText("Profile updated")).toBeVisible();
 });

@@ -31,7 +31,7 @@ it is used. Build the first version with its feature. When a second real use
 appears, decide which part belongs in the system:
 
 - Share generic controls and visual building blocks.
-- Keep Buzz-specific behavior with the product capability that owns it.
+- Keep Mira-specific behavior with the product capability that owns it.
 - Share a complete arrangement only when another surface needs that arrangement.
 
 Prefer small components with clear responsibilities. Do not add a catalog of

@@ -10,9 +10,9 @@ use zeroize::Zeroizing;
 
 #[cfg_attr(test, allow(dead_code))]
 pub(crate) const KEY_SERVICE: &str = if cfg!(debug_assertions) {
-    "xyz.block.buzz.desktop.jev-key.debug"
+    "ro.miraai.mira.desktop.jev-key.debug"
 } else {
-    "xyz.block.buzz.desktop.jev-key"
+    "ro.miraai.mira.desktop.jev-key"
 };
 /// The service before 1.0. Reads copy a key found only there; clearing removes it too.
 #[cfg_attr(test, allow(dead_code))]
@@ -153,7 +153,7 @@ mod platform {
     fn stored(error: credentials::Error) -> String {
         match error {
             credentials::Error::Denied => "Keychain access was denied. Allow access and retry",
-            credentials::Error::Busy => "Another Buzz app is using secure storage. Retry shortly",
+            credentials::Error::Busy => "Another Mira app is using secure storage. Retry shortly",
             _ => "The Keychain is unavailable",
         }
         .into()
@@ -194,7 +194,7 @@ mod platform {
     fn error(error: Error) -> String {
         match error {
             Error::Denied => "Secure storage access was denied. Allow access and retry",
-            Error::Busy => "Another Buzz app is using secure storage. Retry shortly",
+            Error::Busy => "Another Mira app is using secure storage. Retry shortly",
             Error::Corrupt => "The saved key is damaged",
             _ => "Secure storage is unavailable. Unlock it and retry",
         }

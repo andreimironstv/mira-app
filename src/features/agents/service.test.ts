@@ -687,7 +687,7 @@ it("recreates a deleted imported team when it is imported again", async () => {
   ]);
 });
 
-it("saves the team as old Buzz has it at import, not as the list showed it", async () => {
+it("saves the team as old Mira has it at import, not as the list showed it", async () => {
   const { service, native } = await setup();
   listsTeam(
     native,
@@ -731,7 +731,7 @@ it("imports members one at a time, in order, then saves the team once", async ()
   ]);
 });
 
-it("names a member old Buzz no longer lists, and never imports it", async () => {
+it("names a member old Mira no longer lists, and never imports it", async () => {
   const { service, native } = await setup();
   listsTeam(native, nightShift([alder, birch]));
   const found = await native.portable();
@@ -741,7 +741,7 @@ it("names a member old Buzz no longer lists, and never imports it", async () => 
   });
   const result = await importTeam(service);
   expect(result.failed).toEqual([
-    { name: "Birch", error: "No longer available in old Buzz" },
+    { name: "Birch", error: "No longer available in old Mira" },
   ]);
   expect(portedKeys(native)).toEqual([alder]);
   expect(result.team).toEqual(savedShift([alder]));
@@ -818,7 +818,7 @@ it("keeps an agent of the import's owner on the team when another owner signs in
   expect(result.foreign).toEqual([]);
 });
 
-it("imports nothing when the community changes while old Buzz is read", async () => {
+it("imports nothing when the community changes while old Mira is read", async () => {
   const { service, native, second, select } = await setup();
   listsTeam(native, nightShift([alder]));
   const listed = native.portable.getMockImplementation() as NonNullable<
@@ -4299,7 +4299,7 @@ it("changes an agent's type between turns, carrying what the new type adopts", a
   native.setType.mockClear();
   native.claim.mockResolvedValueOnce(false);
   await expect(service.retype(bot, "other/relay")).rejects.toThrow(
-    "Another copy of Buzz is running this agent",
+    "Another copy of Mira is running this agent",
   );
   expect(native.setType).not.toHaveBeenCalled();
   native.claim.mockRejectedValueOnce(new Error("claim unavailable"));
@@ -6301,7 +6301,7 @@ it("a copy of the app that does not hold the agent sends nothing to the classifi
   expect(run).not.toHaveBeenCalled();
 });
 
-it("gives the classifier Buzz's thread parent: the marked reply, in any case; a lone root is no reply", async () => {
+it("gives the classifier Mira's thread parent: the marked reply, in any case; a lone root is no reply", async () => {
   const jev = fakeJev();
   const { native, emit } = await classifiedAgent(jev);
   const parent = "A".repeat(64);
@@ -12618,7 +12618,7 @@ it.each([
   },
 );
 
-it("registers Buzz-owned command sources with saved provider keys", async () => {
+it("registers Mira-owned command sources with saved provider keys", async () => {
   const { service, plugin } = await setup();
   const core = plugin.extend({
     pluginOwner: { id: "buzz.agents", revision: "bundled" },
@@ -12643,7 +12643,7 @@ it("registers Buzz-owned command sources with saved provider keys", async () => 
     pluginOwner: { id: "attention", revision: "old" },
   });
   expect(() => registerAttention({ agents: external.agents })).toThrow(
-    /built into Buzz/,
+    /built into Mira/,
   );
 });
 
@@ -13378,7 +13378,7 @@ describe("synced teams", () => {
     expect(f.saveTeam.mock.calls[1]?.[0]).not.toHaveProperty("base");
   });
 
-  it("imports an old Buzz team synced, reporting members it couldn't add", async () => {
+  it("imports an old Mira team synced, reporting members it couldn't add", async () => {
     const f = await ready([
       here(alder),
       here(birch, "wss://other.example.test"),

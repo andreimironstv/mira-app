@@ -52,7 +52,7 @@ export function UpdateSettings({
     available: "Preparing update…",
     downloading: "Downloading update…",
     installing: "Installing update…",
-    ready: "Ready to install. Buzz will restart.",
+    ready: "Ready to install. Mira will restart.",
     error: "",
   };
   const label =

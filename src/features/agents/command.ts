@@ -26,7 +26,7 @@ export async function spawnAgentCommand(
   signal.throwIfAborted();
   for (const name of Object.keys(options.env ?? {}))
     if (/^(BUZZ_|NOSTR_)/i.test(name))
-      throw new Error("Agent command identity variables are supplied by Buzz");
+      throw new Error("Agent command identity variables are supplied by Mira");
   host.check();
   const controller = new AbortController();
   const lifetime = AbortSignal.any([signal, controller.signal]);

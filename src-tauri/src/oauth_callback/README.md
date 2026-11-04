@@ -87,9 +87,9 @@ fails authentication. The attempt's focus permission is separate from its
 already-closed listener and is retired by final cancellation,
 reload, a provider error, or a newer attempt.
 
-On macOS, native startup records the default browser only if Buzz is focused.
-Completion runs on the main thread and activates Buzz only while that browser
-application is foreground, Buzz remains visible and not minimized, and completion
+On macOS, native startup records the default browser only if Mira is focused.
+Completion runs on the main thread and activates Mira only while that browser
+application is foreground, Mira remains visible and not minimized, and completion
 is within ten seconds after the reading delay. Slow verification never causes a
 late focus jump. This checks
 applications, not browser tabs. Other platforms skip automatic focus return until
@@ -130,7 +130,7 @@ of whether browser policy permits closing the callback tab.
   reading delay and native focus-return delay share one native constant. Error
   pages remain open. Restoring an unclosed tab later can still fail because the
   loopback listener is temporary.
-  The headline describes sign-in in progress. Buzz still performs code exchange
+  The headline describes sign-in in progress. Mira still performs code exchange
   and account validation after receiving the callback, and reports any verification
   failures in the app.
   The standalone stylesheet mirrors the shared roles without loading the app;

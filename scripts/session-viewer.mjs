@@ -68,7 +68,7 @@ export const entry = {
     kind: "user",
     label: "user",
     preview: request ?? body,
-    html: `<div class="card user">${time(timestamp)}${request === undefined ? expandable(body, 20) : `<pre>${escapeHtml(request)}</pre><div class="title muted">Buzz turn</div>${expandable(body, 0)}`}</div>`,
+    html: `<div class="card user">${time(timestamp)}${request === undefined ? expandable(body, 20) : `<pre>${escapeHtml(request)}</pre><div class="title muted">Mira turn</div>${expandable(body, 0)}`}</div>`,
   }),
   assistant: (timestamp, body) => ({
     timestamp,
@@ -96,7 +96,7 @@ export const entry = {
   sent: (timestamp, body) => ({
     timestamp,
     kind: "sent",
-    label: "posted to Buzz",
+    label: "posted to Mira",
     preview: body,
     html: `<div class="card sent">${time(timestamp)}<pre>${escapeHtml(body)}</pre></div>`,
   }),

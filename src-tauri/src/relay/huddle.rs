@@ -130,7 +130,7 @@ fn create(room: &str, parent: &str) -> EventTemplate {
             vec!["channel_type".into(), "stream".into()],
             vec![
                 "about".into(),
-                format!("Buzz Huddle (buzz.huddles/v1)\nparent:{parent}"),
+                format!("Mira Huddle (buzz.huddles/v1)\nparent:{parent}"),
             ],
             vec!["ttl".into(), "3600".into()],
         ],
@@ -734,7 +734,7 @@ mod tests {
             e.tags[4],
             [
                 "about",
-                &format!("Buzz Huddle (buzz.huddles/v1)\nparent:{parent}")
+                &format!("Mira Huddle (buzz.huddles/v1)\nparent:{parent}")
             ]
         );
         assert_eq!(e.tags[2], ["visibility", "private"]);

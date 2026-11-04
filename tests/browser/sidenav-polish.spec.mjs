@@ -278,7 +278,7 @@ test("top bar swaps its pages for an overflow menu when narrow", async ({
   const header = page.locator(".shell-header");
   await expect(header).toBeVisible();
   const search = header.getByRole("button", {
-    name: "Search Buzz",
+    name: "Search Mira",
     exact: true,
   });
   for (const width of [1440, 390]) {
@@ -298,9 +298,9 @@ test("top bar swaps its pages for an overflow menu when narrow", async ({
   }
   await page.setViewportSize({ width: 1440, height: 950 });
   await search.click();
-  const dialog = page.getByRole("dialog", { name: "Search Buzz", exact: true });
+  const dialog = page.getByRole("dialog", { name: "Search Mira", exact: true });
   await expect(
-    dialog.getByRole("combobox", { name: "Search Buzz" }),
+    dialog.getByRole("combobox", { name: "Search Mira" }),
   ).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(dialog).toHaveCount(0);

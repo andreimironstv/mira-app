@@ -275,7 +275,7 @@ pub(super) fn resize_guest(
     _host: &tauri::Webview,
     _bounds: super::BrowserBounds,
 ) -> Result<(), String> {
-    Err("Embedded Buzz Browser is not supported on Linux".into())
+    Err("Embedded Mira Browser is not supported on Linux".into())
 }
 
 #[cfg(target_os = "macos")]
@@ -329,7 +329,7 @@ pub(super) fn build_guest(
     _builder: WebViewBuilder<'_>,
     _window: &Window,
 ) -> Result<WebView, String> {
-    Err("Embedded Buzz Browser is not supported on Linux".into())
+    Err("Embedded Mira Browser is not supported on Linux".into())
 }
 
 #[cfg(target_os = "linux")]
@@ -380,14 +380,14 @@ pub(super) fn deny_permissions(guest: &WebView) -> Result<Permissions, String> {
             .cast::<ICoreWebView2_13>()
             .and_then(|webview| webview.Profile())
             .map_err(|_| {
-                "Buzz Browser requires a WebView2 runtime with private browsing support"
+                "Mira Browser requires a WebView2 runtime with private browsing support"
             })?;
         let mut is_private = windows_core::BOOL::default();
         profile
             .IsInPrivateModeEnabled(&mut is_private)
             .map_err(|error| error.to_string())?;
         if !is_private.as_bool() {
-            return Err("Buzz Browser could not create a private website session".into());
+            return Err("Mira Browser could not create a private website session".into());
         }
         guest
             .webview()

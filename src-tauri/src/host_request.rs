@@ -763,7 +763,7 @@ mod tests {
             .network_origins
             .first()
             .map(String::as_str)
-            .unwrap_or("https://app.builderlab.xyz");
+            .unwrap_or("https://account.mira-ai.ro");
         let (url, _, _) = validate_request(&request(&format!(
             "{origin}/api/goose/v1/auth/login/exchange"
         )))

@@ -17,7 +17,7 @@ const url = "https://relay.example.com:8443";
 const host = "relay.example.com:8443";
 const self = "76aa9daa7edc9c2e1dc6a2a90dbce10c1bd52f060fa6506ba7bad4f50240fc01";
 const buzz = {
-  name: "Buzz Relay",
+  name: "Mira Relay",
   software: "https://github.com/block/buzz",
   version: "1.4.2",
   icon: "https://cdn.example.com/icon.png",
@@ -355,11 +355,11 @@ it.each([
   [
     "an HTML page",
     new Response("<html></html>"),
-    "This address isn’t a Buzz community.",
+    "This address isn’t a Mira community.",
   ],
   [
-    "a Buzz relay with no community here",
-    Response.json({ name: "Buzz Relay" }),
+    "a Mira relay with no community here",
+    Response.json({ name: "Mira Relay" }),
     "No community is set up at this address.",
   ],
 ])("%s offers only Cancel", async (_label, answer, message) => {

@@ -23,7 +23,7 @@ const root = await realpath(
 const shared = join(root, "desktop");
 const isolated =
   process.platform === "darwin"
-    ? join(root, "Library/Application Support/Buzz/codex-home")
+    ? join(root, "Library/Application Support/Mira/codex-home")
     : join(root, "data/buzz/codex-home");
 const servers = [];
 const model = createServer((request, response) => {
@@ -230,7 +230,7 @@ requires_openai_auth = false
       .id,
     desktopId,
   );
-  await turn(restarted, desktopId, "Copied fixture continues in Buzz");
+  await turn(restarted, desktopId, "Copied fixture continues in Mira");
   assert.deepEqual(await readFile(await rollout(shared, desktopId)), original);
   assert.ok(
     (await readFile(await rollout(isolated, desktopId))).length >

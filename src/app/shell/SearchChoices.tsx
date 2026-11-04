@@ -67,7 +67,7 @@ export function SearchChoices({
   displayQuery,
   onDisplayQueryChange,
   input,
-  label = "Search Buzz",
+  label = "Search Mira",
   scope,
   scopeAction,
   children,

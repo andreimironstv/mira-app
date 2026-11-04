@@ -177,7 +177,7 @@ fn read_saved(
         Ok(value) => Ok(Some(value)),
         Err(credentials::Error::Absent) => Ok(None),
         Err(credentials::Error::Denied) => Err("Secure storage access was denied. Allow access and retry; no identity was created.".into()),
-        Err(credentials::Error::Busy) => Err("Another Buzz app is accessing secure storage. Retry shortly.".into()),
+        Err(credentials::Error::Busy) => Err("Another Mira app is accessing secure storage. Retry shortly.".into()),
         Err(credentials::Error::Corrupt) => Err(MALFORMED.into()),
         Err(_) => Err("Your identity could not be accessed in secure storage. Unlock your credential store and retry without changing keys.".into()),
     }
@@ -235,10 +235,10 @@ mod platform {
         match credentials::delete(service, credentials::HUMAN_ACCOUNT) {
             Ok(()) | Err(credentials::Error::Absent) => Ok(()),
             Err(credentials::Error::Busy) => {
-                Err("Another Buzz app is accessing secure storage. Retry shortly.".into())
+                Err("Another Mira app is accessing secure storage. Retry shortly.".into())
             }
             Err(credentials::Error::Denied) => Err(
-                "Keychain access was denied. Allow access and open Buzz again to finish signing out."
+                "Keychain access was denied. Allow access and open Mira again to finish signing out."
                     .into(),
             ),
             Err(_) => Err(
@@ -256,7 +256,7 @@ mod keyring_platform {
         match error {
             Error::Occupied => "An identity is already saved; nothing was overwritten. Restart to restore it.",
             Error::Denied => "Secure storage access was denied. Allow access and retry; no identity was created.",
-            Error::Busy => "Another Buzz app is accessing secure storage. Retry shortly.",
+            Error::Busy => "Another Mira app is accessing secure storage. Retry shortly.",
             Error::Corrupt => MALFORMED,
             _ => "Your identity could not be accessed in secure storage. Unlock your credential store and retry without changing keys.",
         }.into()
@@ -355,7 +355,7 @@ struct Identity {
 impl Identity {
     fn restore(&mut self) -> Result<Option<String>> {
         if matches!(self.state, State::Closed) {
-            return Err("Buzz is signing out".into());
+            return Err("Mira is signing out".into());
         }
         if matches!(self.state, State::Unread) {
             self.state = match self.store.read()? {
@@ -394,7 +394,7 @@ impl Identity {
         let nsec = self.store.legacy()?;
         let nsec = nsec.trim();
         if Key::parse(nsec).is_err() {
-            return Err("The earlier Buzz app's identity is malformed; nothing was changed".into());
+            return Err("The earlier Mira app's identity is malformed; nothing was changed".into());
         }
         self.save(Some(nsec))
     }
@@ -1130,7 +1130,7 @@ pub async fn identity_prepare_remote_agent_authorization(
 }
 
 /// Builderlab's production identity-binding origin.
-const BUILDERLAB_ORIGIN: &str = "https://app.builderlab.xyz";
+const BUILDERLAB_ORIGIN: &str = "https://account.mira-ai.ro";
 
 /// The challenge fields Builderlab returns for binding this identity.
 #[derive(Deserialize)]

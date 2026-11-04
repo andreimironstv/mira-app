@@ -195,7 +195,7 @@ it("adds nothing for a missing, blank or unread note", async () => {
   ).toBe("");
   expect(
     await recentNotesSection(async () => {
-      throw new Error("Buzz is not connected");
+      throw new Error("Mira is not connected");
     }, now),
   ).toBe("");
   // One read failing still shows the other note.

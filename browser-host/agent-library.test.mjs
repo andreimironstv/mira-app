@@ -28,23 +28,23 @@ it.each(identityCases)(
   },
 );
 
-it("locates the installed Buzz data directory per platform and refuses to guess elsewhere", () => {
+it("locates the installed Mira data directory per platform and refuses to guess elsewhere", () => {
   expect(installedBuzzDataDir("darwin", {}, "/Users/t")).toBe(
-    "/Users/t/Library/Application Support/xyz.block.buzz.desktop",
+    "/Users/t/Library/Application Support/ro.miraai.mira.desktop",
   );
   expect(installedBuzzDataDir("linux", {}, "/home/t")).toBe(
-    "/home/t/.local/share/xyz.block.buzz.desktop",
+    "/home/t/.local/share/ro.miraai.mira.desktop",
   );
   expect(
     installedBuzzDataDir("linux", { XDG_DATA_HOME: "/data" }, "/home/t"),
-  ).toBe("/data/xyz.block.buzz.desktop");
+  ).toBe("/data/ro.miraai.mira.desktop");
   // Tauri's dirs crate ignores a relative XDG_DATA_HOME; so must this reader,
   // or it would look where the installed app never writes.
   for (const XDG_DATA_HOME of ["relative", "./data", ""])
     expect(
       installedBuzzDataDir("linux", { XDG_DATA_HOME }, "/home/t"),
       JSON.stringify(XDG_DATA_HOME),
-    ).toBe("/home/t/.local/share/xyz.block.buzz.desktop");
+    ).toBe("/home/t/.local/share/ro.miraai.mira.desktop");
   expect(installedBuzzDataDir("win32", {}, "/home/t")).toBeUndefined();
   expect(installedBuzzDataDir("freebsd", {}, "/home/t")).toBeUndefined();
 });
@@ -240,7 +240,7 @@ it.each(["legacy", "current"])(
   },
 );
 
-it("projects current Buzz 1.0 saved agents without parked legacy identities or private fields", () => {
+it("projects current Mira 1.0 saved agents without parked legacy identities or private fields", () => {
   const current = {
     version: 1,
     agents: [
@@ -317,7 +317,7 @@ it.each([
 );
 
 it.skipIf(!["darwin", "linux"].includes(process.platform))(
-  "the default reader uses current Buzz 1.0 storage and never falls back to Classic",
+  "the default reader uses current Mira 1.0 storage and never falls back to Classic",
   async () => {
     const root = await mkdtemp(join(tmpdir(), "buzz-default-library-"));
     vi.stubEnv("HOME", root);
@@ -328,14 +328,14 @@ it.skipIf(!["darwin", "linux"].includes(process.platform))(
         : root;
     const current = join(
       appData,
-      "xyz.block.buzz.desktop/agents/identities.json",
+      "ro.miraai.mira.desktop/agents/identities.json",
     );
     const legacy = join(
       appData,
       "xyz.block.buzz.app/agents/managed-agents.json",
     );
     try {
-      await mkdir(join(appData, "xyz.block.buzz.desktop/agents"), {
+      await mkdir(join(appData, "ro.miraai.mira.desktop/agents"), {
         recursive: true,
       });
       await mkdir(join(appData, "xyz.block.buzz.app/agents"), {
@@ -373,7 +373,7 @@ it.skipIf(!["darwin", "linux"].includes(process.platform))(
         JSON.stringify([{ pubkey: key, name: "Nova" }]),
       );
       expect((await readAgentLibrary()).identities).toEqual([]);
-      await rm(join(appData, "xyz.block.buzz.desktop"), { recursive: true });
+      await rm(join(appData, "ro.miraai.mira.desktop"), { recursive: true });
       expect(await readAgentLibrary()).toEqual({
         definitions: [],
         identities: [{ pubkey: key, name: "Nova" }],

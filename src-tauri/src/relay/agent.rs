@@ -795,10 +795,10 @@ pub(crate) async fn relay_agent_library(
 ) -> Result<Value> {
     let agents = state
         .agents()
-        .map_err(|_| "Current Buzz library unavailable")?;
+        .map_err(|_| "Current Mira library unavailable")?;
     tauri::async_runtime::spawn_blocking(move || read_agent_library(&agents))
         .await
-        .map_err(|_| "Current Buzz library unavailable".to_owned())?
+        .map_err(|_| "Current Mira library unavailable".to_owned())?
 }
 
 /// Public display metadata for the identities Agents saved, read through their
@@ -806,7 +806,7 @@ pub(crate) async fn relay_agent_library(
 fn read_agent_library(agents: &AppAgents) -> Result<Value> {
     let rows = agents
         .list()
-        .map_err(|_| "Current Buzz library unavailable")?;
+        .map_err(|_| "Current Mira library unavailable")?;
     let mut identities = Vec::new();
     let mut keys = HashSet::new();
     for agent in rows
@@ -814,7 +814,7 @@ fn read_agent_library(agents: &AppAgents) -> Result<Value> {
         .filter(|agent| !agent.deleted && !agent.joining)
     {
         if !key(&agent.pubkey) || agent.name.encode_utf16().count() > 256 {
-            return Err("Current Buzz library unavailable".into());
+            return Err("Current Mira library unavailable".into());
         }
         let avatar = agent.picture.as_deref().and_then(|source| {
             let source = source.trim();

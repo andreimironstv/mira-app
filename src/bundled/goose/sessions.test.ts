@@ -248,15 +248,15 @@ describe("AgentSessions", () => {
   it("leaves only a conversation's first session for goose to name", async () => {
     const { fake, sessions, change } = setup();
     const named = vi.fn();
-    await sessions.deliver("a", "one", 1, { title: "Buzz", named });
+    await sessions.deliver("a", "one", 1, { title: "Mira", named });
     change({ systemPrompt: "newer" }, false);
-    await sessions.deliver("a", "two", 2, { title: "Buzz", named });
+    await sessions.deliver("a", "two", 2, { title: "Mira", named });
     // A reopened session would cost another naming call for a named chat.
     expect(
       fake.geese[0]?.opened.map(
         (session) => (session._meta as { sessionTitle?: string }).sessionTitle,
       ),
-    ).toEqual([undefined, "Buzz"]);
+    ).toEqual([undefined, "Mira"]);
   });
 
   it("switches the live session's provider and model between turns", async () => {

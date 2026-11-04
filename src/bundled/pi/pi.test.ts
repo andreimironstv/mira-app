@@ -160,7 +160,7 @@ it("runs the tools the host calls, and sends back each result or error", async (
   });
 });
 
-it("cancels a Buzz tool when its run stops or the host goes", async () => {
+it("cancels a Mira tool when its run stops or the host goes", async () => {
   const host = fakeHost();
   const signals: AbortSignal[] = [];
   const tool = vi.fn(

@@ -49,7 +49,7 @@ async fn notify(connection: &Connection, title: &str, body: &str) -> Result<Outc
         })
         .unwrap_or_default();
     let args = (
-        "Buzz",
+        "Mira",
         0u32,
         icon,
         title,

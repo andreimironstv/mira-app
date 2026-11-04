@@ -192,7 +192,7 @@ export const groups: Group[] = [
         "long-links",
         "Long links",
         "Long destinations wrap inside the bubble. Try Narrow preview.",
-        "Join https://feedback.communities.buzz.xyz/invite/workshop-testing to help test, and review https://github.com/block/buzz-app/pull/1423 too.",
+        "Join https://feedback.workspace.mira-ai.ro/invite/workshop-testing to help test, and review https://github.com/block/buzz-app/pull/1423 too.",
         { authorId: teammate },
       ),
       single(

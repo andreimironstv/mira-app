@@ -10,9 +10,9 @@ import { homedir } from "node:os";
 import { sep } from "node:path";
 import { finalizeEvent } from "nostr-tools";
 
-const API = "https://app.builderlab.xyz/api/goose";
+const API = "https://account.mira-ai.ro/api/goose";
 // Builderlab checks Origin on identity binding; it also seeds the challenge origin.
-export const BUILDERLAB_ORIGIN = "https://app.builderlab.xyz";
+export const BUILDERLAB_ORIGIN = "https://account.mira-ai.ro";
 const LOGIN_TIMEOUT_MS = 10 * 60 * 1000;
 const MAX_RESPONSE_BYTES = 64 * 1024;
 const RESPONSE_STATUS = Symbol("builderlabResponseStatus");
@@ -48,7 +48,7 @@ function callbackPage(status) {
       )
       .replace(
         "{{message}}",
-        status === 200 ? "" : "Return to Buzz to retry sign-in.",
+        status === 200 ? "" : "Return to Mira to retry sign-in.",
       ),
     policy: `default-src 'none'; img-src data:; font-src data:; style-src 'sha256-${hash(style)}'; script-src 'sha256-${hash(script)}'; base-uri 'none'; frame-ancestors 'none'`,
   };

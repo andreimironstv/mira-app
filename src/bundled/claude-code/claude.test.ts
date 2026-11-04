@@ -487,12 +487,12 @@ it("allows tool use and acknowledges hooks it is asked about", async () => {
     {
       subtype: "error",
       request_id: "r3",
-      error: "Buzz does not handle mcp_message",
+      error: "Mira does not handle mcp_message",
     },
   ]);
 });
 
-it("serves the Buzz tools over the pipe and ends a turn on a final send or subthread reply", async () => {
+it("serves the Mira tools over the pipe and ends a turn on a final send or subthread reply", async () => {
   const { spawn, processes } = fakeSpawn();
   const tools = vi.fn(async (_conversation: unknown, message: unknown) => ({
     jsonrpc: "2.0",

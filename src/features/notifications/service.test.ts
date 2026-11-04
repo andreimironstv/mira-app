@@ -493,5 +493,5 @@ it("plugin display text is flattened and bounded, with the category text as fall
   expect(rich.title.endsWith("…")).toBe(true);
   expect(rich.body.startsWith("Call Ana <b>raw</b> bbb")).toBe(true);
   expect(Array.from(rich.body)).toHaveLength(200);
-  expect(shown[1]).toMatchObject({ title: "Buzz", body: "New updates" });
+  expect(shown[1]).toMatchObject({ title: "Mira", body: "New updates" });
 });

@@ -41,7 +41,7 @@ export async function feedbackDiagnostics(now = new Date()): Promise<File> {
   }
   const nav = typeof navigator === "undefined" ? undefined : navigator;
   const content = [
-    "Buzz feedback diagnostics",
+    "Mira feedback diagnostics",
     `captured: ${now.toISOString()}`,
     `app version: ${version}`,
     `platform: ${nav?.platform ?? "unknown"}`,

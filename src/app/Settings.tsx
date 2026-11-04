@@ -210,7 +210,7 @@ function PluginProvenance({
   className?: string | undefined;
 }) {
   const label = [
-    source === "bundled" ? "Buzz" : publisher,
+    source === "bundled" ? "Mira" : publisher,
     managedBy && `Managed by ${managedBy}`,
   ]
     .filter(Boolean)
@@ -357,7 +357,7 @@ function PluginDetails({
             {plugin.source === "bundled" ? (
               <span className={styles.pluginInstallBadge}>
                 <CheckCircleIcon size={14} aria-hidden="true" />
-                Made by Buzz
+                Made by Mira
               </span>
             ) : (
               <PluginProvenance

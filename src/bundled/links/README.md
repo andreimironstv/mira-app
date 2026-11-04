@@ -1,6 +1,6 @@
 # Links
 
-Makes links in messages easier to scan. Links to **Buzz**, **GitHub**, **Google Drive**, **Figma**, **Notion**, **Slack**, **Zoom**, and more each get an icon for where they go, and long web addresses are shortened.
+Makes links in messages easier to scan. Links to **Mira**, **GitHub**, **Google Drive**, **Figma**, **Notion**, **Slack**, **Zoom**, and more each get an icon for where they go, and long web addresses are shortened.
 
 ## Getting started
 

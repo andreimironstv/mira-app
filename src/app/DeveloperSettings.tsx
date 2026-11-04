@@ -26,9 +26,9 @@ import {
 const IMPORT_SCENARIOS: readonly { value: ImportScenario; label: string }[] = [
   { value: "off", label: "Real data" },
   { value: "none", label: "Nothing to import" },
-  { value: "both", label: "Other communities and old Buzz" },
+  { value: "both", label: "Other communities and old Mira" },
   { value: "communities", label: "Other communities only" },
-  { value: "old", label: "Buzz (Legacy) only" },
+  { value: "old", label: "Mira (Legacy) only" },
 ];
 
 type BrokerStats = {
@@ -113,9 +113,9 @@ export function DeveloperSettings({ relay }: { relay: RelayData }) {
     setClearing(true);
     try {
       await relay.clearCache();
-      setStatus("Cache cleared. Buzz will load channels and media as needed.");
+      setStatus("Cache cleared. Mira will load channels and media as needed.");
     } catch (error) {
-      setStatus(`Buzz couldn’t clear the cache. ${String(error)}`);
+      setStatus(`Mira couldn’t clear the cache. ${String(error)}`);
     } finally {
       setClearing(false);
     }

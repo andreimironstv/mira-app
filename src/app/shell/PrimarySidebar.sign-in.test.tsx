@@ -84,7 +84,7 @@ it.each(["adapter-refused", "grant-refused", "invalid-response"])(
   async (refusal) => {
     const h = await refusedLive(refusal);
     expect(await screen.findByRole("alert")).toHaveTextContent(
-      "Restart Buzz to try again",
+      "Restart Mira to try again",
     );
     expect(screen.getByRole("button", { name: "Chats" })).toBeVisible();
     expect(screen.queryByRole("button", { name: "Sign in" })).toBeNull();

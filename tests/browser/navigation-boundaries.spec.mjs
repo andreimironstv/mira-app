@@ -7,12 +7,12 @@ async function expectPageChoice(page, name, count) {
   const choices = await pageChoices(page, "Settings");
   await expect(pageChoice(choices, "Settings")).toBeVisible();
   await page
-    .getByRole("combobox", { name: "Search Buzz", exact: true })
+    .getByRole("combobox", { name: "Search Mira", exact: true })
     .fill(name);
   await expect(pageChoice(choices, name)).toHaveCount(count);
   await page.keyboard.press("Escape");
   await expect(
-    page.getByRole("dialog", { name: "Search Buzz", includeHidden: true }),
+    page.getByRole("dialog", { name: "Search Mira", includeHidden: true }),
   ).toHaveCount(0);
 }
 

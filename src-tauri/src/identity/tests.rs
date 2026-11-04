@@ -36,7 +36,7 @@ impl Store for Arc<Memory> {
             .unwrap()
             .clone()
             .map(Zeroizing::new)
-            .ok_or_else(|| "No identity from the earlier Buzz app was found".into())
+            .ok_or_else(|| "No identity from the earlier Mira app was found".into())
     }
     fn delete(&self) -> Result<()> {
         if *self.write_denied.lock().unwrap() {
@@ -278,9 +278,9 @@ fn development_and_release_items_are_separate() {
     assert_eq!(
         credentials::HUMAN_SERVICE,
         if cfg!(debug_assertions) {
-            "xyz.block.buzz.desktop.identity.debug"
+            "ro.miraai.mira.desktop.identity.debug"
         } else {
-            "xyz.block.buzz.desktop.identity"
+            "ro.miraai.mira.desktop.identity"
         }
     );
     assert_eq!(credentials::HUMAN_ACCOUNT, "human");
@@ -394,7 +394,7 @@ fn builderlab_challenge() -> serde_json::Value {
         "challenge_id": "550e8400-e29b-41d4-a716-446655440000",
         "nonce": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghi01234_-7",
         "verification_code": "123456",
-        "origin": "https://app.builderlab.xyz",
+        "origin": "https://account.mira-ai.ro",
         "expires_at": "2999-01-01T00:00:00Z"
     })
 }
@@ -422,7 +422,7 @@ fn builderlab_binding_signs_the_reference_kind_24243_shape() {
         ["action", "bind_nostr_identity"],
         ["protocol", "buzz-nostr-identity"],
         ["version", "1"],
-        ["origin", "https://app.builderlab.xyz"],
+        ["origin", "https://account.mira-ai.ro"],
         ["expires_at", "2999-01-01T00:00:00Z"],
     ]
     .map(|tag| tag.map(str::to_owned).to_vec());
@@ -440,7 +440,7 @@ fn builderlab_binding_rejects_invalid_or_foreign_challenges() {
         ("verification_code", "12345a"),
         ("verification_code", "1234567"),
         ("origin", "https://example.com"),
-        ("origin", "https://app.builderlab.xyz/"),
+        ("origin", "https://account.mira-ai.ro/"),
         ("expires_at", "2023-11-14T22:13:20Z"),
         ("expires_at", "not a time"),
     ] {
@@ -473,7 +473,7 @@ fn builderlab_binding_accepts_only_production_or_the_configured_origin() {
     assert!(template
         .tags
         .contains(&vec!["origin".to_owned(), staging.to_owned()]));
-    assert!(with_origin("https://app.builderlab.xyz")
+    assert!(with_origin("https://account.mira-ai.ro")
         .template(now, staging)
         .is_ok());
     for (origin, configured) in [

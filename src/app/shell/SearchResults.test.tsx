@@ -232,7 +232,7 @@ it("ranks typed channel names and selects the best one for Enter", async () => {
     expect(groups.indexOf("This conversation")).toBeGreaterThan(
       groups.indexOf("Channels"),
     );
-    const input = screen.getByRole("combobox", { name: "Search Buzz" });
+    const input = screen.getByRole("combobox", { name: "Search Mira" });
     expect(input).toHaveAttribute(
       "aria-activedescendant",
       within(channels).getAllByRole("option")[0]?.id,
@@ -307,7 +307,7 @@ it("fuzzy-matches channel names after substring matches, word starts first", asy
     expect(marks("ops-bgp")).toEqual(["bgp"]);
     expect(marks("buzz-github-prs")).toEqual(["b", "g", "p"]);
     expect(marks("debug-pr")).toEqual(["b", "g", "p"]);
-    const input = screen.getByRole("combobox", { name: "Search Buzz" });
+    const input = screen.getByRole("combobox", { name: "Search Mira" });
     fireEvent.keyDown(input, { key: "Enter" });
     expect(open).toHaveBeenCalledExactlyOnceWith("ops-bgp");
   } finally {
@@ -388,7 +388,7 @@ it("leads with the group holding the best match and ranks archived channels afte
         .getAllByRole("option")
         .map((option) => option.textContent),
     ).toEqual(["Work", "Workflows"]);
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     expect(work).toHaveBeenCalledOnce();
@@ -470,7 +470,7 @@ it("shows the real read failure, retains conversation choices, and retries to an
     });
     const hit = message(viewer, "crew", "wes-crew exact message", 1700000001);
     await act(async () => wire.next().respond([hit]));
-    const input = screen.getByRole("combobox", { name: "Search Buzz" });
+    const input = screen.getByRole("combobox", { name: "Search Mira" });
     // Typed text selects the first result; the late message sits below it.
     expect(
       screen.getByRole("option", { name: /^wes-crew(?! exact)/ }),
@@ -1391,7 +1391,7 @@ it("opens the open channel that lands after an early Enter, without first saying
     expect(
       screen.queryByText("No matching messages in accessible conversations."),
     ).toBeNull();
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     expect(openConversation).not.toHaveBeenCalled();
@@ -1445,7 +1445,7 @@ it("holds an early Enter for an open channel over a message that lands first, an
     };
     const mounted = render(<SearchResults {...props} query="crew" />);
     await act(async () => vi.advanceTimersByTimeAsync(SEARCH_DEBOUNCE_MS));
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     await act(async () =>
@@ -1459,7 +1459,7 @@ it("holds an early Enter for an open channel over a message that lands first, an
     expect(openConversation).toHaveBeenCalledExactlyOnceWith("lobby");
     // With no channel to wait for, Enter waits for message search instead.
     mounted.rerender(<SearchResults {...props} query="news" />);
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     await act(async () => vi.advanceTimersByTimeAsync(SEARCH_DEBOUNCE_MS));
@@ -1516,7 +1516,7 @@ it("opens an open channel from the first directory page after an early Enter, wh
         openConversation={openConversation}
       />,
     );
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     await act(async () => vi.advanceTimersByTimeAsync(SEARCH_DEBOUNCE_MS));
@@ -1562,7 +1562,7 @@ it("holds an early Enter on the scope action for an open channel, and scopes onc
   const openConversation = vi.fn();
   const changeScope = vi.fn();
   const enter = (key = "Enter") =>
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key,
     });
   try {
@@ -1669,7 +1669,7 @@ it.each([
       expect(
         screen.getByRole("option", { name: "Show more messages" }),
       ).toBeVisible();
-      fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+      fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
         key: "Enter",
       });
       expect(wire.pending).toHaveLength(0);
@@ -1736,7 +1736,7 @@ it.each(["a click that does not focus the row", "its shortcut"])(
         />,
       );
       await act(async () => vi.advanceTimersByTimeAsync(SEARCH_DEBOUNCE_MS));
-      const field = screen.getByRole("combobox", { name: "Search Buzz" });
+      const field = screen.getByRole("combobox", { name: "Search Mira" });
       const scope = screen.getByRole("option");
       expect(scope).toHaveTextContent("Search in general");
       fireEvent.keyDown(field, { key: "Enter" });
@@ -1816,7 +1816,7 @@ it("returns keyboard focus to search when channel lookup retries, through repeat
         openConversation={openConversation}
       />,
     );
-    const input = screen.getByRole("combobox", { name: "Search Buzz" });
+    const input = screen.getByRole("combobox", { name: "Search Mira" });
     for (let attempt = 0; attempt < 2; attempt++) {
       const retry = await screen.findByRole("button", {
         name: "Retry channels",
@@ -1902,7 +1902,7 @@ it("puts the earlier choice for typed text first, unless another name is exact",
         "workshop",
       ]),
     );
-    const combobox = screen.getByRole("combobox", { name: "Search Buzz" });
+    const combobox = screen.getByRole("combobox", { name: "Search Mira" });
     fireEvent.keyDown(combobox, { key: "Enter" });
     expect(open).toHaveBeenLastCalledWith("team-work");
     // Typing a channel's whole name opens that channel.
@@ -2027,7 +2027,7 @@ it("keeps the remembered choice selected when a better match arrives late", asyn
         .slice(0, 2),
     ).toEqual(["Channels", "Pages"]);
     expect(page).toHaveAttribute("aria-selected", "true");
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     expect(workflows).toHaveBeenCalledOnce();
@@ -3246,7 +3246,7 @@ it.each([
           { name: /Alice/ },
         ),
       );
-      const input = screen.getByRole("combobox", { name: "Search Buzz" });
+      const input = screen.getByRole("combobox", { name: "Search Mira" });
       expect(
         screen.getByRole("button", { name: "Remove author Alice" }),
       ).toBeVisible();
@@ -3325,7 +3325,7 @@ it("renders from:<author chip> without exposing the signed operand in the input"
     const chip = screen.getByRole("button", { name: "Remove author Wes" });
     expect(chip).toHaveTextContent("from:@Wes");
     expect(chip).toHaveAttribute("title", npubEncode(human.pubkey));
-    const input = screen.getByRole("combobox", { name: "Search Buzz" });
+    const input = screen.getByRole("combobox", { name: "Search Mira" });
     expect(input).toHaveValue("");
     expect(input).toHaveFocus();
     expect(chip.closest(".search-field")).toContainElement(input);
@@ -3881,7 +3881,7 @@ it("holds an early Enter while an in: channel is still being found", async () =>
       />,
     );
     await listStarted;
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     await act(async () => releaseList());
@@ -3936,7 +3936,7 @@ it("holds an early Enter while the joined list is still loading", async () => {
       />,
     );
     await listStarted;
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     // Message search and the people lookup settle empty before the list.
@@ -4291,14 +4291,14 @@ it("finds a person by username and starts a DM with them", async () => {
     expect(row).toHaveTextContent("Alice Chen");
     expect(row).toHaveTextContent("@achen · Start a direct message");
     expect(row).toHaveAttribute("aria-selected", "true");
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     expect(
       await screen.findByText("Opening your conversation with Alice Chen…"),
     ).toBeVisible();
     // A second choice while one is opening does not start another.
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     expect(openConversation).not.toHaveBeenCalled();
@@ -5125,7 +5125,7 @@ it("preserves remembered page ranking when inline settings match", async () => {
       "aria-selected",
       "true",
     );
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     expect(open).toHaveBeenCalledOnce();
@@ -5137,8 +5137,8 @@ it("preserves remembered page ranking when inline settings match", async () => {
 });
 
 it.each([
-  ["buzz", "Channels", "buzz-dev", ["IdentityBuzz"]],
-  ["buzz", "People", "Buzz Aldrin", ["IdentityBuzz"]],
+  ["mira", "Channels", "mira-dev", ["IdentityMira"]],
+  ["mira", "People", "Mira Aldrin", ["IdentityMira"]],
   [
     "community",
     "Channels",
@@ -5248,7 +5248,7 @@ it.each([
         .getAllByRole("group")
         .map((element) => element.getAttribute("aria-label"));
       expect(groups.indexOf(group)).toBeLessThan(groups.indexOf("Settings"));
-      const input = screen.getByRole("combobox", { name: "Search Buzz" });
+      const input = screen.getByRole("combobox", { name: "Search Mira" });
       expect(input).toHaveAttribute("aria-activedescendant", lead?.id);
       fireEvent.keyDown(input, { key: "Enter" });
       await waitFor(() =>
@@ -5337,7 +5337,7 @@ it("holds an early Enter for a person still being found over a section holding t
   try {
     render(<Palette />);
     await waitFor(() => expect(t.people).toHaveBeenCalled());
-    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+    fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
       key: "Enter",
     });
     expect(openSection).not.toHaveBeenCalled();
@@ -5369,7 +5369,7 @@ it("excludes proven Huddles but keeps ordinary hits after mutable metadata chang
       ["P", viewer.pubkey],
       [
         "about",
-        "Buzz Huddle (buzz.huddles/v1)\nparent:00000000-0000-4000-8000-000000000001",
+        "Mira Huddle (buzz.huddles/v1)\nparent:00000000-0000-4000-8000-000000000001",
       ],
     ]);
   const discovery = [
@@ -5384,7 +5384,7 @@ it("excludes proven Huddles but keeps ordinary hits after mutable metadata chang
         ["channel_type", "stream"],
         [
           "about",
-          "Buzz Huddle (buzz.huddles/v1)\nparent:00000000-0000-4000-8000-000000000001",
+          "Mira Huddle (buzz.huddles/v1)\nparent:00000000-0000-4000-8000-000000000001",
         ],
       ],
     }),
@@ -5456,7 +5456,7 @@ it("withholds unknown metadata, then reveals unproven legacy rooms as ordinary d
             ["private"],
             [
               "about",
-              "Buzz Huddle (buzz.huddles/v1)\nparent:00000000-0000-4000-8000-000000000001",
+              "Mira Huddle (buzz.huddles/v1)\nparent:00000000-0000-4000-8000-000000000001",
             ],
           ]),
           metadata(relay, "ordinary", "Ordinary"),

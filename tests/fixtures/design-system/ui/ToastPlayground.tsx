@@ -35,7 +35,7 @@ const samples: [Sample, ...Sample[]] = [
   {
     label: "Information",
     title: "Update available",
-    description: "Restart Buzz when you’re ready to use the latest version.",
+    description: "Restart Mira when you’re ready to use the latest version.",
     tone: "info",
     action: "Restart",
     dismissible: true,

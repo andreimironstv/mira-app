@@ -263,7 +263,7 @@ export function ColorPage() {
 
       <Note>
         The original design exploration covered light mode. Dark values were
-        authored for Buzz. Use the appearance control in the navigation header
+        authored for Mira. Use the appearance control in the navigation header
         to compare both modes, and report combinations that are hard to read.
       </Note>
     </>

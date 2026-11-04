@@ -86,7 +86,7 @@ test("CLI help and errors are readable text with appropriate exit codes", () => 
   assert.doesNotMatch(help.stdout, /\\n/);
   assert.match(
     help.stdout,
-    /sign DIST_DIRECTORY\s+Sign with your saved Buzz human identity/,
+    /sign DIST_DIRECTORY\s+Sign with your saved Mira human identity/,
   );
   assert.doesNotMatch(help.stdout, /KEY_FILE/);
   const error = cli("plugin", "unknown");

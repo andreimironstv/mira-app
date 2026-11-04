@@ -73,7 +73,7 @@ export async function buildApp(
         ...(builderlabLogin
           ? {
               "import.meta.env.VITE_BUZZ_BUILDERLAB_URL":
-                '"https://app.builderlab.xyz"',
+                '"https://account.mira-ai.ro"',
             }
           : {}),
         ...(developmentReact ? { "import.meta.env.DEV": "true" } : {}),

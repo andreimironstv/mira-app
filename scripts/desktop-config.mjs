@@ -27,7 +27,7 @@ export function options(args, names) {
 // Development launches keep their own app storage, copied once from the
 // installed app's, so they never take or block it, but share its Agents folder
 // (see `src-tauri/src/sign_out/legacy_identifier.rs`).
-const DEV_IDENTIFIER = "xyz.block.buzz.desktop.dev";
+const DEV_IDENTIFIER = "ro.miraai.mira.desktop.dev";
 
 export function desktopOverlay(root) {
   const config = { identifier: DEV_IDENTIFIER };

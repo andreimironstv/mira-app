@@ -23,7 +23,7 @@ const button = (page, name) => page.getByRole("button", { name, exact: true });
 const state = (page) =>
   page.evaluate(() => window.fixtureNavigation.snapshot());
 
-test("Buzz channel and message links render, reveal verified targets, and preserve navigation history", async ({
+test("Mira channel and message links render, reveal verified targets, and preserve navigation history", async ({
   page,
   app,
 }) => {
@@ -620,7 +620,7 @@ test("thread and detail tabs preserve drafts, scroll, focus and local-detail lif
   await expect(dock).toHaveCount(0);
 });
 
-test("a mixed-case Buzz scheme activates in-app instead of falling through to an external tab", async ({
+test("a mixed-case Mira scheme activates in-app instead of falling through to an external tab", async ({
   page,
   app,
 }) => {

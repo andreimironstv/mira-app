@@ -145,7 +145,7 @@ fn send_request<R: Runtime>(app: &AppHandle<R>, script: &str) -> bool {
         .expect("Browser session IDs are JSON strings");
     let script = format!("{{ const browserSessionId = {browser};\n{script}\n}}");
     if let Err(error) = window.eval(script) {
-        eprintln!("Could not send Buzz tab request: {error}");
+        eprintln!("Could not send Mira tab request: {error}");
         return false;
     }
     true
@@ -204,7 +204,7 @@ fn install_tab_keys<R: Runtime>(app: &AppHandle<R>) {
         if let Some(token) = token {
             *slot.borrow_mut() = Some(TabKeys(token));
         } else {
-            eprintln!("Could not install Buzz tab keys; using menu accelerators");
+            eprintln!("Could not install Mira tab keys; using menu accelerators");
         }
     });
 }

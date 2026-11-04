@@ -6,11 +6,11 @@ import { createNativeBackend } from "./native";
 
 vi.mock("@tauri-apps/api/core", () => ({ invoke: vi.fn() }));
 
-const API = "https://app.builderlab.xyz/api/goose";
+const API = "https://account.mira-ai.ro/api/goose";
 type Reply = { status?: number; body: unknown };
 
 beforeEach(() =>
-  vi.stubEnv("VITE_BUZZ_BUILDERLAB_URL", "https://app.builderlab.xyz"),
+  vi.stubEnv("VITE_BUZZ_BUILDERLAB_URL", "https://account.mira-ai.ro"),
 );
 afterEach(() => vi.unstubAllEnvs());
 
@@ -125,7 +125,7 @@ it("forwards only allowlisted fields to the configured Builderlab", async () => 
     "/v1/buzz/communities/archive": { body: { community: { id: "c" } } },
   });
   await signIn();
-  expect(backend.origin).toBe("https://app.builderlab.xyz");
+  expect(backend.origin).toBe("https://account.mira-ai.ro");
   await backend.send("archive", { community_id: "c", extra: "dropped" });
   expect(requests.at(-1)).toEqual({
     url: `${API}/v1/buzz/communities/archive`,
@@ -133,7 +133,7 @@ it("forwards only allowlisted fields to the configured Builderlab", async () => 
     headers: {
       "Content-Type": "application/json",
       "X-BB-Session-Credential": "token",
-      Origin: "https://app.builderlab.xyz",
+      Origin: "https://account.mira-ai.ro",
     },
     body: JSON.stringify({ community_id: "c" }),
   });
@@ -347,7 +347,7 @@ const challenge = {
   challenge_id: "x",
   nonce: "n",
   verification_code: "123456",
-  origin: "https://app.builderlab.xyz",
+  origin: "https://account.mira-ai.ro",
   expires_at: "2030",
 };
 
@@ -389,7 +389,7 @@ it("verifies a signed binding with the session that requested it", async () => {
     JSON.parse(
       String(requests.find(({ url }) => url.endsWith("/challenge"))?.body),
     ),
-  ).toEqual({ origin: "https://app.builderlab.xyz" });
+  ).toEqual({ origin: "https://account.mira-ai.ro" });
   release();
   await expect(binding).resolves.toEqual({
     status: 200,

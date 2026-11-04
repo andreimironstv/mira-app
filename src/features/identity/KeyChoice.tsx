@@ -43,7 +43,7 @@ export function KeyChoice({
             Set up your key
           </h1>
           <p className="text-body text-subtle">
-            Buzz signs everything you do with a private key kept on this device.
+            Mira signs everything you do with a private key kept on this device.
             {backups?.length === 0 &&
               " We didn’t find a backed-up key for this account, so let’s make one."}{" "}
             An encrypted copy is backed up to your account, and Block can use it

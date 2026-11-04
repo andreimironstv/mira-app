@@ -250,7 +250,7 @@ ${workspaceComboboxCode}`}
       <Section title="Implementation rules">
         <ul className="list-disc ps-5 space-y-3 text-body text-secondary">
           <li>
-            Use existing Buzz type, color, radius, and spacing roles. Default
+            Use existing Mira type, color, radius, and spacing roles. Default
             fields use text-body and radius-control; labels use text-label-sm.
           </li>
           <li>
@@ -332,7 +332,7 @@ ${workspaceComboboxCode}`}
         <p className="text-body text-secondary">
           Auto-growing textareas, multi-select chips, and search inside a popup
           are deferred. Block UI’s form references are currently marked
-          Unverified; Buzz retains its own foundations and Base UI behavior.
+          Unverified; Mira retains its own foundations and Base UI behavior.
         </p>
       </Section>
       <p className="text-body-sm text-secondary">

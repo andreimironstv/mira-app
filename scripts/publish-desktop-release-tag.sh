@@ -13,7 +13,7 @@ version="$1"
 target_sha="$2"
 repo="${GITHUB_REPOSITORY:-}"
 
-[[ "$repo" == "block/buzz-app" ]] || fail "release tags are restricted to block/buzz-app"
+[[ "$repo" == "andreimironstv/mira-app" ]] || fail "release tags are restricted to andreimironstv/mira-app"
 [[ "$version" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-beta\.[1-9][0-9]*)?$ ]] || \
   fail "'$version' is not a release version (expected X.Y.Z or X.Y.Z-beta.N)"
 [[ "$target_sha" =~ ^[0-9a-f]{40}$ ]] || fail "'$target_sha' is not a full commit SHA"
@@ -51,7 +51,7 @@ tag="desktop-v$version"
 tag_object_sha="$(
   gh api --method POST "repos/$repo/git/tags" \
     -f tag="$tag" \
-    -f message="Buzz desktop $version" \
+    -f message="Mira desktop $version" \
     -f object="$target_sha" \
     -f type=commit \
     --jq .sha

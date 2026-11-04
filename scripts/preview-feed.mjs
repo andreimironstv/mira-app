@@ -10,9 +10,9 @@ import { join } from "node:path";
 
 // Must match the key and endpoint embedded by the updater-enabled release build (#312).
 const publicKeyBase64 =
-  "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJDQjQ2RDZFMUEwOERFMTEKUldRUjNnZ2FibTIwTE10QkVaMzFyYkZlY0R4ajhmbFBjdncvNVRCYnNpSm9kaFNBaHQzemZlZHkK";
+  "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDI2REREOEMwQjZGMEFEOUUKUldTZXJmQzJ3TmpkSm5GbzNEbHFvL0d1ZWZCSWhqY2c5cG5iVWF5cWVBWVdjTzF0VWg4eklKQlcK";
 const endpoint =
-  "https://github.com/block/buzz-app/releases/download/preview-feed/latest.json";
+  "https://github.com/andreimironstv/mira-app/releases/download/preview-feed/latest.json";
 const [command, version, assetDir, manifestPath, binaryPath, currentPath] =
   process.argv.slice(2);
 const versionPattern =
@@ -20,10 +20,10 @@ const versionPattern =
 const release = `v${version}`;
 // Linux entries are installer-specific: a deb install must never receive an AppImage.
 const assets = {
-  "darwin-aarch64": `Buzz_${version}_aarch64.app.tar.gz`,
-  "windows-x86_64": `Buzz_${version}_x64_unsigned.exe`,
-  "linux-x86_64-deb": `Buzz_${version}_amd64.deb`,
-  "linux-x86_64-appimage": `Buzz_${version}_x86_64.AppImage`,
+  "darwin-aarch64": `Mira_${version}_aarch64.app.tar.gz`,
+  "windows-x86_64": `Mira_${version}_x64_unsigned.exe`,
+  "linux-x86_64-deb": `Mira_${version}_amd64.deb`,
+  "linux-x86_64-appimage": `Mira_${version}_x86_64.AppImage`,
 };
 const usage =
   "Usage: preview-feed.mjs generate|verify <version> <asset-dir> <manifest-file> <macos-app-binary-file> [current-manifest-file]";
@@ -142,7 +142,7 @@ const platforms = Object.fromEntries(
       target,
       {
         signature: readFileSync(`${path}.sig`, "utf8").trim(),
-        url: `https://github.com/block/buzz-app/releases/download/${release}/${asset}`,
+        url: `https://github.com/andreimironstv/mira-app/releases/download/${release}/${asset}`,
       },
     ];
   }),
@@ -162,7 +162,7 @@ if (command === "generate") {
     `${JSON.stringify(
       {
         version,
-        notes: `Buzz ${version} desktop preview`,
+        notes: `Mira ${version} desktop preview`,
         pub_date: new Date().toISOString(),
         platforms,
       },

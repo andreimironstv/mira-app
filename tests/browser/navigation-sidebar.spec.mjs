@@ -680,10 +680,10 @@ test("Messages reselects the latest sidebar channel and keyboard page search foc
     exact: true,
   });
   await expect(composer).toBeVisible();
-  await button(page, "Search Buzz").focus();
+  await button(page, "Search Mira").focus();
   await page.keyboard.press("Enter");
-  const dialog = page.getByRole("dialog", { name: "Search Buzz", exact: true });
-  const search = dialog.getByRole("combobox", { name: "Search Buzz" });
+  const dialog = page.getByRole("dialog", { name: "Search Mira", exact: true });
+  const search = dialog.getByRole("combobox", { name: "Search Mira" });
   await expect(search).toBeFocused();
   await search.pressSequentially("Messages");
   await expect(pageChoice(dialog, "Messages")).toHaveAttribute(

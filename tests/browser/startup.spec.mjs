@@ -320,17 +320,17 @@ for (const theme of ["light", "dark"]) {
     try {
       await page.goto(app.origin, { waitUntil: "commit" });
       await expect.poll(() => requested).toBe(true);
-      const launch = page.getByRole("status", { name: "Opening Buzz" });
+      const launch = page.getByRole("status", { name: "Opening Mira" });
       await expect(launch).toBeVisible();
       await expect(launch).toHaveCSS(
         "background-color",
         theme === "dark" ? "rgb(16, 16, 16)" : "rgb(241, 241, 242)",
       );
-      await expect(launch.getByRole("img", { name: "Buzz" })).toHaveCSS(
+      await expect(launch.getByRole("img", { name: "Mira" })).toHaveCSS(
         "filter",
         theme === "dark" ? "invert(1)" : "none",
       );
-      const image = launch.getByRole("img", { name: "Buzz" });
+      const image = launch.getByRole("img", { name: "Mira" });
       const displayedAsset = () =>
         image.evaluate((element) =>
           element.currentSrc ? new URL(element.currentSrc).pathname : "",
@@ -355,7 +355,7 @@ for (const theme of ["light", "dark"]) {
       gate.release();
     }
     await expect(
-      page.getByRole("status", { name: "Opening Buzz" }),
+      page.getByRole("status", { name: "Opening Mira" }),
     ).toHaveCount(0);
   });
 }
@@ -382,7 +382,7 @@ test("launch waits for the initial sidebar and message history before revealing 
   });
   try {
     await page.goto(app.origin, { waitUntil: "domcontentloaded" });
-    const launch = page.getByRole("status", { name: "Opening Buzz" });
+    const launch = page.getByRole("status", { name: "Opening Mira" });
     await expect(launch).toBeVisible();
     await expect(page.locator("#root")).toHaveAttribute("inert", "");
     await expect(page.locator("#root")).toHaveAttribute("aria-hidden", "true");
@@ -464,7 +464,7 @@ test("cached workspace remains usable when live reconnect stalls", async ({
       page.getByRole("region", { name: "Channel message history" }),
     ).toContainText("primary alpha message 0");
     await expect(
-      page.getByRole("status", { name: "Opening Buzz" }),
+      page.getByRole("status", { name: "Opening Mira" }),
     ).toHaveCount(0);
   } finally {
     connection.release();

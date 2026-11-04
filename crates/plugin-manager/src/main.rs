@@ -13,7 +13,7 @@ const HELP: &str = "buzzodz [--home ABSOLUTE_PATH] [--profile NAME] plugin COMMA
 Commands:
   init DIRECTORY ID NAME   Create a page-plugin source project
   build DIRECTORY          Run the project's pnpm build script
-  sign DIST_DIRECTORY       Sign with your saved Buzz human identity
+  sign DIST_DIRECTORY       Sign with your saved Mira human identity
   install DIRECTORY        Install a built artifact (new plugins start disabled)
   reload ID                Reload a folder plugin, preserving its enabled state
   list                     List installed pages and their enabled state
@@ -282,7 +282,7 @@ export default defineConfig({
     enforce: 'pre',
     resolveId(id) {
       if (/^react(?:-dom)?(?:\/|$)/.test(id) || id === '@buzz/author' || id === '@deepseek-ai/cordis' || id.startsWith('@deepseek-ai/cordis/')) {
-        throw new Error('Host capabilities are supplied by Buzz; use type-only imports');
+        throw new Error('Host capabilities are supplied by Mira; use type-only imports');
       }
     },
     generateBundle(_options, bundle) {

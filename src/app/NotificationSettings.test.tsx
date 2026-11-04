@@ -400,7 +400,7 @@ it("repeated identical permission failures retain feedback without leaving Setti
   await act(() => vi.advanceTimersByTimeAsync(0));
   const notice = () =>
     screen.getByRole("dialog", {
-      name: "Buzz couldn’t send the notification",
+      name: "Mira couldn’t send the notification",
     });
   expect(notice()).toHaveTextContent("Permission unavailable");
   await act(() => vi.advanceTimersByTimeAsync(9000));

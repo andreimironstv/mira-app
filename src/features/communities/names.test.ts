@@ -44,7 +44,7 @@ function setup() {
       )
         return held;
       if (url.endsWith("/icon-info"))
-        return Response.json({ name: "Buzz Relay" });
+        return Response.json({ name: "Mira Relay" });
       throw new Error("Unexpected request");
     }),
   );
@@ -193,7 +193,7 @@ it("filters untrusted names and keeps generic relay metadata from replacing a us
     {},
     "",
     " ",
-    "Buzz Relay",
+    "Mira Relay",
     "a".repeat(101),
     "line\nbreak",
     "control\u0000name",

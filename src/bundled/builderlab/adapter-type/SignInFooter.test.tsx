@@ -200,7 +200,7 @@ it("keeps early sign-in passive, then offers guidance and cancellation without a
   expect(screen.queryByRole("button", { name: "Cancel sign-in" })).toBeNull();
   await act(() => vi.advanceTimersByTimeAsync(1));
   expect(subtitle).toHaveTextContent(
-    "Finish signing in to Builderlab in your browser, then return to Buzz.",
+    "Finish signing in to Builderlab in your browser, then return to Mira.",
   );
   expect(screen.getAllByRole("status")).toEqual([subtitle]);
   expect(screen.queryByText(/Use your Builderlab account/)).toBeNull();
@@ -363,7 +363,7 @@ it("loads the pane after a late browser callback and verified exchange without w
   });
   await act(() => vi.advanceTimersByTimeAsync(30_000));
   expect(screen.getByRole("status")).toHaveTextContent(
-    "Finish signing in to Builderlab in your browser, then return to Buzz.",
+    "Finish signing in to Builderlab in your browser, then return to Mira.",
   );
   await act(async () => {
     callback.resolve({ parameters: [["code", "late-code"]] });

@@ -340,7 +340,7 @@ test("edge controls follow scroll and reveal the nearest unread without selectio
   await page.mouse.wheel(0, -10000);
   await expectCueHidden(page, "above");
   await expect(cue(page, "below")).toBeVisible();
-  await page.getByRole("button", { name: "Search Buzz", exact: true }).focus();
+  await page.getByRole("button", { name: "Search Mira", exact: true }).focus();
   await page.keyboard.press("Tab"); // Set keyboard modality from visible chrome, not an offscreen row.
   await cue(page, "below").focus();
   await expect(cue(page, "below")).toHaveCSS("outline-width", "2px");

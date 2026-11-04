@@ -144,7 +144,7 @@ export const COMPONENTS: readonly ComponentDefinition[] = [
     name: "Calendar",
     purpose: "Choose a date using a month grid.",
     behavior:
-      "React DayPicker owns calendar arithmetic and keyboard navigation; Buzz owns styling and Tabler navigation icons.",
+      "React DayPicker owns calendar arithmetic and keyboard navigation; Mira owns styling and Tabler navigation icons.",
     variants: ["single date", "selected", "today", "disabled dates"],
     status: "proposed",
     collection: "components",
@@ -170,7 +170,7 @@ export const COMPONENTS: readonly ComponentDefinition[] = [
     purpose:
       "Compact feedback without moving the page or hiding recovery actions.",
     behavior:
-      "Sonner owns bottom-right placement, announcements, expiry and swipe dismissal. Buzz supplies themed content and an expanded, scrollable recovery stack. F6 focuses notifications.",
+      "Sonner owns bottom-right placement, announcements, expiry and swipe dismissal. Mira supplies themed content and an expanded, scrollable recovery stack. F6 focuses notifications.",
     variants: ["transient", "actionable", "dismissible"],
     status: "core",
     collection: "components",
@@ -343,7 +343,7 @@ export const COMPONENTS: readonly ComponentDefinition[] = [
     slug: "flex-workspace",
     name: "Flex Layout",
     purpose:
-      "Compare FlexLayout docking with the Dockview playground. Drag and resize blank panels using the library’s standard controls, with Buzz colors and rounded tabs. There are no custom drag handles or placement restrictions.",
+      "Compare FlexLayout docking with the Dockview playground. Drag and resize blank panels using the library’s standard controls, with Mira colors and rounded tabs. There are no custom drag handles or placement restrictions.",
     behavior: "FlexLayout tabs, docking, and resizing.",
     variants: ["native docking"],
     status: "proposed",
@@ -376,7 +376,7 @@ export const COMPONENTS: readonly ComponentDefinition[] = [
     variants: ["default"],
     status: "proposed",
     collection: "components",
-    owner: "Buzz Settings",
+    owner: "Mira Settings",
     source: "shared/design-system/ui/ThemePicker.tsx",
     baseUi: [],
     composes: ["field", "radio-group"],
@@ -390,7 +390,7 @@ export const COMPONENTS: readonly ComponentDefinition[] = [
     variants: ["default"],
     status: "proposed",
     collection: "components",
-    owner: "Buzz Settings",
+    owner: "Mira Settings",
     source: "shared/design-system/ui/KeyboardShortcut.tsx",
     baseUi: [],
     composes: [],
@@ -405,7 +405,7 @@ export const COMPONENTS: readonly ComponentDefinition[] = [
     variants: ["rows", "form", "cards"],
     status: "proposed",
     collection: "components",
-    owner: "Buzz Settings",
+    owner: "Mira Settings",
     source: "shared/design-system/ui/SettingsGroup.tsx",
     baseUi: [],
     composes: [],
@@ -429,7 +429,7 @@ export const COMPONENTS: readonly ComponentDefinition[] = [
     ],
     status: "proposed",
     collection: "components",
-    owner: "Buzz Settings",
+    owner: "Mira Settings",
     source: "shared/design-system/ui/PreferenceRow.tsx",
     baseUi: [],
     composes: [],
@@ -486,7 +486,7 @@ export const COMPONENTS: readonly ComponentDefinition[] = [
     purpose:
       "Run a primary action and open its options or related actions from an attached menu.",
     behavior:
-      "Composes Buzz Button and Menu as one joined capsule, including while the menu is open. The caller owns option changes and related actions; the menu is unavailable while the action loads.",
+      "Composes Mira Button and Menu as one joined capsule, including while the menu is open. The caller owns option changes and related actions; the menu is unavailable while the action loads.",
     variants: [
       "subtle (default)",
       "outline: halves share one stroke",
@@ -507,7 +507,7 @@ export const COMPONENTS: readonly ComponentDefinition[] = [
     name: "IconButton",
     purpose:
       "Trigger an action with an icon. Give every IconButton an accessible label that describes the action.",
-    behavior: "Composes Buzz Button.",
+    behavior: "Composes Mira Button.",
     variants: [
       "prominent",
       "subtle",

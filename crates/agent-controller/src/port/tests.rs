@@ -541,7 +541,7 @@ fn lists_old_buzz_teams_with_their_members_apart_from_agents() {
         .unwrap();
     assert_eq!(
         (nameless.name.as_str(), nameless.instructions.as_str()),
-        ("Team from old Buzz", "")
+        ("Team from old Mira", "")
     );
     // Built in to old Buzz, by its flag, or deleted there: no row; its members
     // are plain agents.
@@ -691,7 +691,7 @@ fn unreadable_teams_warn_and_leave_every_agent_importable() {
 #[test]
 fn team_names_are_trimmed_bounded_and_never_blank() {
     assert_eq!(team_name("  Night  "), "Night");
-    assert_eq!(team_name(" \n "), "Team from old Buzz");
+    assert_eq!(team_name(" \n "), "Team from old Mira");
     assert_eq!(team_name(&"a".repeat(130)), "a".repeat(120));
     // 119 units, then a two-unit character that would cross 120: dropped whole.
     assert_eq!(

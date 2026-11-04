@@ -239,8 +239,8 @@ test("Appearance changes and restores both modes, shared keyboard controls, dial
     }
     // The workspace behind Settings is inert; search from the workspace.
     await closeSettings(page);
-    await button(page, "Search Buzz").click();
-    const dialog = page.getByRole("dialog", { name: "Search Buzz" });
+    await button(page, "Search Mira").click();
+    const dialog = page.getByRole("dialog", { name: "Search Mira" });
     await expect(dialog).toBeVisible();
     await expect(dialog).toHaveCSS(
       "background-color",

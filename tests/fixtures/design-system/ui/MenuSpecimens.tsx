@@ -954,7 +954,7 @@ export function PopoverSpecimen() {
         <p className="text-body text-secondary">
           Small action menus use 8px outer corners and a 4px inset. Row corners
           subtract the inset and 1px border, giving 3px. Their quieter hover
-          fill uses Buzz’s subtle-hover color, with immediate pointer and
+          fill uses Mira’s subtle-hover color, with immediate pointer and
           keyboard feedback. The account menu and a short channel action list
           use this treatment.
         </p>

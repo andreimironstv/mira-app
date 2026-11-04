@@ -217,7 +217,7 @@ export function DesignSystemLayout({ children }: { children?: ReactNode }) {
             onClick={closeNavigation}
             className="design-system-nav-title design-system-nav-link text-body text-primary"
           >
-            Buzz Design System
+            Mira Design System
           </Link>
           <IconButton
             aria-label={scheme === "dark" ? "Use light mode" : "Use dark mode"}

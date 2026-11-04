@@ -95,7 +95,7 @@ async function harness() {
   });
   shortcuts.registerHost({
     id: "global-search",
-    title: "Search Buzz",
+    title: "Search Mira",
     binding: { key: "k", mod: true },
     order: 70,
     run: runs.search,
@@ -185,7 +185,7 @@ it("lists live host and plugin shortcuts without search or intro text and follow
     const groups = screen
       .getAllByRole("heading", { level: 3 })
       .map((heading) => heading.textContent);
-    expect(groups).toEqual(["Buzz", "Shortcut counter", "Terminal"]);
+    expect(groups).toEqual(["Mira", "Shortcut counter", "Terminal"]);
     expect(
       screen
         .getAllByRole("article")
@@ -195,7 +195,7 @@ it("lists live host and plugin shortcuts without search or intro text and follow
         ),
     ).toEqual([
       "Increase interface size",
-      "Search Buzz",
+      "Search Mira",
       "Open Settings",
       "First action",
       "Increment shortcut counter",
@@ -220,7 +220,7 @@ it("lists live host and plugin shortcuts without search or intro text and follow
     expect(screen.queryByRole("searchbox")).not.toBeInTheDocument();
     expect(
       screen.queryByText(
-        "Every shortcut from Buzz and your enabled plugins. Choose Change, then press the new keys; Escape cancels. Saved on this device.",
+        "Every shortcut from Mira and your enabled plugins. Choose Change, then press the new keys; Escape cancels. Saved on this device.",
       ),
     ).not.toBeInTheDocument();
 
@@ -286,13 +286,13 @@ it("presents actual host registrations in navigation, interface sizing, search/s
       "Increase interface size",
       "Decrease interface size",
       "Reset interface size",
-      "Search Buzz",
+      "Search Mira",
       "Search this conversation",
       "Open Settings",
       "Show keyboard shortcuts",
       "Focus message box",
       "Focus next pane",
-      "Reload Buzz",
+      "Reload Mira",
     ]);
   } finally {
     cleanup();
@@ -338,7 +338,7 @@ it("orders plugin rows by metadata then contribution key without merging duplica
         ),
     ).toEqual([
       "Increase interface size",
-      "Search Buzz",
+      "Search Mira",
       "Open Settings",
       "First action",
       "Increment shortcut counter",
@@ -420,7 +420,7 @@ it("captures a chord, refuses conflicts and bare keys, applies overrides to the 
     // Conflicts are reported by title and owner; nothing is saved or fired.
     fireEvent.keyDown(input, { key: "k", ctrlKey: true });
     expect(screen.getByRole("alert")).toHaveTextContent(
-      "Ctrl+K is already used by Search Buzz (Buzz).",
+      "Ctrl+K is already used by Search Mira (Mira).",
     );
     expect(screen.getByRole("alert")).toHaveClass("text-standard");
     expect(input).toHaveAttribute(
@@ -841,7 +841,7 @@ it("refuses close and quit chords only in the desktop build", async () => {
     for (const key of ["q", "w"]) {
       fireEvent.keyDown(capture(title), { key, metaKey: true });
       expect(screen.getByRole("alert")).toHaveTextContent(
-        `⌘${key.toUpperCase()} is reserved for switching or closing tabs and quitting Buzz. Try another.`,
+        `⌘${key.toUpperCase()} is reserved for switching or closing tabs and quitting Mira. Try another.`,
       );
     }
     expect(h.bindings.snapshot().overrides).toEqual({});
@@ -904,12 +904,12 @@ it("marks rows that share an effective chord once a plugin is re-enabled, and cl
     // A host chord shared with a plugin is marked on both rows as well.
     act(() => h.bindings.set("global-search", { key: "j", mod: true }));
     expect(
-      within(row("Search Buzz")).getByText(/^Also used by/),
+      within(row("Search Mira")).getByText(/^Also used by/),
     ).toHaveTextContent(
       "Also used by Increment shortcut counter (Shortcut counter), Toggle channel terminal (Terminal)",
     );
     act(() => h.bindings.set("global-search", null));
-    expect(within(row("Search Buzz")).queryByText(/Also used by/)).toBeNull();
+    expect(within(row("Search Mira")).queryByText(/Also used by/)).toBeNull();
     await user.click(
       screen.getByRole("button", { name: `Reset shortcut for ${counter}` }),
     );
@@ -937,7 +937,7 @@ it("keeps the host group distinct from a plugin whose manifest id is buzz", asyn
         plugins={catalog([
           info("example.counter", "Shortcut counter"),
           info("buzz.terminal", "Terminal"),
-          info("buzz", "Buzz plugin"),
+          info("buzz", "Mira plugin"),
         ])}
         apple
       />,
@@ -946,7 +946,7 @@ it("keeps the host group distinct from a plugin whose manifest id is buzz", asyn
       screen
         .getAllByRole("heading", { level: 3 })
         .map((heading) => heading.textContent),
-    ).toEqual(["Buzz", "Buzz plugin", "Shortcut counter", "Terminal"]);
+    ).toEqual(["Mira", "Mira plugin", "Shortcut counter", "Terminal"]);
     expect(row("Ping")).toBeInTheDocument();
     expect(error).not.toHaveBeenCalled();
   } finally {
@@ -1015,7 +1015,7 @@ it("shows desktop Close as reserved and read-only while other actions remain edi
       />,
     );
     const closeRow = within(row("Close tab"));
-    expect(closeRow.getByText("Reserved by Buzz")).toBeVisible();
+    expect(closeRow.getByText("Reserved by Mira")).toBeVisible();
     expect(closeRow.getByText("Control W")).toBeInTheDocument();
     expect(closeRow.queryByRole("button")).not.toBeInTheDocument();
     expect(change("Open Settings")).toBeEnabled();

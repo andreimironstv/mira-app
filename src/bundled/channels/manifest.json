@@ -2,7 +2,7 @@
   "id": "buzz.channels",
   "name": "Channels",
   "apiVersion": 1,
-  "description": "Navigate channels and hold conversations in Buzz.",
+  "description": "Navigate channels and hold conversations in Mira.",
   "discovery": {
     "category": "communication",
     "tags": ["Core", "Essentials", "messaging"]

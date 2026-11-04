@@ -19,7 +19,7 @@ impl NavigationPolicy {
         let url = Url::parse(target)
             .map_err(|_| "Enter a complete http:// or https:// URL".to_string())?;
         if !matches!(url.scheme(), "http" | "https") || url.host_str().is_none() {
-            return Err("Buzz Browser supports HTTP and HTTPS websites only".into());
+            return Err("Mira Browser supports HTTP and HTTPS websites only".into());
         }
         if !url.username().is_empty() || url.password().is_some() {
             return Err("URLs containing credentials are not supported".into());
@@ -32,7 +32,7 @@ impl NavigationPolicy {
             .as_ref()
             .is_some_and(|development| development.origin() == url.origin())
         {
-            return Err("Buzz application URLs cannot be opened as websites".into());
+            return Err("Mira application URLs cannot be opened as websites".into());
         }
         if url.as_str().len() > MAXIMUM_URL_BYTES {
             return Err("Browser URLs cannot exceed 2048 bytes after URL encoding".into());

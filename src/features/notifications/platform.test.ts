@@ -58,7 +58,7 @@ it("browser activation focuses and routes once; close/dispose releases callbacks
   expect(t.host.focus).toHaveBeenCalledTimes(1);
   expect(t.shown[0]?.onclick).toBeNull();
   await t.platform.show(
-    { id: "two", title: "Buzz", body: "New mention" },
+    { id: "two", title: "Mira", body: "New mention" },
     activate,
     vi.fn(),
   );
@@ -72,7 +72,7 @@ it("bounded presentation closes the old banner instead of stranding its target",
   const t = setup();
   for (let i = 0; i < 129; i++)
     await t.platform.show(
-      { id: String(i), title: "Buzz", body: "New mention" },
+      { id: String(i), title: "Mira", body: "New mention" },
       () => {},
       vi.fn(),
     );
@@ -89,7 +89,7 @@ it("denial and a native WebView never silently use browser notification delivery
   expect(await t.platform.permission()).toBe("denied");
   await expect(
     t.platform.show(
-      { id: "one", title: "Buzz", body: "New mention" },
+      { id: "one", title: "Mira", body: "New mention" },
       () => {},
       vi.fn(),
     ),
@@ -107,7 +107,7 @@ it("asynchronous browser errors report once and retire every callback without re
     failed = vi.fn(),
     activate = vi.fn();
   await t.platform.show(
-    { id: "failed", title: "Buzz", body: "New mention" },
+    { id: "failed", title: "Mira", body: "New mention" },
     activate,
     failed,
   );

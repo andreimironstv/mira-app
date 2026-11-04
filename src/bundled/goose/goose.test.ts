@@ -73,7 +73,7 @@ afterEach(() => {
 });
 
 describe("GooseProcess", () => {
-  it("starts goose-acp without the app's Buzz identity or goose choice", async () => {
+  it("starts goose-acp without the app's Mira identity or goose choice", async () => {
     const { process } = await start();
     expect(process.options.cwd).toBe("/work");
     expect(process.options.env).toMatchObject({
@@ -100,7 +100,7 @@ describe("GooseProcess", () => {
     }
   });
 
-  it("refuses a goose that cannot serve the Buzz tools", async () => {
+  it("refuses a goose that cannot serve the Mira tools", async () => {
     const fake = fakeSpawn({ http: false });
     await expect(
       GooseProcess.start(fake.spawn, { cwd: "/work" }),
@@ -108,9 +108,9 @@ describe("GooseProcess", () => {
     expect(fake.geese[0]?.killed).toBe(true);
   });
 
-  it("opens a session with its own Buzz MCP server and its system prompt", async () => {
+  it("opens a session with its own Mira MCP server and its system prompt", async () => {
     const { open, process, fake } = await start();
-    const session = await open({ systemPrompt: "Be Buzz" });
+    const session = await open({ systemPrompt: "Be Mira" });
     const buzz = {
       type: "http",
       name: "buzz",
@@ -130,7 +130,7 @@ describe("GooseProcess", () => {
         },
       },
     ]);
-    expect(process.prompts.get(session.id)).toBe("Be Buzz");
+    expect(process.prompts.get(session.id)).toBe("Be Mira");
   });
 
   it("gives each session its own server, closed with it", async () => {
@@ -157,7 +157,7 @@ describe("GooseProcess", () => {
     await expect(settled).resolves.toEqual({
       ok: false,
       error:
-        "Buzz stopped this session's tools: another program used their token",
+        "Mira stopped this session's tools: another program used their token",
     });
     expect(session.open).toBe(false);
     await flush();
@@ -180,7 +180,7 @@ describe("GooseProcess", () => {
     expect(session.busy).toBe(false);
   });
 
-  it("answers the Buzz tools' MCP messages for the session's conversation", async () => {
+  it("answers the Mira tools' MCP messages for the session's conversation", async () => {
     const tools = vi.fn(ok);
     const { open, process } = await start(tools);
     const session = await open();
@@ -799,7 +799,7 @@ describe("GooseProcess", () => {
   });
 
   it.each(["send", "reply_in_subthread"])(
-    "ends work that acted in Buzz with %s without its closing text",
+    "ends work that acted in Mira with %s without its closing text",
     async (name) => {
       const { open, process } = await start();
       process.hold = true;

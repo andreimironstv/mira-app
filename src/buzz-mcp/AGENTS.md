@@ -1,6 +1,6 @@
-# Buzz tools
+# Mira tools
 
-The tools in this directory are the reference interface for Buzz agents, local
+The tools in this directory are the reference interface for Mira agents, local
 and remote. Remote agents run on another host with similar tools, so a prompt
 or skill that works for a local agent works for a remote one. Change them
 deliberately.
@@ -11,7 +11,7 @@ deliberately.
   behavior in `HANDLERS`.
 - `attention.ts`: the attention tools (`interest_*`, `watch_*`).
 - `solo-worker.ts`: the Solo worker tools (`solo_worker_*`), which ask an
-  owner's Buzz to run its workers; `solo-worker-protocol.ts` is their wire
+  owner's Mira to run its workers; `solo-worker-protocol.ts` is their wire
   contract, pinned by `solo-worker-vectors.json`.
 - `session-tools.ts`: what a session lists, each tool's `load` (`always` or
   `search`), and the server instructions that cover the whole tool set.

@@ -163,7 +163,7 @@ function Content({
       />
       {!sessions.available ? (
         <p className={`${styles.notice} text-body`}>
-          Open Buzz Desktop to use your local shell. The browser cannot start a
+          Open Mira Desktop to use your local shell. The browser cannot start a
           terminal on your computer.
         </p>
       ) : (

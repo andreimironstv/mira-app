@@ -283,7 +283,7 @@ function setup(
       save,
       addTool: (tool: AddedTool) => tools.push(tool),
       wake: (key: string, wake: unknown) => {
-        if (!runs) throw new Error("This copy of Buzz does not run that agent");
+        if (!runs) throw new Error("This copy of Mira does not run that agent");
         woke(key, wake);
       },
     },

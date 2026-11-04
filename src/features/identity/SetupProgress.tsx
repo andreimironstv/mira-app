@@ -9,7 +9,7 @@ export function SetupProgress({ label }: { label: string }) {
         tabIndex={-1}
         className="text-heading text-standard"
       >
-        Setting up Buzz
+        Setting up Mira
       </h1>
       <p
         role="status"

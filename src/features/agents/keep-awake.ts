@@ -62,7 +62,7 @@ export function setKeepAwakePreference(value: KeepAwake): string | null {
     localStorage.setItem(preferenceKey, JSON.stringify(value));
     unsaved = undefined;
   } catch {
-    error = "It works for now, but Buzz will forget it when it restarts.";
+    error = "It works for now, but Mira will forget it when it restarts.";
   }
   window.dispatchEvent(new Event(changedEvent));
   return error;

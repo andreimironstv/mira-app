@@ -331,7 +331,7 @@ pub const BUILDERLAB_APPS_DOMAIN: &str = env!("BUZZ_BUILDERLAB_APPS_DOMAIN");
 /// step with `src/bundled/builderlab/apps/environment.ts`.
 pub fn apps_control_plane(origin: &str) -> Option<&'static str> {
     match origin {
-        "https://app.builderlab.xyz" => Some("https://compose-ctrl.builderlab.xyz"),
+        "https://account.mira-ai.ro" => Some("https://compose-ctrl.builderlab.xyz"),
         "https://app.builderlabstaging.xyz" => Some("https://compose-ctrl.builderlabstaging.xyz"),
         "https://block.builderlab.xyz" => Some("https://compose-ctrl.block.builderlab.xyz"),
         _ => None,
@@ -698,21 +698,21 @@ fn sign_release_from_store<K: AsRef<[u8]>>(
     use bech32::{primitives::decode::CheckedHrpstring, Bech32};
     use buzz_credential_store::Error;
     let bytes = read().map_err(|error| match error {
-        Error::Absent => "Set up your Buzz human identity in the desktop app before signing",
+        Error::Absent => "Set up your Mira human identity in the desktop app before signing",
         Error::Denied => "Secure storage access was denied; unlock it and retry signing",
         Error::Busy => "Secure storage is busy; retry signing shortly",
-        Error::Corrupt => "Saved Buzz human identity is malformed; nothing was changed",
-        _ => "Saved Buzz human identity could not be read from secure storage",
+        Error::Corrupt => "Saved Mira human identity is malformed; nothing was changed",
+        _ => "Saved Mira human identity could not be read from secure storage",
     })?;
     let text = std::str::from_utf8(bytes.as_ref())
-        .map_err(|_| "Saved Buzz human identity is malformed; nothing was changed")?
+        .map_err(|_| "Saved Mira human identity is malformed; nothing was changed")?
         .trim();
     if text.len() != 63
         || !(text.starts_with("nsec1") || text.starts_with("NSEC1"))
         || CheckedHrpstring::new::<Bech32>(text).is_err()
         || SecretKey::parse(text).is_err()
     {
-        return Err("Saved Buzz human identity is malformed; nothing was changed".into());
+        return Err("Saved Mira human identity is malformed; nothing was changed".into());
     }
     sign_release(directory, text)
 }
@@ -774,15 +774,15 @@ fn default_home() -> Result<PathBuf> {
         dirs::data_dir().ok_or("Cannot determine application data directory; set BUZZODZ_HOME")?;
     let (home, older, open): (_, &[_], _) = if cfg!(debug_assertions) {
         (
-            "xyz.block.buzz.desktop.dev",
-            &["xyz.block.buzz.desktop", "dev.local.buzz.foundation"],
-            "Development Buzz has not copied the installed app's storage yet. Run `just desktop` once",
+            "ro.miraai.mira.desktop.dev",
+            &["ro.miraai.mira.desktop", "dev.local.buzz.foundation"],
+            "Development Mira has not copied the installed app's storage yet. Run `just desktop` once",
         )
     } else {
         (
-            "xyz.block.buzz.desktop",
+            "ro.miraai.mira.desktop",
             &["dev.local.buzz.foundation"],
-            "Buzz has not moved its storage to its 1.0 folder yet. Open Buzz once",
+            "Mira has not moved its storage to its 1.0 folder yet. Open Mira once",
         )
     };
     let home = data.join(home);
@@ -860,7 +860,7 @@ impl Manager {
         let mut r: Registry = serde_json::from_str(&text).map_err(err)?;
         if r.version != 1 && r.version != 2 {
             return Err(
-                "Unsupported settings version; use a compatible Buzz or recover settings".into(),
+                "Unsupported settings version; use a compatible Mira or recover settings".into(),
             );
         }
         // These shipped as installable plugins before being bundled. The bundled copy
@@ -1700,7 +1700,7 @@ mod tests {
         .unwrap();
         fs::write(source.join("plugin.js"), "export const saved = true;").unwrap();
         for (error, expected) in [
-            (Error::Absent, "Set up your Buzz human identity"),
+            (Error::Absent, "Set up your Mira human identity"),
             (Error::Denied, "access was denied"),
             (Error::Busy, "busy"),
             (Error::Corrupt, "malformed"),
@@ -1895,7 +1895,7 @@ mod tests {
             "id": "example.page",
             "name": "Example",
             "apiVersion": 1,
-            "description": "Reconcile invoices without leaving Buzz.",
+            "description": "Reconcile invoices without leaving Mira.",
             "discovery": {
                 "category": "finance",
                 "tags": ["accounting", "invoices"],
@@ -1906,7 +1906,7 @@ mod tests {
         assert!(parsed.validate().is_ok());
         assert_eq!(
             parsed.description.as_deref(),
-            Some("Reconcile invoices without leaving Buzz.")
+            Some("Reconcile invoices without leaving Mira.")
         );
         assert_eq!(
             parsed.discovery.as_ref().unwrap().category.as_deref(),
@@ -2250,7 +2250,7 @@ mod tests {
     #[test]
     fn apps_deploy_to_the_sign_in_tenant_only() {
         assert_eq!(
-            super::apps_control_plane("https://app.builderlab.xyz"),
+            super::apps_control_plane("https://account.mira-ai.ro"),
             Some("https://compose-ctrl.builderlab.xyz")
         );
         assert_eq!(

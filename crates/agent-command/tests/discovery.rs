@@ -305,7 +305,7 @@ fn a_sandbox_denied_connection_keeps_the_advertisement() {
         .output()
         .unwrap();
     assert!(!denied.status.success());
-    assert!(!String::from_utf8_lossy(&denied.stderr).contains("No running Buzz"));
+    assert!(!String::from_utf8_lossy(&denied.stderr).contains("No running Mira"));
     assert_eq!(advertised(home).len(), 1);
     assert!(stdout(&helper(home, None, &["tools"])).contains("solo_list"));
 }

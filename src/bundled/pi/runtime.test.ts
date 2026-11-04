@@ -577,7 +577,7 @@ it.each([
   ["send", {}],
   ["reply_in_subthread", { parent: root.id }],
 ])(
-  "runs Pi's Buzz tools in the conversation's thread, and posts nothing more after a final %s",
+  "runs Pi's Mira tools in the conversation's thread, and posts nothing more after a final %s",
   async (name, extra) => {
     const answered = deferred();
     const { host, deliver, settled, published } = setup({

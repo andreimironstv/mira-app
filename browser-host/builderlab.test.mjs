@@ -193,7 +193,7 @@ it("forwards the exact deletion tuple for both admission and same-UUID replay", 
   await signIn(h);
   const request = {
     community_id: "community",
-    host: "North.communities.buzz.xyz",
+    host: "North.workspace.mira-ai.ro",
     request_id: "11111111-1111-4111-8111-111111111111",
     acknowledgement_version: 1,
     owner_pubkey: "must-not-pass",
@@ -265,7 +265,7 @@ it.each([
   await expect(
     h.builderlab.call("delete", {
       community_id: "community",
-      host: "north.communities.buzz.xyz",
+      host: "north.workspace.mira-ai.ro",
       request_id: "11111111-1111-4111-8111-111111111111",
       acknowledgement_version: 1,
     }),

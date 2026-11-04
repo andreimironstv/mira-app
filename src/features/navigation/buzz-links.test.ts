@@ -52,7 +52,7 @@ it("supports channel links and binds them to the receiving community", () => {
     channelId: "general",
   });
 });
-it("does not treat the retired buzz://open locator as a Buzz link, however well-formed", () => {
+it("does not treat the retired buzz://open locator as a Mira link, however well-formed", () => {
   // A JSON navigation target behind `buzz://open?target=` was this app's own
   // in-app locator. It is not a Buzz link form and is now an unknown host.
   const home =
@@ -65,7 +65,7 @@ it("does not treat the retired buzz://open locator as a Buzz link, however well-
     expect(buzzLinkTarget(href, scope)).toBeNull();
   }
 });
-it("ignores query parameters outside the Buzz link grammar, as the original desktop client does", () => {
+it("ignores query parameters outside the Mira link grammar, as the original desktop client does", () => {
   const thread = "b".repeat(64);
   const parsed = {
     format: "legacy",

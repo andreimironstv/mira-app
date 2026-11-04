@@ -10,7 +10,7 @@ set -eu
 
 # Shared by every Buzz build on this computer, so there is one download.
 if [ "$(uname)" = Darwin ]; then
-  dir="$HOME/Library/Application Support/Buzz/claude-code"
+  dir="$HOME/Library/Application Support/Mira/claude-code"
 else
   dir="${XDG_DATA_HOME:-$HOME/.local/share}/buzz/claude-code"
 fi

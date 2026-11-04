@@ -68,7 +68,7 @@ describe("migrateWatchKeywords", () => {
     expect(timer).not.toHaveProperty("channel");
     const prompt = timer?.type === "timer" ? timer.prompt : "";
     expect(prompt).toContain(
-      '"builds" (Build failures) matched only events whose content contained any of ["failed","[release]"]. Buzz removed the keywords and turned the watch off.',
+      '"builds" (Build failures) matched only events whose content contained any of ["failed","[release]"]. Mira removed the keywords and turned the watch off.',
     );
     expect(prompt).toContain('watch_remove id "fix-builds"');
     expect(prompt).toContain(

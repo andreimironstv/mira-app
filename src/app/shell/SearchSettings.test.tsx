@@ -103,7 +103,7 @@ it("changes the trailing switch inline but opens and highlights the setting from
 it("retains inline matches and keyboard selection when conversation results arrive", () => {
   const { Palette, open } = fixture();
   const { rerender } = render(<Palette />);
-  const input = screen.getByRole("combobox", { name: "Search Buzz" });
+  const input = screen.getByRole("combobox", { name: "Search Mira" });
   const selected = input.getAttribute("aria-activedescendant");
   rerender(
     <Palette
@@ -229,7 +229,7 @@ it.each(["Enter", "shortcut", "title"])(
       );
     }
     render(<Palette />);
-    const input = screen.getByRole("combobox", { name: "Search Buzz" });
+    const input = screen.getByRole("combobox", { name: "Search Mira" });
     if (action === "title") fireEvent.click(screen.getByText("Example"));
     else
       fireEvent.keyDown(
@@ -269,7 +269,7 @@ it("announces selected rows and lets arrows leave inline switches", () => {
   ).toBe(true);
   const row = screen.getByRole("row", { name: "Notifications — Sound" });
   expect(row).toHaveAttribute("aria-selected", "true");
-  const input = screen.getByRole("combobox", { name: "Search Buzz" });
+  const input = screen.getByRole("combobox", { name: "Search Mira" });
   expect(input).toHaveAttribute("aria-activedescendant", row.id);
   const toggle = screen.getByRole("switch", { name: "Sound" });
   toggle.focus();
@@ -442,11 +442,11 @@ function sections({
 }
 
 it.each([
-  ["shortcuts", "Shortcuts", "Buzz", "shortcuts"],
-  ["identity", "Identity", "Buzz", "identity"],
+  ["shortcuts", "Shortcuts", "Mira", "shortcuts"],
+  ["identity", "Identity", "Mira", "identity"],
   ["profile", "Profile", "Community", "profile"],
-  ["agent setup", "Agent setup", "Buzz", "agents"],
-  ["software updates", "Software updates", "Buzz", "updates"],
+  ["agent setup", "Agent setup", "Mira", "agents"],
+  ["software updates", "Software updates", "Mira", "updates"],
 ])(
   "lists the %s section under Settings and opens it on Enter or click",
   (query, label, group, id) => {
@@ -456,7 +456,7 @@ it.each([
       screen.getByRole("group", { name: "Settings" }),
     ).getByRole("option");
     expect(row.textContent).toBe(label + group);
-    const input = screen.getByRole("combobox", { name: "Search Buzz" });
+    const input = screen.getByRole("combobox", { name: "Search Mira" });
     expect(input).toHaveAttribute("aria-activedescendant", row.id);
     fireEvent.keyDown(input, { key: "Enter" });
     expect(openSection).toHaveBeenCalledExactlyOnceWith(id);
@@ -506,14 +506,14 @@ it("leads plugin switches with Manage plugins and notification switches with the
   ).toEqual(["Settings", "Plugins"]);
   expect(rows("Settings")).toEqual(["Manage plugins — Plugins"]);
   expect(rows("Plugins")[0]).toBe("Other — Profiles");
-  fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Buzz" }), {
+  fireEvent.keyDown(screen.getByRole("combobox", { name: "Search Mira" }), {
     key: "Enter",
   });
   expect(openSection).toHaveBeenCalledExactlyOnceWith("plugins");
   expect(change).not.toHaveBeenCalled();
   view.rerender(<Palette query="notifications" />);
   expect(rows("Settings")).toEqual([
-    "Notifications — Buzz",
+    "Notifications — Mira",
     "Notifications — Sound",
     "Notifications — Notify while viewing",
   ]);
@@ -553,7 +553,7 @@ it("lists only Personal space and app sections without a selected community", ()
   const personal = sections({ selected: null, cards: settingsCards });
   expect(rows(personal, "profile")).toEqual(["ProfilePersonal space"]);
   expect(rows(personal, "pair mobile")).toEqual(["Pair mobilePersonal space"]);
-  expect(rows(personal, "shortcuts")).toEqual(["ShortcutsBuzz"]);
+  expect(rows(personal, "shortcuts")).toEqual(["ShortcutsMira"]);
   for (const query of ["local settings", "custom emoji", "leave"])
     expect(rows(personal, query)).toEqual([]);
 });

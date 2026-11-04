@@ -71,7 +71,7 @@ export function Scene({ id }: { id: DialogId }) {
   return (
     <div className="scene shell-background">
       <div className="scene-context" aria-hidden="true">
-        <span>Buzz</span>
+        <span>Mira</span>
         <span>Design studio</span>
         <span>Messages · Agents · Workflows</span>
       </div>

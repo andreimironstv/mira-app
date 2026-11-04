@@ -876,7 +876,7 @@ async function profileDesktop({ directory, profileArgs, args }) {
   await recordManifest(directory, "desktop", profileArgs, {
     coverage: ["launched-desktop-native-application"],
     caveat:
-      "Instruments launches and samples the Buzz native parent process only, not all macOS processes. WebKit subprocesses and the Vite broker are outside this trace; JavaScriptCore stacks may not resolve to application JavaScript.",
+      "Instruments launches and samples the Mira native parent process only, not all macOS processes. WebKit subprocesses and the Vite broker are outside this trace; JavaScriptCore stacks may not resolve to application JavaScript.",
   });
   const control = stopController();
   const runner = fileURLToPath(
@@ -898,7 +898,7 @@ async function profileDesktop({ directory, profileArgs, args }) {
     ),
   );
   console.log(
-    "\nProfiling the launched Buzz desktop application. Press Ctrl-C to stop and save the profile.",
+    "\nProfiling the launched Mira desktop application. Press Ctrl-C to stop and save the profile.",
   );
   const outcome = await Promise.race([control.requested, desktopExit]);
   await stopChildren();

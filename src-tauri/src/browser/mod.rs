@@ -227,7 +227,7 @@ fn build_contents(
     let storage = storage.map(storage_identifier).transpose()?;
     let host = app
         .get_webview_window("main")
-        .ok_or("Buzz main webview is unavailable")?
+        .ok_or("Mira main webview is unavailable")?
         .as_ref()
         .clone();
     let snapshot = Rc::new(RefCell::new(BrowserSnapshot::default()));
@@ -259,7 +259,7 @@ fn build_contents(
         })
         .with_download_started_handler(move |_, _| {
             download_snapshot.borrow_mut().error =
-                Some("Downloads are not supported in Buzz Browser".into());
+                Some("Downloads are not supported in Mira Browser".into());
             false
         })
         .with_new_window_req_handler(|_, _| wry::NewWindowResponse::Deny);

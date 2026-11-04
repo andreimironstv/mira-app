@@ -3304,14 +3304,14 @@ it("Enter on import entry keeps the draft without importing or sending", async (
   expect(h.messages.send).not.toHaveBeenCalled();
 });
 
-it("imports a mentioned agent an earlier Buzz runs before sending to it", async () => {
+it("imports a mentioned agent an earlier Mira runs before sending to it", async () => {
   const { agents, port } = oldBuzzAgents();
   const h = mount({}, undefined, undefined, agents);
   fireEvent.click(screen.getByRole("button", { name: "First Honey" }));
   h.submit();
   const dialog = await screen.findByRole("dialog", { name: "Import Honey?" });
   expect(dialog).toHaveTextContent(
-    "Honey is set up in the preview version of Buzz. Are you ready to import it to Buzz 1.0?",
+    "Honey is set up in the preview version of Mira. Are you ready to import it to Mira 1.0?",
   );
   expect(h.messages.send).not.toHaveBeenCalled();
   fireEvent.click(screen.getByRole("button", { name: "Import and send" }));

@@ -33,7 +33,7 @@ export function UnreadIndicatorSettings({
                   default:
                     "Allow notifications and badges to show the unread dot.",
                   setup: "Set up Dock badges to show the unread dot.",
-                  enabled: "Buzz can show Dock badges.",
+                  enabled: "Mira can show Dock badges.",
                   disabled:
                     "Dock badges are off. Turn them on in macOS System Settings.",
                   denied:

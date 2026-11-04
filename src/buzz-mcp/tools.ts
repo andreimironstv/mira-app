@@ -120,7 +120,7 @@ export async function captureToolBody(
 export const TOOLS: readonly Tool[] = [
   tool(
     "buzz_help",
-    "Read the bundled guide to using Buzz: chats, communities, identity, agents, and settings.",
+    "Read the bundled guide to using Mira: chats, communities, identity, agents, and settings.",
     {},
   ),
   tool(
@@ -354,7 +354,7 @@ export const TOOLS: readonly Tool[] = [
   ),
   tool(
     "media_get",
-    "Get a file of any type from a Buzz media URL: saves it locally and gives its path; an image is also shown.",
+    "Get a file of any type from a Mira media URL: saves it locally and gives its path; an image is also shown.",
     { url: str },
     ["url"],
   ),
@@ -1345,7 +1345,7 @@ const HANDLERS: Readonly<Record<string, Handler>> = {
   async repo(tools, args) {
     const { client } = tools;
     const { gitAuth } = client;
-    if (!gitAuth) throw new Error("Git access needs Buzz Desktop.");
+    if (!gitAuth) throw new Error("Git access needs Mira Desktop.");
     const channel = target(tools, args);
     const create = optional(args, "create");
     if (create !== undefined) {
@@ -1411,7 +1411,7 @@ const HANDLERS: Readonly<Record<string, Handler>> = {
     const tabs = client.tabs;
     if (!tabs)
       throw new Error(
-        "Tabs are kept in Buzz Desktop and are unavailable here.",
+        "Tabs are kept in Mira Desktop and are unavailable here.",
       );
     // Only the channel the agent works in, so it never pulls the owner
     // toward another conversation.
@@ -1728,7 +1728,7 @@ class Tools {
   async template(name: string) {
     if (!this.client.templates)
       throw new Error(
-        "Channel templates are kept in Buzz Desktop and are unavailable here.",
+        "Channel templates are kept in Mira Desktop and are unavailable here.",
       );
     const templates = await this.client.templates();
     const found = templates.filter(

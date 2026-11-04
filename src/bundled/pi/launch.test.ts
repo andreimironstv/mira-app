@@ -87,7 +87,7 @@ ${body}
   await fakeNpm(npm);
   const dir =
     process.platform === "darwin"
-      ? join(home, "Library/Application Support/Buzz/pi")
+      ? join(home, "Library/Application Support/Mira/pi")
       : join(home, ".local/share/buzz/pi");
   const env = {
     PATH: `${bin}:/usr/bin:/bin`,

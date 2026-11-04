@@ -17,13 +17,13 @@ pub(super) fn migrate(paths: &Paths, locks: &Locks) -> Result<(), String> {
     // stays shared so sign-out cannot start during the migration.
     locks.all.unlock().map_err(failed)?;
     if !wait_for(|| locks.all.try_lock()) {
-        return Err("Close other Buzz copies, then reopen Buzz to migrate agent storage. Nothing was moved.".into());
+        return Err("Close other Mira copies, then reopen Mira to migrate agent storage. Nothing was moved.".into());
     }
     // Recheck after acquiring the lock: another upgrading process may have
     // completed the move while we waited. Never replace an existing directory.
     if real_dir(&old).map_err(failed)? {
         if real_dir(&new).map_err(failed)? {
-            return Err("Both agents and agents2 storage exist. Resolve the conflicting folders before reopening Buzz; nothing was moved.".into());
+            return Err("Both agents and agents2 storage exist. Resolve the conflicting folders before reopening Mira; nothing was moved.".into());
         }
         std::fs::rename(&old, &new).map_err(failed)?;
     }

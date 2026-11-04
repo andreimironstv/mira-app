@@ -196,7 +196,7 @@ function ClaudeSetupPanel({
       : status.state === "missing"
         ? "Claude is not installed."
         : status.state === "outdated"
-          ? `Claude ${status.version} is older than Buzz needs.`
+          ? `Claude ${status.version} is older than Mira needs.`
           : status.state === "signed-out"
             ? `Claude ${status.version} needs you to sign in.`
             : status.state === "ready"
@@ -250,7 +250,7 @@ function ClaudeSetupPanel({
       </div>
       {status?.state === "missing" && (
         <p className="m-0 text-body-sm text-subtle">
-          Downloads Buzz's own copy of Claude (about 250 MB) from
+          Downloads Mira's own copy of Claude (about 250 MB) from
           downloads.claude.ai and keeps it on the latest release. It does not
           change the <code>claude</code> in your terminal, and uses the same
           sign-in and settings.
@@ -479,7 +479,7 @@ export function createTabs({
         : status.state === "missing"
           ? "Claude is not installed."
           : status.state === "outdated"
-            ? `Claude ${status.version} is older than Buzz needs.`
+            ? `Claude ${status.version} is older than Mira needs.`
             : status.state === "signed-out"
               ? `Claude ${status.version} needs you to sign in.`
               : status.state === "error"
@@ -534,7 +534,7 @@ export function createTabs({
           ) : null}
           {status?.state === "missing" && !state.running && (
             <p className="m-0 text-body-sm text-subtle">
-              Downloads Buzz's own copy of Claude (about 250 MB) from
+              Downloads Mira's own copy of Claude (about 250 MB) from
               downloads.claude.ai and keeps it on the latest release. It does
               not change the <code>claude</code> in your terminal, and uses the
               same sign-in and settings.

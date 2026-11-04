@@ -155,7 +155,7 @@ it("offers browser sign-in when no Builderlab session exists", async () => {
   expect(calls.map(([url]) => url)).not.toContain("/api/builderlab/list");
 });
 
-it("connects the Buzz identity when the account has none", async () => {
+it("connects the Mira identity when the account has none", async () => {
   routes["/api/builderlab/identity"] = () => ({
     error: { code: "missing_mapping", setup_needed: true },
   });
@@ -165,7 +165,7 @@ it("connects the Buzz identity when the account has none", async () => {
   routes["/api/builderlab/bind"] = () => ({ identity: { pubkey_hex: local } });
   renderCard();
   fireEvent.click(
-    await screen.findByRole("button", { name: "Connect Buzz identity" }),
+    await screen.findByRole("button", { name: "Connect Mira identity" }),
   );
   routes["/api/builderlab/identity"] = () => ({
     identity: { pubkey_hex: local },
@@ -207,7 +207,7 @@ it("pauses create and offers a switch when the account uses another identity", a
 it("checks availability after a pause and creates a valid community", async () => {
   routes["/api/builderlab/availability"] = () => ({ available: true });
   routes["/api/builderlab/create"] = () => ({
-    community: { id: "c1", normalized_host: "north.communities.buzz.xyz" },
+    community: { id: "c1", normalized_host: "north.workspace.mira-ai.ro" },
   });
   const writeText = vi.fn(async () => {});
   vi.stubGlobal("navigator", { clipboard: { writeText } });
@@ -217,10 +217,10 @@ it("checks availability after a pause and creates a valid community", async () =
   vi.useFakeTimers();
   fireEvent.change(input, { target: { value: "North" } });
   expect(input).toHaveValue("north");
-  expect(input).toHaveAccessibleDescription(".communities.buzz.xyz");
+  expect(input).toHaveAccessibleDescription(".workspace.mira-ai.ro");
   fireEvent.change(input, { target: { value: "-north" } });
   expect(input).toHaveAccessibleDescription(
-    ".communities.buzz.xyz Use lowercase letters, numbers, and single hyphens.",
+    ".workspace.mira-ai.ro Use lowercase letters, numbers, and single hyphens.",
   );
   fireEvent.change(input, { target: { value: "North" } });
   expect(calls.map(([url]) => url)).not.toContain(
@@ -233,7 +233,7 @@ it("checks availability after a pause and creates a valid community", async () =
   ).toBeInTheDocument();
   fireEvent.click(screen.getByRole("button", { name: "Create community" }));
   await waitFor(() =>
-    expect(writeText).toHaveBeenCalledWith("wss://north.communities.buzz.xyz"),
+    expect(writeText).toHaveBeenCalledWith("wss://north.workspace.mira-ai.ro"),
   );
   expect(calls).toContainEqual(["/api/builderlab/create", { name: "north" }]);
   expect(await screen.findByText(/Join a community/)).toBeInTheDocument();
@@ -244,7 +244,7 @@ it("rejects invalid names and blocks create at the community limit", async () =>
     communities: Array.from({ length: 5 }, (_, index) => ({
       id: `c${index}`,
       name: `c${index}`,
-      normalized_host: `c${index}.communities.buzz.xyz`,
+      normalized_host: `c${index}.workspace.mira-ai.ro`,
     })),
     quota_used: 5,
     quota_limit: 5,
@@ -280,7 +280,7 @@ it("archives and transfers after confirmation, surfacing friendly errors", async
       {
         id: "c1",
         name: "north",
-        normalized_host: "north.communities.buzz.xyz",
+        normalized_host: "north.workspace.mira-ai.ro",
       },
     ],
   });
@@ -311,7 +311,7 @@ it("archives and transfers after confirmation, surfacing friendly errors", async
   });
   fireEvent.click(screen.getByRole("button", { name: "Transfer ownership" }));
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "That person needs a connected Buzz identity before you can transfer ownership to them. Correlation ID: corr-1",
+    "That person needs a connected Mira identity before you can transfer ownership to them. Correlation ID: corr-1",
   );
   expect(calls).toContainEqual([
     "/api/builderlab/transfer",
@@ -396,7 +396,7 @@ it("retries a failed shared-session account check in place", async () => {
       {
         id: "c1",
         name: "north",
-        normalized_host: "north.communities.buzz.xyz",
+        normalized_host: "north.workspace.mira-ai.ro",
       },
     ],
   });
@@ -446,13 +446,13 @@ it("keeps create and copy paused until this device's key is read and matches", a
       {
         id: "c1",
         name: "north",
-        normalized_host: "north.communities.buzz.xyz",
+        normalized_host: "north.workspace.mira-ai.ro",
       },
     ],
   });
   renderCard();
   expect(
-    await screen.findByText("Checking this device’s Buzz identity…"),
+    await screen.findByText("Checking this device’s Mira identity…"),
   ).toBeInTheDocument();
   expect(screen.getByPlaceholderText("north-star")).toBeDisabled();
   expect(
@@ -462,7 +462,7 @@ it("keeps create and copy paused until this device's key is read and matches", a
   expect(
     await screen.findByRole("region", { name: "Identity mismatch" }),
   ).toHaveTextContent(
-    "Your Builderlab account is linked to another Buzz key. Creating communities and copying addresses are paused until the identities match.",
+    "Your Builderlab account is linked to another Mira key. Creating communities and copying addresses are paused until the identities match.",
   );
   expect(screen.getByPlaceholderText("north-star")).toBeDisabled();
 });
@@ -473,7 +473,7 @@ it("pauses actions with a retry when this device's key cannot be read", async ()
   };
   renderCard();
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "Could not read this device’s Buzz identity",
+    "Could not read this device’s Mira identity",
   );
   expect(screen.getByPlaceholderText("north-star")).toBeDisabled();
   routes["/api/relay/identity"] = () => ({ viewer: local });
@@ -497,7 +497,7 @@ it("ignores an older load that finishes after a newer identity change", async ()
   routes["/api/builderlab/bind"] = () => ({ identity: { pubkey_hex: local } });
   renderCard();
   fireEvent.click(
-    await screen.findByRole("button", { name: "Connect Buzz identity" }),
+    await screen.findByRole("button", { name: "Connect Mira identity" }),
   );
   expect(await screen.findByText(npubEncode(local))).toBeInTheDocument();
   // The initial read, begun before Connect, reports an older binding.
@@ -529,7 +529,7 @@ it("does not bind after the card is deactivated during Switch", async () => {
   await act(async () => unbind.release({}));
   expect(calls.map(([url]) => url)).not.toContain("/api/builderlab/bind");
   expect(
-    screen.getByRole("button", { name: "Connect Buzz identity" }),
+    screen.getByRole("button", { name: "Connect Mira identity" }),
   ).toBeInTheDocument();
 });
 
@@ -572,7 +572,7 @@ it("shows an availability failure and retries the same name", async () => {
 it("keeps the address visible when the clipboard rejects", async () => {
   routes["/api/builderlab/availability"] = () => ({ available: true });
   routes["/api/builderlab/create"] = () => ({
-    community: { id: "c1", normalized_host: "north.communities.buzz.xyz" },
+    community: { id: "c1", normalized_host: "north.workspace.mira-ai.ro" },
   });
   const writeText = vi.fn(async (_: string): Promise<void> => {
     throw new Error("denied");
@@ -586,7 +586,7 @@ it("keeps the address visible when the clipboard rejects", async () => {
     "Couldn’t copy the address.",
   );
   expect(
-    screen.getByText("wss://north.communities.buzz.xyz"),
+    screen.getByText("wss://north.workspace.mira-ai.ro"),
   ).toBeInTheDocument();
   expect(screen.queryByText(/Address copied/)).not.toBeInTheDocument();
   writeText.mockResolvedValue(undefined);
@@ -609,7 +609,7 @@ it.each([
     );
     renderCard();
     expect(
-      await screen.findByText(/need the Buzz development broker/),
+      await screen.findByText(/need the Mira development broker/),
     ).toBeInTheDocument();
     expect(screen.queryByText("Checking sign-in…")).not.toBeInTheDocument();
     expect(
@@ -620,7 +620,7 @@ it.each([
 
 const listed = {
   communities: [
-    { id: "c1", name: "north", normalized_host: "north.communities.buzz.xyz" },
+    { id: "c1", name: "north", normalized_host: "north.workspace.mira-ai.ro" },
   ],
   quota_used: 1,
   quota_limit: 5,
@@ -649,13 +649,13 @@ it("drops a failed copy handoff when the identity is unpaired", async () => {
     }),
   );
   expect(
-    await screen.findByRole("button", { name: "Connect Buzz identity" }),
+    await screen.findByRole("button", { name: "Connect Mira identity" }),
   ).toBeInTheDocument();
   expect(
     screen.queryByRole("button", { name: "Try copying again" }),
   ).not.toBeInTheDocument();
   expect(
-    screen.queryByText("wss://north.communities.buzz.xyz"),
+    screen.queryByText("wss://north.workspace.mira-ai.ro"),
   ).not.toBeInTheDocument();
   expect(writeText).toHaveBeenCalledTimes(1);
 });
@@ -704,7 +704,7 @@ it("does not write to the clipboard when create finishes after the card retires"
   live = false;
   await act(async () =>
     create.release({
-      community: { id: "c1", normalized_host: "north.communities.buzz.xyz" },
+      community: { id: "c1", normalized_host: "north.workspace.mira-ai.ro" },
     }),
   );
   expect(writeText).not.toHaveBeenCalled();
@@ -713,7 +713,7 @@ it("does not write to the clipboard when create finishes after the card retires"
 it("keeps a created community's address when the following refresh fails", async () => {
   routes["/api/builderlab/availability"] = () => ({ available: true });
   routes["/api/builderlab/create"] = () => ({
-    community: { id: "c1", normalized_host: "north.communities.buzz.xyz" },
+    community: { id: "c1", normalized_host: "north.workspace.mira-ai.ro" },
   });
   vi.stubGlobal("navigator", {
     clipboard: {
@@ -733,7 +733,7 @@ it("keeps a created community's address when the following refresh fails", async
     await screen.findByText(/The change was saved, but the list could not/),
   ).toBeInTheDocument();
   expect(
-    screen.getByText("wss://north.communities.buzz.xyz"),
+    screen.getByText("wss://north.workspace.mira-ai.ro"),
   ).toBeInTheDocument();
   // The name is cleared, so the same create cannot be resubmitted by accident.
   expect(screen.getByPlaceholderText("north-star")).toHaveValue("");
@@ -867,7 +867,7 @@ it.each([
       await screen.findByRole("button", {
         name:
           identity === unbound
-            ? "Connect Buzz identity"
+            ? "Connect Mira identity"
             : "Switch to this device’s identity",
       }),
     ).toBeInTheDocument();
@@ -879,7 +879,7 @@ it.each([
     );
     expect(screen.queryByText(/Address copied/)).not.toBeInTheDocument();
     expect(
-      screen.queryByText("wss://north.communities.buzz.xyz"),
+      screen.queryByText("wss://north.workspace.mira-ai.ro"),
     ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "Try copying again" }),
@@ -904,7 +904,7 @@ it("keeps a failed copy handoff across a same-identity refresh", async () => {
     expect(screen.getByRole("button", { name: "Refresh" })).toBeEnabled(),
   );
   expect(
-    screen.getByText("wss://north.communities.buzz.xyz"),
+    screen.getByText("wss://north.workspace.mira-ai.ro"),
   ).toBeInTheDocument();
 });
 
@@ -953,7 +953,7 @@ it.each([
     );
     expect(screen.queryByText(/Address copied/)).not.toBeInTheDocument();
     expect(
-      screen.queryByText("wss://north.communities.buzz.xyz"),
+      screen.queryByText("wss://north.workspace.mira-ai.ro"),
     ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "Try copying again" }),
@@ -969,7 +969,7 @@ it("keeps a failed copy handoff for another address when a community is archived
       {
         id: "c2",
         name: "south",
-        normalized_host: "south.communities.buzz.xyz",
+        normalized_host: "south.workspace.mira-ai.ro",
       },
     ],
   });
@@ -1004,7 +1004,7 @@ it("keeps a failed copy handoff for another address when a community is archived
     expect(screen.getByRole("button", { name: "Unarchive" })).toBeEnabled(),
   );
   expect(
-    screen.getByText("wss://south.communities.buzz.xyz"),
+    screen.getByText("wss://south.workspace.mira-ai.ro"),
   ).toBeInTheDocument();
   expect(
     screen.getByRole("button", { name: "Try copying again" }),
@@ -1052,7 +1052,7 @@ it("keeps a failed hosted collection read separate from an empty result", async 
 const archived = {
   id: "11111111-1111-4111-8111-111111111111",
   name: "north",
-  normalized_host: "North.communities.buzz.xyz",
+  normalized_host: "North.workspace.mira-ai.ro",
   archived_at: "2026-09-24",
 };
 const accepted = (request: Record<string, string | number>) => ({
@@ -1173,7 +1173,7 @@ it("retains the uncertain UUID through unpair and same-owner rebind", async () =
   fireEvent.click(
     within(dialog).getByRole("button", { name: "Unpair identity" }),
   );
-  await screen.findByRole("button", { name: "Connect Buzz identity" });
+  await screen.findByRole("button", { name: "Connect Mira identity" });
   expect(deletionPosts()).toHaveLength(1);
   expect(JSON.parse(localStorage.getItem(DELETION_PENDING_KEY) ?? "")).toEqual(
     saved,
@@ -1184,7 +1184,7 @@ it("retains the uncertain UUID through unpair and same-owner rebind", async () =
   });
   routes["/api/builderlab/list"] = () => ({ communities: [archived] });
   fireEvent.click(
-    screen.getByRole("button", { name: "Connect Buzz identity" }),
+    screen.getByRole("button", { name: "Connect Mira identity" }),
   );
   await screen.findByText(saved.request.request_id);
   await expectSameRequestRecovery(saved);
@@ -1206,15 +1206,15 @@ it.each(["setup-needed", "unauthorized"])(
     });
     fireEvent.click(screen.getByRole("button", { name: "Refresh" }));
     if (failure === "setup-needed")
-      await screen.findByRole("button", { name: "Connect Buzz identity" });
+      await screen.findByRole("button", { name: "Connect Mira identity" });
     else {
       expect(await screen.findByRole("alert")).toHaveTextContent(
         failure === "unauthorized"
-          ? "This Builderlab account can't manage Buzz identities right now. Try signing in again."
-          : "Could not load the connected Buzz identity.",
+          ? "This Builderlab account can't manage Mira identities right now. Try signing in again."
+          : "Could not load the connected Mira identity.",
       );
       expect(
-        screen.queryByRole("button", { name: "Connect Buzz identity" }),
+        screen.queryByRole("button", { name: "Connect Mira identity" }),
       ).not.toBeInTheDocument();
     }
     expect(
@@ -1253,10 +1253,10 @@ it("does not offer Connect or stale owner actions on an initial unauthorized loa
   routes["/api/builderlab/list"] = () => ({ error: { code: "unauthorized" } });
   renderCard();
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "This Builderlab account can't manage Buzz identities right now. Try signing in again.",
+    "This Builderlab account can't manage Mira identities right now. Try signing in again.",
   );
   expect(
-    screen.queryByRole("button", { name: "Connect Buzz identity" }),
+    screen.queryByRole("button", { name: "Connect Mira identity" }),
   ).not.toBeInTheDocument();
   expect(
     screen.queryByRole("button", { name: "Delete" }),
@@ -1291,7 +1291,7 @@ it("clears stale blocked-owner and deletion notices on unauthorized Refresh", as
   routes["/api/builderlab/list"] = () => ({ error: { code: "unauthorized" } });
   fireEvent.click(screen.getByRole("button", { name: "Refresh" }));
   expect(await screen.findByRole("alert")).toHaveTextContent(
-    "This Builderlab account can't manage Buzz identities right now. Try signing in again.",
+    "This Builderlab account can't manage Mira identities right now. Try signing in again.",
   );
   expect(screen.queryByText("Deletion started")).not.toBeInTheDocument();
   expect(screen.queryByText(/A deletion request from/)).not.toBeInTheDocument();
@@ -1343,7 +1343,7 @@ it("restores an accepted archived row only after its bound abort on Refresh", as
   expect(deletionPosts()[1]?.[1]).toEqual(original);
   expect(await screen.findByRole("button", { name: "Delete" })).toBeEnabled();
   expect(
-    screen.getByText(/North\.communities\.buzz\.xyz · Archived/),
+    screen.getByText(/North\.workspace\.mira-ai\.ro · Archived/),
   ).toBeVisible();
   expect(
     screen.getByText(
@@ -1364,7 +1364,7 @@ it.each([
       communities: Array.from({ length: 5 }, (_, index) => ({
         id: `c${index}`,
         name: `c${index}`,
-        normalized_host: `c${index}.communities.buzz.xyz`,
+        normalized_host: `c${index}.workspace.mira-ai.ro`,
       })),
       ...projection,
     });
@@ -1650,7 +1650,7 @@ it("retains another owner's recovery envelope without showing or dispatching it"
       backend_origin: window.location.origin,
       request: {
         community_id: archived.id,
-        host: "Private.communities.buzz.xyz",
+        host: "Private.workspace.mira-ai.ro",
         request_id: "33333333-3333-4333-8333-333333333333",
         acknowledgement_version: 1,
       },
@@ -1670,14 +1670,14 @@ it("retains another owner's recovery envelope without showing or dispatching it"
   expect(screen.getByRole("button", { name: "Delete" })).toBeDisabled();
   expect(
     screen.getByText(
-      `A deletion request from ${npubEncode(other)} is still pending on this device. Switch to that Buzz identity and use Check deletion status before starting another deletion here. If you no longer have that identity, contact support.`,
+      `A deletion request from ${npubEncode(other)} is still pending on this device. Switch to that Mira identity and use Check deletion status before starting another deletion here. If you no longer have that identity, contact support.`,
     ),
   ).toBeVisible();
   expect(
     screen.queryByText("33333333-3333-4333-8333-333333333333"),
   ).not.toBeInTheDocument();
   expect(
-    screen.queryByText("Private.communities.buzz.xyz"),
+    screen.queryByText("Private.workspace.mira-ai.ro"),
   ).not.toBeInTheDocument();
 });
 
@@ -1860,7 +1860,7 @@ it("explains a same-owner envelope saved for another origin without asking to sw
     ),
   ).toBeVisible();
   expect(
-    screen.queryByText(/Switch to that Buzz identity/),
+    screen.queryByText(/Switch to that Mira identity/),
   ).not.toBeInTheDocument();
   expect(screen.getByRole("button", { name: "Delete" })).toBeDisabled();
   expect(localStorage.getItem(DELETION_PENDING_KEY)).toBe(original);
@@ -2056,7 +2056,7 @@ it("disables deletion for every row when a pending slot exists in another mounte
     ...archived,
     id: "22222222-2222-4222-8222-222222222222",
     name: "south",
-    normalized_host: "South.communities.buzz.xyz",
+    normalized_host: "South.workspace.mira-ai.ro",
   };
   routes["/api/builderlab/list"] = () => ({ communities: [archived] });
   routes["/api/builderlab/delete"] = () =>
@@ -2218,7 +2218,7 @@ it("keeps an accepted row hidden if a stale list returns after an omission", asy
     ).toBeGreaterThan(listCalls),
   );
   expect(
-    screen.queryByText("North.communities.buzz.xyz"),
+    screen.queryByText("North.workspace.mira-ai.ro"),
   ).not.toBeInTheDocument();
   const original = deletionPosts()[0]?.[1];
   expect(deletionPosts()).toEqual([
@@ -2269,7 +2269,7 @@ it.each([
       original,
     ]);
     expect(
-      screen.queryByText(/North\.communities\.buzz\.xyz · Archived/),
+      screen.queryByText(/North\.workspace\.mira-ai\.ro · Archived/),
     ).not.toBeInTheDocument();
     expect(screen.getByText("Deletion started")).toBeVisible();
     expect(localStorage.getItem(DELETION_PENDING_KEY)).toBeNull();
@@ -2292,7 +2292,7 @@ it("does not replay an accepted row during Refresh when capability is off", asyn
   );
   expect(deletionPosts()).toHaveLength(1);
   expect(
-    screen.queryByText(/North\.communities\.buzz\.xyz · Archived/),
+    screen.queryByText(/North\.workspace\.mira-ai\.ro · Archived/),
   ).not.toBeInTheDocument();
 });
 
@@ -2301,7 +2301,7 @@ it("stops accepted-row replay when the card retires mid-Refresh", async () => {
     ...archived,
     id: "22222222-2222-4222-8222-222222222222",
     name: "south",
-    normalized_host: "South.communities.buzz.xyz",
+    normalized_host: "South.workspace.mira-ai.ro",
   };
   routes["/api/builderlab/list"] = () => ({ communities: [archived] });
   routes["/api/builderlab/delete"] = (body) =>

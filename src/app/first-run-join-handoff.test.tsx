@@ -195,7 +195,7 @@ function relayAnswer(args: unknown) {
   if (!relay) return answer(404);
   if (request.path === "/")
     return answer(200, {
-      name: "Buzz Relay",
+      name: "Mira Relay",
       self: relay.self,
       icon: "https://cdn.example.com/icon.png",
     });

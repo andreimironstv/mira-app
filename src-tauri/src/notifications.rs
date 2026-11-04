@@ -92,7 +92,7 @@ fn respond<R: tauri::Runtime>(
         response.error = (|| {
             let window = main_app
                 .get_webview_window("main")
-                .ok_or("Buzz window unavailable")?;
+                .ok_or("Mira window unavailable")?;
             focus(&window)
         })()
         .err();
@@ -302,8 +302,8 @@ mod tests {
 
     #[test]
     fn ingress_accepts_only_bounded_text_and_an_opaque_id() {
-        assert!(validate(&uuid::Uuid::new_v4().to_string(), "Buzz", "Hello").is_ok());
-        assert!(validate("not a presentation ID", "Buzz", "Hello").is_err());
-        assert!(validate(&uuid::Uuid::new_v4().to_string(), "Buzz", &"x".repeat(4097)).is_err());
+        assert!(validate(&uuid::Uuid::new_v4().to_string(), "Mira", "Hello").is_ok());
+        assert!(validate("not a presentation ID", "Mira", "Hello").is_err());
+        assert!(validate(&uuid::Uuid::new_v4().to_string(), "Mira", &"x".repeat(4097)).is_err());
     }
 }

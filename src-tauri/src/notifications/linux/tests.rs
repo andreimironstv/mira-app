@@ -89,7 +89,7 @@ impl Daemon {
         };
         assert_eq!(
             (app_name, replaces_id, summary, body),
-            ("Buzz", 0, "Title", expected)
+            ("Mira", 0, "Title", expected)
         );
         assert_eq!(actions, ["default", "Open"]);
         // Banners are silent on the server side; the app plays its own sound.

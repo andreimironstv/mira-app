@@ -270,10 +270,10 @@ for (const action of ["archive", "delete"]) {
         // Complete the round trip through real search/navigation, not a synthetic
         // exact route: the archived row must remain reachable after reload.
         await page
-          .getByRole("button", { name: "Search Buzz", exact: true })
+          .getByRole("button", { name: "Search Mira", exact: true })
           .click();
         const search = page.getByRole("dialog", {
-          name: "Search Buzz",
+          name: "Search Mira",
           exact: true,
         });
         await expect(

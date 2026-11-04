@@ -62,7 +62,7 @@ export const apply: PluginModule["apply"] = (ctx) => {
           (signal) => {
             if (!browserLoginAvailable())
               throw new Error(
-                "Open the Buzz desktop app to sign in with Builderlab.",
+                "Open the Mira desktop app to sign in with Builderlab.",
               );
             return browserCredential(ctx.host, signal);
           },
@@ -247,7 +247,7 @@ export const apply: PluginModule["apply"] = (ctx) => {
             unavailableReason={
               dev || browserLoginAvailable()
                 ? unavailable
-                : "Open the Buzz desktop app to sign in with Builderlab."
+                : "Open the Mira desktop app to sign in with Builderlab."
             }
             active={active}
             openIdentity={openIdentity}

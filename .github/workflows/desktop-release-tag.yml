@@ -22,7 +22,7 @@ permissions:
 
 jobs:
   publish:
-    if: github.repository == 'block/buzz-app'
+    if: github.repository == 'andreimironstv/mira-app'
     runs-on: ubuntu-latest
     # Holds the App key; restricted to main so other workflows cannot mint tag tokens.
     environment: desktop-release-tag

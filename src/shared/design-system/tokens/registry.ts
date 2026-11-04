@@ -1609,7 +1609,7 @@ export const TYPE_ROLES: TypeRole[] = [
   },
   {
     token: "text-body",
-    pointsAt: "body/body-medium (Buzz 14px override)",
+    pointsAt: "body/body-medium (Mira 14px override)",
     size: "14px",
     lineHeight: "20px",
     tracking: "-0.005em",

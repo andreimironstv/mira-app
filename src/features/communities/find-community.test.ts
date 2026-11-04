@@ -12,7 +12,7 @@ vi.mock("@tauri-apps/api/core", () => ({ invoke: vi.fn() }));
 const url = "https://relay.example.com:8443";
 const self = "76aa9daa7edc9c2e1dc6a2a90dbce10c1bd52f060fa6506ba7bad4f50240fc01";
 const buzz = {
-  name: "Buzz Relay",
+  name: "Mira Relay",
   software: "https://github.com/block/buzz",
   version: "1.4.2",
   icon: "https://cdn.example.com/icon.png",
@@ -113,9 +113,9 @@ it.each([
     "not-buzz",
   ],
   [
-    "a Buzz relay with no community bound to this host",
+    "a Mira relay with no community bound to this host",
     {
-      "/": Response.json({ name: "Buzz Relay", version: "1.4.2" }),
+      "/": Response.json({ name: "Mira Relay", version: "1.4.2" }),
       "/api/join-policy": Response.json({}),
     },
     "no-community",
@@ -144,7 +144,7 @@ it.each([
   ],
   ["a JSON array", Response.json([]), "unreachable"],
 ])(
-  "treats a join policy answered by %s as %j once NIP-11 is a Buzz relay",
+  "treats a join policy answered by %s as %j once NIP-11 is a Mira relay",
   async (_label, answer, expected) => {
     const result = await failure({
       "/": Response.json(buzz),

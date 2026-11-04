@@ -36,7 +36,7 @@ export function LegacyCommunityImport({
   };
   return (
     <AlertDialog
-      title="Import communities from old Buzz?"
+      title="Import communities from old Mira?"
       description="Add these saved communities to your list and account. This may restore communities you previously removed."
       onClose={() => respond(false)}
       actions={

@@ -32,7 +32,7 @@ This is an extraction of the behavior in
 [buzz-app #258](https://github.com/block/buzz-app/pull/258), with the archive
 rule from [#256](https://github.com/block/buzz-app/pull/256) and the prose rule
 from [#303](https://github.com/block/buzz-app/pull/303). It adds no event
-kind. It uses `p` tags and the two-field `mention` tag that other Buzz clients
+kind. It uses `p` tags and the two-field `mention` tag that other Mira clients
 already write. Labels come from the
 [contextual identity names](../identity-naming/README.md) contract.
 
@@ -359,7 +359,7 @@ A reader:
 - MUST treat each valid two-field `mention` key as a reference (it names the key
   for display, and MUST NOT notify or wake it);
 - MUST NOT treat a three-field `mention` tag (for example
-  `["mention", key, "agent-address"]`) as a reference. Other Buzz clients write
+  `["mention", key, "agent-address"]`) as a reference. Other Mira clients write
   that form next to a `p` tag as display metadata for an addressed agent;
 - MUST ignore invalid keys and remove duplicates, keeping first-seen order; and
 - MUST resolve names for both lists. A key in both lists is addressed.

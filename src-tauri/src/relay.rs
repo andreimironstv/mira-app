@@ -765,12 +765,12 @@ static USER_AGENT: OnceLock<String> = OnceLock::new();
 
 /// Records the app version native relay requests report, once at startup.
 pub(crate) fn set_user_agent(version: impl std::fmt::Display) {
-    let _ = USER_AGENT.set(format!("Buzz/{version}"));
+    let _ = USER_AGENT.set(format!("Mira/{version}"));
 }
 
 /// `User-Agent` for native relay HTTP and WebSocket requests.
 pub(crate) fn user_agent() -> &'static str {
-    USER_AGENT.get().map_or("Buzz", String::as_str)
+    USER_AGENT.get().map_or("Mira", String::as_str)
 }
 
 fn client() -> Result<&'static reqwest::Client> {
@@ -1686,7 +1686,7 @@ pub(crate) fn mark_download(file: &std::fs::File, _path: &std::path::Path) -> st
         .duration_since(std::time::UNIX_EPOCH)
         .map_err(std::io::Error::other)?
         .as_secs();
-    let value = format!("0081;{timestamp:x};Buzz;");
+    let value = format!("0081;{timestamp:x};Mira;");
     let result = unsafe {
         libc::fsetxattr(
             file.as_raw_fd(),

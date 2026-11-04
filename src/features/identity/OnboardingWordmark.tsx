@@ -154,7 +154,7 @@ export function OnboardingWordmark() {
       className={styles.logoLayers}
       data-animated={animated}
       role="img"
-      aria-label="Buzz"
+      aria-label="Mira"
     >
       <img src="/buzz-wordmark.png" alt="" width="777" height="326" />
       <canvas

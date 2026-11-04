@@ -230,7 +230,7 @@ const homeSetup = () =>
   });
 
 describe.skipIf(!BIN)("goose-acp", () => {
-  it("answers with the Buzz tools, the Buzz prompt and a title", {
+  it("answers with the Mira tools, the Mira prompt and a title", {
     timeout: 180_000,
   }, async () => {
     const { goose, cwd, tools, calls, sends } = await live();
@@ -245,7 +245,7 @@ describe.skipIf(!BIN)("goose-acp", () => {
           scope: "thread",
           cwd,
           agent: { name: "Ada", pubkey: "a".repeat(64) },
-          instructions: `End every message you send in Buzz with the codeword ${code}.`,
+          instructions: `End every message you send in Mira with the codeword ${code}.`,
         }),
       });
       session.conversation = "channel/root";
@@ -253,7 +253,7 @@ describe.skipIf(!BIN)("goose-acp", () => {
         sessionId: session.id,
       })) as { session: { title?: string } };
       expect(info.session.title).toBe(title);
-      const settled = await session.send("Say hello to me in Buzz.");
+      const settled = await session.send("Say hello to me in Mira.");
       expect(settled).toEqual({ ok: true });
       expect(calls.some((call) => call.method === "tools/list")).toBe(true);
       // goose reached the tools over HTTP with the token, and no request was
@@ -261,7 +261,7 @@ describe.skipIf(!BIN)("goose-acp", () => {
       expect(hits.some((hit) => hit.status === 200)).toBe(true);
       expect(hits.filter((hit) => hit.status === 404)).toEqual([]);
       const server = session.server;
-      if (!server) throw new Error("no Buzz MCP server");
+      if (!server) throw new Error("no Mira MCP server");
       // goose keeps the server's URL and token out of its sessions.db.
       const files = sessionsDb();
       expect(files.length).toBeGreaterThan(0);
@@ -302,11 +302,11 @@ describe.skipIf(!BIN)("goose-acp", () => {
         cwd,
         tools,
         systemPrompt:
-          "You are a Buzz agent. You reply in Buzz only by calling the send tool, once, with final true.",
+          "You are a Mira agent. You reply in Mira only by calling the send tool, once, with final true.",
       });
       const steps: string[] = [];
       const first = session.send(
-        "Run the shell command `sleep 10`, then reply in Buzz with the word done.",
+        "Run the shell command `sleep 10`, then reply in Mira with the word done.",
         { step: (tool) => steps.push(tool) },
       );
       await expect
@@ -349,12 +349,12 @@ describe.skipIf(!BIN)("goose-acp", () => {
         cwd,
         tools,
         systemPrompt:
-          "You are a Buzz agent. You reply in Buzz only by calling the send tool, once, with final true.",
+          "You are a Mira agent. You reply in Mira only by calling the send tool, once, with final true.",
       });
       const steps: string[] = [];
       const started = Date.now();
       const settled = session.send(
-        "Run the shell command `sleep 60`, then reply in Buzz with the word done.",
+        "Run the shell command `sleep 60`, then reply in Mira with the word done.",
         { step: (tool) => steps.push(tool) },
       );
       await expect
@@ -375,7 +375,7 @@ describe.skipIf(!BIN)("goose-acp", () => {
       expect(sends()).toEqual([]);
       // The session takes the next message as usual.
       await expect(
-        session.send("Reply in Buzz with the word again."),
+        session.send("Reply in Mira with the word again."),
       ).resolves.toEqual({ ok: true });
       expect(sends().at(-1)?.arguments?.text?.toLowerCase()).toContain("again");
     } finally {
@@ -391,7 +391,7 @@ describe.skipIf(!BIN)("goose-acp", () => {
       const session = await goose.open({
         cwd,
         tools,
-        systemPrompt: "You are a Buzz agent. Answer in one short sentence.",
+        systemPrompt: "You are a Mira agent. Answer in one short sentence.",
       });
       await session.send("Remember the word pineapple.");
       await expect(session.send("/compact")).resolves.toEqual({
@@ -430,7 +430,7 @@ describe.skipIf(!BIN)("goose-acp", () => {
             cwd,
             tools,
             systemPrompt:
-              "You are a Buzz agent. You reply in Buzz only by calling the send tool, once, with final true.",
+              "You are a Mira agent. You reply in Mira only by calling the send tool, once, with final true.",
           }),
         ),
       );
@@ -438,7 +438,7 @@ describe.skipIf(!BIN)("goose-acp", () => {
         Promise.all(
           sessions.map((session) =>
             session.send(
-              "Run the shell command `pwd`, then reply in Buzz with its exact output.",
+              "Run the shell command `pwd`, then reply in Mira with its exact output.",
             ),
           ),
         ),

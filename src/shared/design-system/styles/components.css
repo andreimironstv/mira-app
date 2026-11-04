@@ -1374,7 +1374,7 @@
   }
 
   /* NavigationItem owns its complete visual treatment, although it shares
-     Base UI Button's native button behavior. It does not compose Buzz Button:
+     Base UI Button's native button behavior. It does not compose Mira Button:
      a navigation destination is not an ordinary action button, and sharing the
      styling made the generic ghost hover compete with navigation's own states. */
   .navigation-card {

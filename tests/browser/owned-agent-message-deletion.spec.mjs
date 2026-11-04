@@ -59,7 +59,7 @@ test("the verified owner confirms a NIP-09 delete for an agent message", async (
     confirmation.getByRole("heading", { name: "Delete message?" }),
   ).toBeVisible();
   await expect(confirmation).toContainText(
-    "This requests removal of this message from Buzz’s relay.",
+    "This requests removal of this message from Mira’s relay.",
   );
   await expect(confirmation).toContainText("People may still have copies.");
   await expect(

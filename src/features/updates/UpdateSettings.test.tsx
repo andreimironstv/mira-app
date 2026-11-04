@@ -82,7 +82,7 @@ it("shows progress, then applies a downloaded update", async () => {
   expect(await screen.findByText("Downloading update…")).toBeVisible();
   finishDownload();
   expect(
-    await screen.findByText("Ready to install. Buzz will restart."),
+    await screen.findByText("Ready to install. Mira will restart."),
   ).toBeVisible();
   fireEvent.click(screen.getByRole("button", { name: "Update now" }));
   await vi.waitFor(() => expect(relaunch).toHaveBeenCalledOnce());
@@ -125,7 +125,7 @@ it("uses the installed version as the card title without a separate description"
     expect(screen.queryByRole("heading", { name: "Update status" })).toBeNull();
     expect(
       screen.queryByText(
-        "Keep Buzz up to date with the latest features and fixes.",
+        "Keep Mira up to date with the latest features and fixes.",
       ),
     ).toBeNull();
     expect(native.getVersion).toHaveBeenCalledOnce();

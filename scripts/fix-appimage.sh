@@ -117,13 +117,13 @@ if ! grep -aq "GST_PLUGIN_SYSTEM_PATH_1_0" "$APPRUN_WRAPPED"; then
   exit 1
 fi
 
-APP_BIN="$WORKDIR/squashfs-root/usr/bin/Buzz"
+APP_BIN="$WORKDIR/squashfs-root/usr/bin/Mira"
 if [[ ! -f "$APP_BIN" ]]; then
-  echo "Error: app binary usr/bin/Buzz not found — bundler layout changed; update fix-appimage.sh" >&2
+  echo "Error: app binary usr/bin/Mira not found — bundler layout changed; update fix-appimage.sh" >&2
   exit 1
 fi
 if [[ -e "$APP_BIN.bin" ]]; then
-  echo "Error: usr/bin/Buzz.bin already exists — shim already installed?" >&2
+  echo "Error: usr/bin/Mira.bin already exists — shim already installed?" >&2
   exit 1
 fi
 
@@ -150,7 +150,7 @@ for var in GST_PLUGIN_SYSTEM_PATH_1_0 GST_PLUGIN_SYSTEM_PATH \
     unset "$var"
   fi
 done
-exec -a "Buzz" "$here/Buzz.bin" "$@"
+exec -a "Mira" "$here/Mira.bin" "$@"
 SHIM
 chmod +x "$APP_BIN"
 

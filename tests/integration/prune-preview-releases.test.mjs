@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const script = fileURLToPath(
   new URL("../../scripts/prune-preview-releases.mjs", import.meta.url),
 );
-const repository = "block/buzz-app";
+const repository = "andreimironstv/mira-app";
 const now = Date.parse("2026-10-15T12:00:00Z");
 const day = 24 * 60 * 60 * 1000;
 const listArgs = [
@@ -62,7 +62,7 @@ function fixture(t) {
       }).map(([target, asset]) => [
         target,
         {
-          url: `https://github.com/${repository}/releases/download/${tag(1)}/Buzz_0.0.0-preview.1.1_${asset}`,
+          url: `https://github.com/${repository}/releases/download/${tag(1)}/Mira_0.0.0-preview.1.1_${asset}`,
         },
       ]),
     ),

@@ -790,7 +790,7 @@ export async function connectBrokerTransport(
               credentials: "same-origin",
               signal: AbortSignal.any([signal, AbortSignal.timeout(10000)]),
             });
-            if (!result.ok) throw new Error("Current Buzz library unavailable");
+            if (!result.ok) throw new Error("Current Mira library unavailable");
             return result.json();
           },
         }

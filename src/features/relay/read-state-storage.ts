@@ -207,7 +207,7 @@ function openDatabase() {
     };
     request.onerror = () => reject(request.error);
     request.onblocked = () =>
-      reject(new Error("Close other Buzz windows to open read state"));
+      reject(new Error("Close other Mira windows to open read state"));
   });
 }
 /** Forgets one partition's journal after its session is disposed, so a left

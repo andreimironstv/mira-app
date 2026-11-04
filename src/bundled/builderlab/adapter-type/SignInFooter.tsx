@@ -221,14 +221,14 @@ export function createSignInFooter(session: BuilderlabSession) {
                 {login.checking
                   ? "Checking your Builderlab sign-in…"
                   : waiting
-                    ? "Finish signing in to Builderlab in your browser, then return to Buzz."
+                    ? "Finish signing in to Builderlab in your browser, then return to Mira."
                     : "Use your Builderlab account to access this agent."}
               </span>
             }
           >
             {!available && (
               <p role="status" className="m-0 text-body-sm text-secondary">
-                Open the Buzz desktop app to sign in with Builderlab.
+                Open the Mira desktop app to sign in with Builderlab.
               </p>
             )}
             {login.error && (

@@ -1,6 +1,6 @@
 # Claude
 
-Create agents that run Claude on your computer and answer you in Buzz. Each agent works in its own **Workspace** folder and can run commands and edit files on its own.
+Create agents that run Claude on your computer and answer you in Mira. Each agent works in its own **Workspace** folder and can run commands and edit files on its own.
 
 ## Getting started
 

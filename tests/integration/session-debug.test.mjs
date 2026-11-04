@@ -410,7 +410,7 @@ test("names each matching session's agent and opens the one picked", async (t) =
       content: [
         {
           type: "input_text",
-          text: `You are codex00 (pubkey ${pubkey}), a coding agent in Buzz.`,
+          text: `You are codex00 (pubkey ${pubkey}), a coding agent in Mira.`,
         },
       ],
     },

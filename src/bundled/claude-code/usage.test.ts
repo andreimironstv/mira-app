@@ -177,7 +177,7 @@ it("reports a subagent the session spawned whose transcript is gone", () => {
   ).toEqual([]);
 });
 
-it("keeps only sessions Buzz started for this agent", () => {
+it("keeps only sessions Mira started for this agent", () => {
   const channelPrompt = context([
     "Scope: channel",
     "Session scope: channel",

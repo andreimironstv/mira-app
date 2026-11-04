@@ -3,9 +3,9 @@ import { relayOrigin } from "../communities/destination";
 import type { FoundCommunity } from "../communities/find-community";
 import { hostedByThisBuilderlab } from "./builderlab-hosted";
 
-const PUBLIC = "https://app.builderlab.xyz";
+const PUBLIC = "https://account.mira-ai.ro";
 const PUBLIC_SELF =
-  "12f6870117eff1a6318bd38c82a65d51dd19879b7489f57247114d0ee8a96de3";
+  "0000000000000000000000000000000000000000000000000000000000000000";
 /** As `findCommunity` reports it: the canonical origin, plus `self` when given. */
 const found = (input: string, self?: string): FoundCommunity => ({
   url: relayOrigin(input),
@@ -18,23 +18,23 @@ const hosted = (input: string, self?: string) =>
   hostedByThisBuilderlab(found(input, self), PUBLIC);
 
 it.each([
-  "wss://communities.buzz.xyz",
-  "https://design.communities.buzz.xyz",
-  "WSS://Design.Communities.BUZZ.xyz.",
-  "https://communities.buzz.xyz:443",
+  "wss://workspace.mira-ai.ro",
+  "https://design.workspace.mira-ai.ro",
+  "WSS://Design.Workspace.MIRA-AI.ro.",
+  "https://workspace.mira-ai.ro:443",
 ])("%s is hosted by a public build's Builderlab", (input) => {
   expect(hosted(input)).toBe(true);
 });
 
 it.each([
-  "wss://communities.buzz.xyz.evil.com",
+  "wss://workspace.mira-ai.ro.evil.com",
   "wss://notcommunities.buzz.xyz",
   "wss://xcommunities.buzz.xyz",
   "wss://buzz.xyz",
   "wss://buzz.block.builderlab.xyz",
   "wss://buzz.acme.builderlab.xyz",
   "wss://relay.example.com",
-  "https://communities.buzz.xyz:8443",
+  "https://workspace.mira-ai.ro:8443",
 ])("%s is not hosted by a public build's Builderlab", (input) => {
   expect(hosted(input)).toBe(false);
 });
@@ -43,12 +43,12 @@ it.each([
   ["", false],
   ["not a url", false],
   // Only the origin counts: the build URL carries the API's base path.
-  ["https://app.builderlab.xyz/api/goose/", true],
+  ["https://account.mira-ai.ro/api/goose/", true],
   // Another deployment's portal, as a federated-identity build derives it.
   ["https://block.builderlab.xyz", false],
-])("a build URL of %j hosts communities.buzz.xyz: %s", (build, expected) => {
+])("a build URL of %j hosts workspace.mira-ai.ro: %s", (build, expected) => {
   expect(
-    hostedByThisBuilderlab(found("wss://design.communities.buzz.xyz"), build),
+    hostedByThisBuilderlab(found("wss://design.workspace.mira-ai.ro"), build),
   ).toBe(expected);
 });
 

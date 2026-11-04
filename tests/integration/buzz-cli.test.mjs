@@ -44,8 +44,8 @@ test("every release job checks that its packaged buzz exists and runs", () => {
     'cli="$app/Contents/Resources/bin/buzz"',
     '"$cli" --help',
     '"$destination\\bin\\buzz.exe" --help',
-    '"$RUNNER_TEMP/deb/usr/lib/Buzz Foundation/bin/buzz" --help',
-    '"$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Buzz Foundation/bin/buzz"',
+    '"$RUNNER_TEMP/deb/usr/lib/Mira/bin/buzz" --help',
+    '"$RUNNER_TEMP/appimage/squashfs-root/usr/lib/Mira/bin/buzz"',
   ])
     assert.ok(release.includes(check), check);
   assert.match(

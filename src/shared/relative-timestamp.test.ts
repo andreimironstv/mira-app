@@ -12,6 +12,6 @@ it.each([
   [86400, "1 day ago"],
   [604799, "6 days ago"],
   [604800, "on Sep 6"],
-] as const)("matches Buzz's recency boundary at %s seconds", (age, label) => {
+] as const)("matches Mira's recency boundary at %s seconds", (age, label) => {
   expect(relativeTimestamp(now - age, now)).toBe(label);
 });

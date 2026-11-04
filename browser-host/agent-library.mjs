@@ -12,7 +12,7 @@ const MAX_ROWS = 2000;
 const HEX = /^[0-9a-f]{64}$/;
 const failure = () =>
   new Error(
-    "Could not read the current Buzz agent library. Open Buzz and retry; its saved library is left unchanged.",
+    "Could not read the current Mira agent library. Open Mira and retry; its saved library is left unchanged.",
   );
 function text(value, max = 256) {
   if (typeof value !== "string" || value.length > max) throw failure();
@@ -131,11 +131,11 @@ export function installedBuzzDataDir(
   home = homedir(),
 ) {
   if (platform === "darwin")
-    return join(home, "Library/Application Support/xyz.block.buzz.desktop");
+    return join(home, "Library/Application Support/ro.miraai.mira.desktop");
   if (platform === "linux") {
     const xdg = env.XDG_DATA_HOME;
     const base = xdg && isAbsolute(xdg) ? xdg : join(home, ".local/share");
-    return join(base, "xyz.block.buzz.desktop");
+    return join(base, "ro.miraai.mira.desktop");
   }
   return undefined;
 }

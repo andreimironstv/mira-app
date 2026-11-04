@@ -205,7 +205,7 @@ export function BestiePage({
             <Intro>
               <p className="m-0 text-body-sm text-muted" role="status">
                 Bestie runs on Builderlab. Turn on the Builderlab plugin in the
-                Buzz desktop app to set it up.
+                Mira desktop app to set it up.
               </p>
               <Button
                 variant="outline"

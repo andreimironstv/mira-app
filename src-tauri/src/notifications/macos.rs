@@ -174,7 +174,7 @@ pub(crate) fn init() {
 pub(super) fn show(id: String, title: String, body: String, pending: Arc<Pending>) {
     if !crate::dock::bundled() {
         pending.finish(Outcome::Failed(
-            "macOS notifications are unavailable when Buzz is not running from an app bundle"
+            "macOS notifications are unavailable when Mira is not running from an app bundle"
                 .into(),
         ));
         return;
@@ -234,7 +234,7 @@ pub(super) fn show(id: String, title: String, body: String, pending: Arc<Pending
     });
 }
 
-const NOTIFICATIONS_NOT_ALLOWED: &str = "macOS did not allow this app to send notifications. Enable Buzz in System Settings → Notifications. Development builds also need a stable Code Signing certificate configured as BUZZ_DEV_SIGNING_IDENTITY.";
+const NOTIFICATIONS_NOT_ALLOWED: &str = "macOS did not allow this app to send notifications. Enable Mira in System Settings → Notifications. Development builds also need a stable Code Signing certificate configured as BUZZ_DEV_SIGNING_IDENTITY.";
 
 fn permission_error(permission: Permission) -> String {
     match permission {
@@ -280,7 +280,7 @@ mod tests {
                 objc2_user_notifications::UNErrorCode::NotificationsNotAllowed.0,
                 "The operation couldn’t be completed. (UNErrorDomain error 1.)",
             ),
-            "macOS did not allow this app to send notifications. Enable Buzz in System Settings → Notifications. Development builds also need a stable Code Signing certificate configured as BUZZ_DEV_SIGNING_IDENTITY.",
+            "macOS did not allow this app to send notifications. Enable Mira in System Settings → Notifications. Development builds also need a stable Code Signing certificate configured as BUZZ_DEV_SIGNING_IDENTITY.",
         );
         assert_eq!(
             submission_error_message(1400, "native detail"),
@@ -411,7 +411,7 @@ pub(crate) enum Permission {
 fn notification_error(error: String) -> String {
     match error.as_str() {
         "Dock permission requires a bundled macOS app" => {
-            "macOS notifications are unavailable when Buzz is not running from an app bundle".into()
+            "macOS notifications are unavailable when Mira is not running from an app bundle".into()
         }
         "Dock settings request timed out" => "macOS notification settings request timed out".into(),
         "Dock authorization request timed out" => {
@@ -475,7 +475,7 @@ mod permission_tests {
         );
         assert_eq!(
             notification_error("Dock permission requires a bundled macOS app".into()),
-            "macOS notifications are unavailable when Buzz is not running from an app bundle"
+            "macOS notifications are unavailable when Mira is not running from an app bundle"
         );
     }
     #[test]

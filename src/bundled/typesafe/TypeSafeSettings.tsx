@@ -10,7 +10,7 @@ const KEY_STATUS: Record<KeyState, string> = {
   saved: "Your TypeSafe key is saved.",
   missing: "Add your TypeSafe API key to use TypeSafe.",
   unreadable:
-    "Buzz could not read your saved key. Unlock your keychain, or replace or remove the key.",
+    "Mira could not read your saved key. Unlock your keychain, or replace or remove the key.",
   refused:
     "TypeSafe did not accept your key. Replace it to keep using TypeSafe.",
 };
@@ -56,7 +56,7 @@ export function TypeSafeSettings({
   if (!typesafe.desktop())
     return (
       <p role="status" className="m-0 text-body-sm text-secondary">
-        Open the Buzz desktop app to use TypeSafe.
+        Open the Mira desktop app to use TypeSafe.
       </p>
     );
   return (

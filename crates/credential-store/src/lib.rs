@@ -36,9 +36,9 @@ pub const HUMAN_STORE: &str = human_store(cfg!(debug_assertions));
 
 pub const fn human_service(debug: bool) -> &'static str {
     if debug {
-        "xyz.block.buzz.desktop.identity.debug"
+        "ro.miraai.mira.desktop.identity.debug"
     } else {
-        "xyz.block.buzz.desktop.identity"
+        "ro.miraai.mira.desktop.identity"
     }
 }
 
@@ -403,7 +403,7 @@ mod tests;
 /// Erase an indexed session without reading its contents or knowing its schema.
 #[cfg(not(test))]
 pub fn delete_session(service: &str, account: &str) -> Result<()> {
-    if !service.starts_with("xyz.block.buzz.desktop.federated-session") {
+    if !service.starts_with("ro.miraai.mira.desktop.federated-session") {
         return Err(Error::Denied);
     }
     let _lock = acquire(&lock_root()?, service, account)?;
@@ -425,7 +425,7 @@ pub fn compare_session(
     expected: Option<&[u8]>,
     replacement: Option<&[u8]>,
 ) -> Result<()> {
-    if !service.starts_with("xyz.block.buzz.desktop.federated-session") {
+    if !service.starts_with("ro.miraai.mira.desktop.federated-session") {
         return Err(Error::Denied);
     }
     let _lock = acquire(&lock_root()?, service, account)?;

@@ -27,7 +27,7 @@ it("keys the added tools whatever order plugins started in", () => {
   ).not.toBe(key);
 });
 
-it("loads the Buzz tools up front, and attention and plugins' tools on search", () => {
+it("loads the Mira tools up front, and attention and plugins' tools on search", () => {
   const tools = sessionTools([tool("notes_add")]);
   const load = (name: string) => tools.find((each) => each.name === name)?.load;
   expect(TOOLS.every((each) => load(each.name) === "always")).toBe(true);

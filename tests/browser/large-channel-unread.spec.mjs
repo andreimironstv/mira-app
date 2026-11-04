@@ -59,14 +59,14 @@ for (const entry of ["sidebar", "search"]) {
       if (entry === "sidebar") await channel.click();
       else {
         await page
-          .getByRole("button", { name: "Search Buzz", exact: true })
+          .getByRole("button", { name: "Search Mira", exact: true })
           .click();
         const search = page.getByRole("dialog", {
-          name: "Search Buzz",
+          name: "Search Mira",
           exact: true,
         });
         await search
-          .getByRole("combobox", { name: "Search Buzz" })
+          .getByRole("combobox", { name: "Search Mira" })
           .fill("Lifecycle channel");
         await search.getByRole("option", { name: /Lifecycle channel/ }).click();
         await expect(search).toHaveCount(0);

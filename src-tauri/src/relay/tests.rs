@@ -3921,7 +3921,7 @@ mod federated_header {
         let head = &server.heads().await[0];
         assert!(
             head.lines()
-                .any(|line| line.eq_ignore_ascii_case("user-agent: Buzz")),
+                .any(|line| line.eq_ignore_ascii_case("user-agent: Mira")),
             "{head}"
         );
         community.assert_carried(head);

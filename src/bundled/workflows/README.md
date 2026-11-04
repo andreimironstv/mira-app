@@ -1,6 +1,6 @@
 # Workflows
 
-Automate work in your channels. When something happens, like a new message, a reaction, or a scheduled time, Buzz runs the steps you set up.
+Automate work in your channels. When something happens, like a new message, a reaction, or a scheduled time, Mira runs the steps you set up.
 
 ## Getting started
 

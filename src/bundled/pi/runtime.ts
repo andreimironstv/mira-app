@@ -1351,7 +1351,7 @@ export class PiRuntime {
    * it. */
   private memories(agent: AgentKey, slug?: string) {
     const reads = this.reads(agent);
-    if (!reads) return Promise.reject(new Error("Buzz is not connected"));
+    if (!reads) return Promise.reject(new Error("Mira is not connected"));
     return this.memoryReads.read(
       reads,
       pubkeyOf(agent),

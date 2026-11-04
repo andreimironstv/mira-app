@@ -619,7 +619,7 @@ function Fixture() {
           />
           <IconButton
             variant="chrome"
-            aria-label="Search Buzz"
+            aria-label="Search Mira"
             icon={<MagnifyingGlassIcon size={16} />}
           />
           <IconButton

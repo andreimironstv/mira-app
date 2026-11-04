@@ -200,7 +200,7 @@ export function SignInEnding({ identity }: { identity: FederatedIdentity }) {
           ? "Finish signing in in your browser."
           : failure
             ? recoveryMessage(failure)
-            : "Sign in again to keep Buzz open."
+            : "Sign in again to keep Mira open."
       }
     >
       {renewing ? (
@@ -321,14 +321,14 @@ function SignInScreen({
   const description = checking
     ? "Checking your sign-in…"
     : signingIn
-      ? "Finish signing in in your browser. Buzz opens as soon as you’re done."
+      ? "Finish signing in in your browser. Mira opens as soon as you’re done."
       : stored
         ? recoveryMessage(state.failure ?? "")
         : unreachable
           ? "Check your connection, then try again."
           : ended
             ? `Your sign-in has ended. Sign in again to keep using ${communities}.`
-            : `Buzz uses your ${organization ? `${organization} ` : ""}account to open ${communities}.`;
+            : `Mira uses your ${organization ? `${organization} ` : ""}account to open ${communities}.`;
   return (
     <OnboardingScreen
       labelledBy="launch-sign-in-title"

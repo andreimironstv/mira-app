@@ -34,7 +34,7 @@ function fixture(t) {
     "GST_PLUGIN_SYSTEM_PATH_1_0",
   );
   mkdirSync(join(extracted, "usr/bin"));
-  writeFileSync(join(extracted, "usr/bin/Buzz"), "fixture app");
+  writeFileSync(join(extracted, "usr/bin/Mira"), "fixture app");
   const image = join(root, "fixture.AppImage");
   writeFileSync(
     image,
@@ -88,7 +88,7 @@ for (const wayland of ["bundled", "excluded by linuxdeploy"]) {
       "fixture",
     );
     assert.equal(
-      readFileSync(join(f.repacked, "usr/bin/Buzz.bin"), "utf8"),
+      readFileSync(join(f.repacked, "usr/bin/Mira.bin"), "utf8"),
       "fixture app",
     );
   });
@@ -103,7 +103,7 @@ test("AppImage repair refuses a missing library directory before repack", (t) =>
 
 test("AppImage repair refuses a missing app executable before repack", (t) => {
   const f = fixture(t);
-  rmSync(join(f.extracted, "usr/bin/Buzz"));
+  rmSync(join(f.extracted, "usr/bin/Mira"));
   assert.notEqual(f.run().status, 0);
   assert.equal(existsSync(f.repacked), false);
 });

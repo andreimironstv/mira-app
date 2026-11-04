@@ -1,6 +1,6 @@
-# Buzz design system
+# Mira design system
 
-Shared components, tokens, and styles for Buzz. Use them for new UI and when
+Shared components, tokens, and styles for Mira. Use them for new UI and when
 migrating existing surfaces. The system originated in the `block/buzz`
 `desktop-new` worktree; its layout playgrounds remain experimental.
 

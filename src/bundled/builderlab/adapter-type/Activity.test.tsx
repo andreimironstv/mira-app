@@ -123,7 +123,7 @@ it("shows this agent's published turns, leaving the feed's lease to the plugin",
 });
 
 it.each([
-  [undefined, "Activity shows once Buzz is connected."],
+  [undefined, "Activity shows once Mira is connected."],
   [{ status: "unavailable" }, "Activity isn't available here."],
   [{ status: "connecting" }, "Connecting to the live feed…"],
 ] as const)("explains a feed that can't show turns yet (%o)", (state, text) => {

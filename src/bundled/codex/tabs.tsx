@@ -382,7 +382,7 @@ function CodexSignIn({
           </div>
           {step === "install" && (
             <p className="m-0 text-body-sm text-subtle">
-              Downloads Buzz's own copy of Codex (about 130 MB) from
+              Downloads Mira's own copy of Codex (about 130 MB) from
               releases.openai.com and keeps it on the latest release. It does
               not change the <code>codex</code> in your terminal, and uses the
               same sign-in and settings.
@@ -623,7 +623,7 @@ export function createTabs(
           ) : null}
           {action?.step === "install" && !installing.running && (
             <p className="m-0 text-body-sm text-subtle">
-              Downloads Buzz's own copy of Codex (about 130 MB) from
+              Downloads Mira's own copy of Codex (about 130 MB) from
               releases.openai.com and keeps it on the latest release. It does
               not change the <code>codex</code> in your terminal, and uses the
               same sign-in and settings.
@@ -1113,7 +1113,7 @@ export function createTabs(
           <>
             <Field
               label="Workspace"
-              description="Codex starts here with full access to your files and network. Buzz tools run inside the app. Inherited MCP/Apps/plugin tools are disabled."
+              description="Codex starts here with full access to your files and network. Mira tools run inside the app. Inherited MCP/Apps/plugin tools are disabled."
             >
               <Input
                 value={draft.workspace}

@@ -597,7 +597,7 @@ for (const type of ["repo", "issue"] as const) {
   );
 }
 
-it("keeps normal Markdown formatting and routes Buzz links through navigation", async () => {
+it("keeps normal Markdown formatting and routes Mira links through navigation", async () => {
   const t = setup({ type: "repo", owner, dtag: "repo" });
   const href = `buzz://repo?owner=${owner}&d=repo&tab=issues`;
   t.readGit.mockResolvedValue({

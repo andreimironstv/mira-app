@@ -152,7 +152,7 @@ test.each([
     });
     const request = {
       community_id: "11111111-1111-4111-8111-111111111111",
-      host: "north.communities.buzz.xyz",
+      host: "north.workspace.mira-ai.ro",
       request_id: "22222222-2222-4222-8222-222222222222",
       acknowledgement_version: 1,
     };

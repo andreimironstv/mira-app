@@ -18,7 +18,7 @@ function textOf(markup: string) {
   return container.textContent;
 }
 
-it("claims recognised services and Buzz entities by default and unknown websites as a catch-all", () => {
+it("claims recognised services and Mira entities by default and unknown websites as a catch-all", () => {
   let renderer: LinkRenderer | undefined;
   apply({
     conversation: { registerLink: (value: LinkRenderer) => (renderer = value) },
@@ -32,7 +32,7 @@ it("claims recognised services and Buzz entities by default and unknown websites
   expect(order("https://example.com/")).toBe(100);
 });
 
-it("identifies exact GitHub hosts, ordinary websites, and Buzz entity links", () => {
+it("identifies exact GitHub hosts, ordinary websites, and Mira entity links", () => {
   expect(linkKind("https://github.com/block/buzz")).toBe("github");
   expect(linkKind("https://github.com.example.com/block/buzz")).toBe("web");
   expect(linkKind("https://example.com/github.com")).toBe("web");
@@ -47,7 +47,7 @@ it.each([
     "thread",
     "Thread",
   ],
-])("renders semantic Buzz labels for %s", (href, kind, label) => {
+])("renders semantic Mira labels for %s", (href, kind, label) => {
   const html = renderToStaticMarkup(<InlineLink href={href} />);
   expect(html).toContain(`data-link-kind="${kind}"`);
   expect(textOf(html)).toBe(label);

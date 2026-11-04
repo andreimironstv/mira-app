@@ -2,7 +2,7 @@
   "id": "buzz.claude-code",
   "name": "Claude",
   "apiVersion": 1,
-  "description": "Run local Claude coding agents in Buzz.",
+  "description": "Run local Claude coding agents in Mira.",
   "discovery": {
     "category": "agents",
     "tags": ["Essentials", "code", "coding-agents"]

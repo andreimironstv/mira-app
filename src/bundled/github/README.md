@@ -1,6 +1,6 @@
 # GitHub
 
-Preview GitHub repositories, pull requests, issues, and commits without leaving Buzz.
+Preview GitHub repositories, pull requests, issues, and commits without leaving Mira.
 
 ## Getting started
 

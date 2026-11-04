@@ -653,7 +653,7 @@ export function Welcome({
               tabIndex={-1}
               className="text-heading text-standard"
             >
-              Your Buzz identity
+              Your Mira identity
             </h1>
             {state.status === "loading" ? (
               <p role="status">Opening your saved identity…</p>
@@ -704,7 +704,7 @@ export function Welcome({
         </Button>
         {auth.status === "pending" && (
           <p role="status" className="text-body-sm text-subtle">
-            Finish sign-in in your browser, then return to Buzz.
+            Finish sign-in in your browser, then return to Mira.
           </p>
         )}
         {/* The action column centres its text; the field keeps its label aligned. */}

@@ -99,11 +99,11 @@ export function IdentitySettings({
               </SettingsGroup>
               <SettingsGroup>
                 <PreferenceRow
-                  title="Sign out of Buzz"
+                  title="Sign out of Mira"
                   subtitle="Remove your private key from this device. Also signs you out of your organization and ends Builderlab and hosted community logins."
                   trailing={
                     <Button type="button" onClick={() => setSigningOut(true)}>
-                      Sign out of Buzz
+                      Sign out of Mira
                     </Button>
                   }
                 />
@@ -197,7 +197,7 @@ function OrganizationSignIn({ identity }: { identity: FederatedIdentity }) {
                   <br />
                 </>
               )}
-              {`Lets you and your agents into communities that require your ${organization} login. Signing out keeps your Buzz key on this device, but you and your agents can’t connect to those communities again until you sign back in.`}
+              {`Lets you and your agents into communities that require your ${organization} login. Signing out keeps your Mira key on this device, but you and your agents can’t connect to those communities again until you sign back in.`}
             </>
           }
           trailing={

@@ -168,7 +168,7 @@ export function PinnedBestie({
           title="Your chats are unavailable"
           description={
             channels.error ??
-            "Buzz couldn’t read your chats, so this one can’t be opened."
+            "Mira couldn’t read your chats, so this one can’t be opened."
           }
           action={
             <Button
@@ -257,7 +257,7 @@ function DirectMessage({
           setError(
             reason instanceof Error
               ? reason.message
-              : "Buzz couldn’t open this conversation.",
+              : "Mira couldn’t open this conversation.",
           );
       }
     })();

@@ -288,7 +288,7 @@ function Playground() {
       <PanelHeader title={<PanelHeaderLabel title="Attachment playground" />} />
       <div className="playground-body">
         <p className="text-body text-subtle">
-          Real Buzz components with local samples. Preview, play, remove, and
+          Real Mira components with local samples. Preview, play, remove, and
           retry; reset to start again. Appearance changes stay in this
           playground.
         </p>

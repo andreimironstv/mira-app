@@ -13,7 +13,7 @@ use tokio::{
 #[test]
 fn hosted_backup_keeps_its_fixed_service_with_any_builderlab_build_target() {
     let service = Config {
-        service_url: "https://app.builderlab.xyz/api/goose".into(),
+        service_url: "https://account.mira-ai.ro/api/goose".into(),
         namespace: "backup/staging".into(),
     };
     for (origin, path) in [
@@ -22,7 +22,7 @@ fn hosted_backup_keeps_its_fixed_service_with_any_builderlab_build_target() {
             "https://staging.builderlab.example",
             "/deployment/api/goose/",
         ),
-        ("https://app.builderlab.xyz", "/staging/api/goose/"),
+        ("https://account.mira-ai.ro", "/staging/api/goose/"),
     ] {
         assert!(
             source_allowed_for(Source::Hosted, Some(&service), origin, path),
@@ -30,13 +30,13 @@ fn hosted_backup_keeps_its_fixed_service_with_any_builderlab_build_target() {
         );
     }
     let wrong_service = Config {
-        service_url: "https://app.builderlab.xyz/staging/api/goose".into(),
+        service_url: "https://account.mira-ai.ro/staging/api/goose".into(),
         namespace: "backup/staging".into(),
     };
     assert!(!source_allowed_for(
         Source::Hosted,
         Some(&wrong_service),
-        "https://app.builderlab.xyz",
+        "https://account.mira-ai.ro",
         "/api/goose/"
     ));
 }
@@ -44,13 +44,13 @@ fn hosted_backup_keeps_its_fixed_service_with_any_builderlab_build_target() {
 #[test]
 fn builderlab_backup_requires_the_compiled_builderlab_api_path() {
     let service = Config {
-        service_url: "https://app.builderlab.xyz/api/goose".into(),
+        service_url: "https://account.mira-ai.ro/api/goose".into(),
         namespace: "backup/staging".into(),
     };
     assert!(source_allowed_for(
         Source::Builderlab,
         Some(&service),
-        "https://app.builderlab.xyz",
+        "https://account.mira-ai.ro",
         "/api/goose/"
     ));
     assert!(!source_allowed_for(
@@ -62,13 +62,13 @@ fn builderlab_backup_requires_the_compiled_builderlab_api_path() {
     assert!(!source_allowed_for(
         Source::Builderlab,
         Some(&service),
-        "https://app.builderlab.xyz",
+        "https://account.mira-ai.ro",
         "/staging/api/goose/"
     ));
     assert!(!source_allowed_for(
         Source::Builderlab,
         Some(&service),
-        "https://app.builderlab.xyz",
+        "https://account.mira-ai.ro",
         ""
     ));
 }
@@ -890,7 +890,7 @@ fn source_generations_and_teardown_fence_retired_work_without_another_sources_lo
         state: Default::default(),
         root: None,
         config: Arc::new(Some(Config {
-            service_url: "https://app.builderlab.xyz/api/goose".into(),
+            service_url: "https://account.mira-ai.ro/api/goose".into(),
             namespace: "backup/staging".into(),
         })),
     };
@@ -1175,7 +1175,7 @@ fn signing_out_the_latest_source_retains_the_other_sources_session() {
         state: Default::default(),
         root: None,
         config: Arc::new(Some(Config {
-            service_url: "https://app.builderlab.xyz/api/goose".into(),
+            service_url: "https://account.mira-ai.ro/api/goose".into(),
             namespace: "backup/staging".into(),
         })),
     };
@@ -1234,7 +1234,7 @@ async fn login_session_changes_leave_recovery_and_selected_installation_alive() 
             state: host.state.clone(),
             root: None,
             config: Arc::new(Some(Config {
-                service_url: "https://app.builderlab.xyz/api/goose".into(),
+                service_url: "https://account.mira-ai.ro/api/goose".into(),
                 namespace: "backup/staging".into(),
             })),
         };
@@ -1362,7 +1362,7 @@ async fn upload_started(service: &Service, seen: &Mutex<Vec<serde_json::Value>>)
 }
 fn production() -> Arc<Option<Config>> {
     Arc::new(Some(Config {
-        service_url: "https://app.builderlab.xyz/api/goose".into(),
+        service_url: "https://account.mira-ai.ro/api/goose".into(),
         namespace: "backup/staging".into(),
     }))
 }
@@ -1882,7 +1882,7 @@ fn a_federated_handoff_stores_only_the_revision_and_requires_the_current_one() {
     };
     for (service_url, source, expected) in [
         (
-            "https://app.builderlab.xyz/api/goose",
+            "https://account.mira-ai.ro/api/goose",
             Source::Hosted,
             Err("Invalid backup session".into()),
         ),

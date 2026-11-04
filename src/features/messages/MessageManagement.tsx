@@ -596,7 +596,7 @@ function DeleteMessageDialog({
       description={
         unsent
           ? "This message wasn’t sent. Deleting it removes it from this device. This cannot be undone."
-          : "This requests removal of this message from Buzz’s relay. People may still have copies. This cannot be undone."
+          : "This requests removal of this message from Mira’s relay. People may still have copies. This cannot be undone."
       }
       pending={pending}
       finalFocus={() =>

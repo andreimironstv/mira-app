@@ -55,7 +55,7 @@ function setup(
 }
 
 describe("agent completion notifications", () => {
-  it("shows in-app feedback when another Buzz conversation is focused", () => {
+  it("shows in-app feedback when another Mira conversation is focused", () => {
     const h = setup(true);
     h.work.finish({ ok: true });
     expect(h.foreground).toHaveBeenCalledOnce();
@@ -180,7 +180,7 @@ describe("agent completion notifications", () => {
     h.stop();
   });
 
-  it("stays quiet only for the exact visible conversation while Buzz is focused", () => {
+  it("stays quiet only for the exact visible conversation while Mira is focused", () => {
     const h = setup(true, active("chat", "thread"));
     h.work.finish({ ok: true });
     expect(h.desktop).not.toHaveBeenCalled();

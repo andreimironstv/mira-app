@@ -78,10 +78,10 @@ export function RestoreIdentity({
         <>
           <p>
             {current
-              ? "Choose the Buzz identity to restore on this device."
+              ? "Choose the Mira identity to restore on this device."
               : recovery.currentPubkey
                 ? "Your current identity isn’t in these backups. You can choose a previous identity."
-                : "Choose the Buzz identity to restore on this device."}
+                : "Choose the Mira identity to restore on this device."}
           </p>
           <p>This won’t change the identity linked to your account.</p>
           {recovery.failedCount > 0 && (

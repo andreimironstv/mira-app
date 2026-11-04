@@ -401,7 +401,7 @@ mod tests {
         assert!(
             heads[0]
                 .lines()
-                .any(|line| line.eq_ignore_ascii_case("user-agent: Buzz")),
+                .any(|line| line.eq_ignore_ascii_case("user-agent: Mira")),
             "{}",
             heads[0]
         );

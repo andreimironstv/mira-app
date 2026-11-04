@@ -38,9 +38,9 @@ test("search, composer and split-pane keyboard focus preserve both drafts", asyn
   });
   await alpha.fill("Alpha draft");
   await page.keyboard.press(`${mod}+k`);
-  const search = page.getByRole("dialog", { name: "Search Buzz", exact: true });
+  const search = page.getByRole("dialog", { name: "Search Mira", exact: true });
   const query = search.getByRole("combobox", {
-    name: "Search Buzz",
+    name: "Search Mira",
     exact: true,
   });
   await expect(query).toBeFocused();
@@ -199,7 +199,7 @@ test.extend({ companionFixture: true })(
     }
     for (const start of [
       companion.getByRole("button", { name: "Close Companion fixture panel" }),
-      page.getByRole("button", { name: "Search Buzz", exact: true }),
+      page.getByRole("button", { name: "Search Mira", exact: true }),
     ]) {
       await start.focus();
       await page.keyboard.press(keys.composer);
@@ -306,7 +306,7 @@ test("covered panes and notifications preserve focus and F6 recovery", async ({
     await expect(alpha).toHaveText("Alpha draft");
     // Outside both panes, a covered main composer must not claim the shortcut.
     const search = page.getByRole("button", {
-      name: "Search Buzz",
+      name: "Search Mira",
       exact: true,
     });
     await search.focus();
@@ -385,7 +385,7 @@ test("covered panes and notifications preserve focus and F6 recovery", async ({
       }),
     )
     .toBeLessThan(0);
-  const search = page.getByRole("button", { name: "Search Buzz", exact: true });
+  const search = page.getByRole("button", { name: "Search Mira", exact: true });
   await search.focus();
   await page.keyboard.press(keys.composer);
   await expect(search).toBeFocused();

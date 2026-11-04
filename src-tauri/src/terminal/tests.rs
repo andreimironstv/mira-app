@@ -130,7 +130,7 @@ fn production_environment_probe() {
     }
     for value in [
         "TERM=xterm-256color",
-        "TERM_PROGRAM=Buzz",
+        "TERM_PROGRAM=Mira",
         "COLORTERM=truecolor",
         "SHELL=/bin/sh",
         "BUZZ_NPUB=npub1",

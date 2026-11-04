@@ -483,7 +483,7 @@ it("explains Attention to a new agent and switches it on this device", async () 
     ),
   ).toBeTruthy();
   expect(
-    screen.getByText("Watches only run while Buzz is open on this device."),
+    screen.getByText("Watches only run while Mira is open on this device."),
   ).toBeTruthy();
   expect(
     screen.getByText("Nothing is being watched yet. Try asking Bo:"),

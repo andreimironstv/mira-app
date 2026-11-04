@@ -357,7 +357,7 @@ try {
   // The title, then the conversation's tag (prompt.ts `sessionTag`).
   assert.match(
     result.thread.name,
-    /^Buzz #codex-test · thread cccccccc · Codex · buzz:[0-9a-f]{16}$/,
+    /^Mira #codex-test · thread cccccccc · Codex · buzz:[0-9a-f]{16}$/,
   );
   const rollout = (await readFile(result.thread.path, "utf8"))
     .split("\n")
@@ -500,7 +500,7 @@ try {
   await condition(
     () =>
       published.length === 7 && runtime.sessions(pubkey)[0]?.status === "Idle",
-    "shared Buzz dynamic tools",
+    "shared Mira dynamic tools",
   );
   assert.match(published.at(-1).content, /tool-loop-ok/);
   assert.match(published.at(-1).content, /files.test/);

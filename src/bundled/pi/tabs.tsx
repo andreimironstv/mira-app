@@ -250,7 +250,7 @@ export function createTabs({
             ? { error: listing.error }
             : unknown
               ? {
-                  error: `${unknown} isn't one of Pi's built-in providers, and no Pi package Buzz loaded adds it. Choose another.`,
+                  error: `${unknown} isn't one of Pi's built-in providers, and no Pi package Mira loaded adds it. Choose another.`,
                 }
               : listing.status === "loading" && !providers
                 ? { description: "Loading Pi's providers…" }

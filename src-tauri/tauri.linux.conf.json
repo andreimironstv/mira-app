@@ -1,9 +1,9 @@
 {
-  "productName": "Buzz Foundation",
+  "productName": "Mira",
   "app": {
     "windows": [
       {
-        "title": "Buzz",
+        "title": "Mira",
         "dragDropEnabled": false,
         "width": 1200,
         "height": 800,

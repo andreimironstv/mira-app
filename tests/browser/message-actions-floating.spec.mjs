@@ -709,11 +709,11 @@ test("keyboard search covers a toolbar under the pointer and restores its action
     };
     await page.keyboard.press(`${modifier}+k`);
     const dialog = page.getByRole("dialog", {
-      name: "Search Buzz",
+      name: "Search Mira",
       exact: true,
     });
     await expect(
-      dialog.getByRole("combobox", { name: "Search Buzz" }),
+      dialog.getByRole("combobox", { name: "Search Mira" }),
     ).toBeFocused();
 
     await hidden(actions);

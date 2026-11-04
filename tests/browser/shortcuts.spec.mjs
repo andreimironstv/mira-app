@@ -40,9 +40,9 @@ test("real Settings keys respect dialogs and modifiers, focus Settings, and pres
   await composer.fill("Keep my draft");
   await page.keyboard.press(`${modifier}+Shift+,`);
   await expect(composer).toBeVisible();
-  await button(page, "Search Buzz").click();
+  await button(page, "Search Mira").click();
   await page.keyboard.press(`${modifier}+,`);
-  await expect(page.getByRole("dialog", { name: "Search Buzz" })).toBeVisible();
+  await expect(page.getByRole("dialog", { name: "Search Mira" })).toBeVisible();
   await expect(
     page.getByRole("dialog", {
       name: "Settings",
@@ -52,9 +52,9 @@ test("real Settings keys respect dialogs and modifiers, focus Settings, and pres
   ).toHaveCount(0);
   await page.keyboard.press("Escape");
   await expect(
-    page.getByRole("dialog", { name: "Search Buzz", includeHidden: true }),
+    page.getByRole("dialog", { name: "Search Mira", includeHidden: true }),
   ).toHaveCount(0);
-  await expect(button(page, "Search Buzz")).toBeFocused();
+  await expect(button(page, "Search Mira")).toBeFocused();
   await composer.focus();
   await page.keyboard.press(`${modifier}+,`);
   await expect(settingsDialog(page)).toBeVisible();
@@ -78,7 +78,7 @@ test("zoom keys scale text, icons and spacing together and persist/reset", async
   const message = page.locator("[data-message-id] p").last();
   const base = { composer: await font(composer), message: await font(message) };
   const header = page.locator(".shell-header");
-  const icon = button(page, "Search Buzz").locator("svg");
+  const icon = button(page, "Search Mira").locator("svg");
   const geometry = async () => ({
     root: await font(page.locator("html")),
     header: await header.evaluate((el) => el.getBoundingClientRect().height),
@@ -402,7 +402,7 @@ test("independent plugin consumes injected shortcuts; disable/re-enable and edit
   await scale(page, 1.1);
   await page.keyboard.press(`${modifier}+0`);
   await scale(page, 1);
-  await button(page, "Search Buzz").click();
+  await button(page, "Search Mira").click();
   await page.keyboard.press(`${modifier}+Shift+k`);
   // Base UI hides the background from assistive technology while modal.
   await expect(
@@ -414,9 +414,9 @@ test("independent plugin consumes injected shortcuts; disable/re-enable and edit
   // Dismissal and focus restoration finish asynchronously. The host correctly
   // suppresses Settings while a closing modal still owns the keyboard.
   await expect(
-    page.getByRole("dialog", { name: "Search Buzz", includeHidden: true }),
+    page.getByRole("dialog", { name: "Search Mira", includeHidden: true }),
   ).toHaveCount(0);
-  await expect(button(page, "Search Buzz")).toBeFocused();
+  await expect(button(page, "Search Mira")).toBeFocused();
   await page.keyboard.press(`${modifier}+,`);
   await button(page, "Manage plugins").click();
   const toggle = pluginAction(page, "Shortcut counter");
@@ -426,12 +426,12 @@ test("independent plugin consumes injected shortcuts; disable/re-enable and edit
   const choices = await pageChoices(page, "Settings");
   await expect(pageChoice(choices, "Settings")).toBeVisible();
   await page
-    .getByRole("combobox", { name: "Search Buzz", exact: true })
+    .getByRole("combobox", { name: "Search Mira", exact: true })
     .fill("Shortcut counter");
   await expect(pageChoice(choices, "Shortcut counter")).toHaveCount(0);
   await page.keyboard.press("Escape");
   await expect(
-    page.getByRole("dialog", { name: "Search Buzz", includeHidden: true }),
+    page.getByRole("dialog", { name: "Search Mira", includeHidden: true }),
   ).toHaveCount(0);
   await page.keyboard.press(`${modifier}+Shift+k`);
   await page.keyboard.press(`${modifier}+,`);
@@ -529,9 +529,9 @@ test("Settings → Shortcuts rebinds a plugin shortcut live, blocks host conflic
   await expect(listening).toBeFocused();
   // The chord being listened for goes to the capture control, not the dispatcher.
   await page.keyboard.press(`${modifier}+k`);
-  await expect(row.getByRole("alert")).toContainText("Search Buzz");
+  await expect(row.getByRole("alert")).toContainText("Search Mira");
   await expect(
-    page.getByRole("dialog", { name: "Search Buzz", includeHidden: true }),
+    page.getByRole("dialog", { name: "Search Mira", includeHidden: true }),
   ).toHaveCount(0);
   await expect(listening).toBeFocused();
   await page.keyboard.press(`${modifier}+Shift+u`);
@@ -575,7 +575,7 @@ test("shortcut capture keeps its title and keyboard focus visible, with neutral 
 }, testInfo) => {
   await page.goto(app.origin);
   const modifier = await mod(page);
-  await button(page, "Search Buzz").waitFor();
+  await button(page, "Search Mira").waitFor();
   await page.keyboard.press(`${modifier}+,`);
   await button(page, "Shortcuts").click();
   const row = page.getByRole("article", { name: "Open Settings", exact: true });
@@ -661,9 +661,9 @@ test("shortcut capture keeps its title and keyboard focus visible, with neutral 
         // A rejected chord stays in capture, announces why, and stays neutral.
         await page.keyboard.press(`${modifier}+k`);
         const alert = row.getByRole("alert");
-        await expect(alert).toContainText("already used by Search Buzz");
+        await expect(alert).toContainText("already used by Search Mira");
         await expect(input).toHaveAccessibleDescription(
-          /already used by Search Buzz/,
+          /already used by Search Mira/,
         );
         await expect(alert).toHaveCSS(
           "color",

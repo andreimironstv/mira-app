@@ -13,7 +13,7 @@ mod platform;
 #[cfg(test)]
 mod tests;
 
-const SERVICE: &str = "xyz.block.buzz.desktop.agents";
+const SERVICE: &str = "ro.miraai.mira.desktop.agents";
 /// The service before 1.0. Reads copy a key found only there; deletes remove it too.
 const PREVIOUS_SERVICE: &str = "dev.local.buzz.foundation.agents";
 const MAX_BLOB: usize = 2 * 1024 * 1024;
@@ -119,7 +119,7 @@ impl PlatformCredentials {
             Err(Failure::Absent) => None,
             Err(failure) => return Err(failure.message()),
         }
-        .ok_or_else(|| "No identity from the earlier Buzz app was found".into())
+        .ok_or_else(|| "No identity from the earlier Mira app was found".into())
     }
 }
 

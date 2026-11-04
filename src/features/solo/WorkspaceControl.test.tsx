@@ -13,7 +13,7 @@ function fixture() {
   const snapshot = {
     status: "ready" as const,
     data: {
-      sections: [{ id: "buzz", name: "Buzz App", order: 0 }],
+      sections: [{ id: "buzz", name: "Mira App", order: 0 }],
       assignments: { chat: "buzz" },
       starred: [],
       muted: [],
@@ -34,7 +34,7 @@ it("moves a saved chat without changing project defaults", async () => {
   const { session, assign } = fixture();
   const user = userEvent.setup();
   render(<WorkspaceControl session={session} channelId="chat" />);
-  await user.click(screen.getByRole("button", { name: "Workspace: Buzz App" }));
+  await user.click(screen.getByRole("button", { name: "Workspace: Mira App" }));
   await user.click(
     await screen.findByRole("menuitemradio", { name: "No workspace" }),
   );
@@ -48,7 +48,7 @@ it("changes a new-chat project locally instead of moving a saved channel", async
   render(<WorkspaceControl session={session} value="" onChange={change} />);
   await user.click(screen.getByRole("button", { name: "Add workspace" }));
   await user.click(
-    await screen.findByRole("menuitemradio", { name: "Buzz App" }),
+    await screen.findByRole("menuitemradio", { name: "Mira App" }),
   );
   expect(change).toHaveBeenCalledWith("buzz");
   expect(assign).not.toHaveBeenCalled();

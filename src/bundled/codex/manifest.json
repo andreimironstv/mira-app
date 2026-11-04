@@ -2,7 +2,7 @@
   "id": "buzz.codex",
   "name": "Codex",
   "apiVersion": 1,
-  "description": "Run local Codex coding agents in Buzz.",
+  "description": "Run local Codex coding agents in Mira.",
   "discovery": {
     "category": "agents",
     "tags": ["Essentials", "code", "coding-agents"]

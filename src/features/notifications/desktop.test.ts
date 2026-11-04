@@ -80,7 +80,7 @@ it("the default service sends desktop banners via the native bridge and shared p
   await submit("first");
   await flush();
   expect(sdk.show).toHaveBeenCalledExactlyOnceWith("notification_show", {
-    title: "Buzz",
+    title: "Mira",
     body: "New mentions",
     id: expect.any(String),
     onEvent: expect.objectContaining({ onmessage: expect.any(Function) }),
@@ -338,7 +338,7 @@ it("macOS admits a 129th request and retires the oldest native callback", async 
   });
   for (let i = 0; i < 129; i++)
     await platform.show(
-      { id: String(i), title: "Buzz", body: "Hi" },
+      { id: String(i), title: "Mira", body: "Hi" },
       activate,
       failed,
     );

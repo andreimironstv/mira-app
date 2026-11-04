@@ -161,7 +161,7 @@ export function assignTodo(
   if (!item)
     throw new Error("This todo changed. Reload the Canvas before editing it.");
   const target = assignee && profileTarget(assignee.pubkey);
-  if (assignee && !target) throw new Error("Choose a valid Buzz user.");
+  if (assignee && !target) throw new Error("Choose a valid Mira user.");
   const name =
     assignee?.name.replace(/\s+/g, " ").trim() || assignee?.pubkey || "";
   const escaped = name.replace(/[\\`*_{}[\]()#+\-.!<>|&]/g, "\\$&");

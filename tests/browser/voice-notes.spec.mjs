@@ -236,7 +236,7 @@ test("permission cancellation, denial and plugin removal release microphones", {
   await page
     .getByRole("button", { name: "Record voice note", exact: true })
     .click();
-  await expect(page.getByRole("alert")).toContainText("Allow Buzz");
+  await expect(page.getByRole("alert")).toContainText("Allow Mira");
   await expect(
     page.getByRole("button", { name: "Close", exact: true }),
   ).toBeFocused();

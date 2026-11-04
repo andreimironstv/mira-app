@@ -132,7 +132,7 @@ it("reads discovery and join policy together, reporting a discovery failure firs
   );
 });
 
-it("explains a website that is not a Buzz community instead of a JSON parse error", async () => {
+it("explains a website that is not a Mira community instead of a JSON parse error", async () => {
   vi.mocked(invoke).mockImplementation(async () => ({
     status: 200,
     headers: {},

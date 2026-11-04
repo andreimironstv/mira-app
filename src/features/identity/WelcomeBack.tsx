@@ -39,7 +39,7 @@ export function WelcomeBack({
           Welcome back
         </h1>
         <p className="mt-2 text-body text-subtle">
-          This account is already linked to a Buzz identity — the key you use on
+          This account is already linked to a Mira identity — the key you use on
           your other device.
           {onRestore
             ? " Restore it from your backup, or enter that key to continue."

@@ -18,7 +18,7 @@ export function InterruptedNotice({ agents }: { agents: Agents }) {
           ? "Resume interrupted agent?"
           : "Resume interrupted agents?"
       }
-      description={`${names} ${interrupted.length === 1 ? "was" : "were"} working when Buzz closed or reloaded.`}
+      description={`${names} ${interrupted.length === 1 ? "was" : "were"} working when Mira closed or reloaded.`}
       tone="info"
     >
       <Button

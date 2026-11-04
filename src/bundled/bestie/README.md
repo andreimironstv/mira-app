@@ -1,6 +1,6 @@
 # Bestie
 
-Bestie is the account-saved agent pinned in Buzz's left navigation. The
+Bestie is the account-saved agent pinned in Mira's left navigation. The
 selection is the private `main-agent` record shared with Solo's default-agent
 owner; this plugin adds presentation and a conversation destination, not another
 selection store.
@@ -29,7 +29,7 @@ ordinary row and clears any old device-local hidden-DM intent. Replacing or
 deleting the Bestie, disabling the plugin, changing communities, or losing the
 exact roster match releases the promotion and restores the ordinary DM row.
 
-The pinned row and Search Buzz destination show the agent's name and avatar.
+The pinned row and Search Mira destination show the agent's name and avatar.
 Search adds **Bestie** as supporting text and matches either name, so the pinned
 DM remains recognizable without presenting a placeholder identity. Agent rows
 remain separate **New chat** actions; namesakes stay distinct by exact public key

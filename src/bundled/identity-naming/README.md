@@ -4,7 +4,7 @@ Helps you tell people and agents apart when they share a name, by adding a short
 
 ## Getting started
 
-Names across Buzz are labeled automatically.
+Names across Mira are labeled automatically.
 
 ---
 

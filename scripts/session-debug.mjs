@@ -19,7 +19,7 @@ export function threadId(value) {
     if (/^[a-f0-9]{64}$/i.test(id)) return id.toLowerCase();
   } catch {}
   throw new Error(
-    "Use a Buzz thread ID, buzz://message link, or --file /absolute/session.jsonl",
+    "Use a Mira thread ID, buzz://message link, or --file /absolute/session.jsonl",
   );
 }
 async function* files(root) {
@@ -96,7 +96,7 @@ export async function createInspector({
   // which holds threads from older Buzz builds.
   const buzzCodex =
     process.platform === "darwin"
-      ? join(home, "Library/Application Support/Buzz/codex-home")
+      ? join(home, "Library/Application Support/Mira/codex-home")
       : join(
           process.env.XDG_DATA_HOME || join(home, ".local/share"),
           "buzz/codex-home",

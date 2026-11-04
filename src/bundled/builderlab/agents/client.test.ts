@@ -630,7 +630,7 @@ const challenge = {
   origin: "https://builderlab.example",
   expires_at: "2999-01-01T00:00:00Z",
 };
-it("links an unbound Buzz key to the account before attesting", async () => {
+it("links an unbound Mira key to the account before attesting", async () => {
   const h = await fixture();
   vi.mocked(h.host.request)
     .mockResolvedValueOnce(
@@ -676,7 +676,7 @@ it.each([
   [
     "another key is bound to the account",
     [bound("ab".repeat(32))],
-    "linked to a different Buzz identity",
+    "linked to a different Mira identity",
   ],
   [
     "the key is bound to another account",
@@ -708,11 +708,11 @@ it.each([
       .mock.calls.some(([input]) => input.url.endsWith("/attest-agent")),
   ).toBe(false);
 });
-it("refuses to link without a local Buzz identity", async () => {
+it("refuses to link without a local Mira identity", async () => {
   const h = await fixture();
   h.owner.key.mockResolvedValueOnce(null);
   await expect(h.client.link(h.signal)).rejects.toThrow(
-    "Set up your Buzz identity",
+    "Set up your Mira identity",
   );
   expect(h.host.request).not.toHaveBeenCalled();
 });

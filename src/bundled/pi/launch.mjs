@@ -62,7 +62,7 @@ const firstLine = () =>
     };
     const end = () => {
       done();
-      reject(new Error("Buzz sent Pi nothing to run"));
+      reject(new Error("Mira sent Pi nothing to run"));
     };
     process.stdin.on("readable", read).on("end", end);
   });
@@ -81,11 +81,11 @@ const sha16 = (text) =>
 // each set of packages, and each agent's storage is in one place.
 const dir =
   process.platform === "darwin"
-    ? join(homedir(), "Library", "Application Support", "Buzz", "pi")
+    ? join(homedir(), "Library", "Application Support", "Mira", "pi")
     : process.platform === "win32"
       ? join(
           process.env.LOCALAPPDATA || join(homedir(), "AppData", "Local"),
-          "Buzz",
+          "Mira",
           "pi",
         )
       : join(
